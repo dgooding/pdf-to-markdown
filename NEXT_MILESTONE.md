@@ -1,6 +1,7 @@
 # Next Milestone
 
-- Complete the Render `PUBLISH_SECRET` setup and verify both authorized publishing and deletion; add persistent disk storage if durable hosted document mutations are required.
+- Set the requested administrator passcode privately as Render `PUBLISH_SECRET`, redeploy, and verify the live upper-right Admin button, publishing, and deletion; never commit the value to source.
+- Add persistent disk storage only if durable hosted document mutations are required and the paid Render plan is explicitly approved.
 - On the free Render plan, keep mutation controls safely disabled unless a secret is configured; do not enable paid persistent storage without explicit approval.
 - Complete actual human review of the 17 prepared synthetic fixtures and run the approved 5–10 document real-world pilot.
 - Optional UX follow-up: decide whether to expose a second visible assets/package control in `/editor` in addition to the default Markdown download.

@@ -53,3 +53,61 @@ body {
   color: #6b7280;
   cursor: not-allowed;
 }
+
+.admin-access-control {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#admin-access-button,
+#admin-publish-link {
+  display: inline-block;
+  padding: 0.55rem 0.85rem;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  background: #0f4c81;
+  color: #ffffff;
+  font: 700 0.85rem/1 "Segoe UI", Arial, sans-serif;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+  cursor: pointer;
+}
+
+#admin-access-button:hover,
+#admin-access-button:focus,
+#admin-publish-link:hover,
+#admin-publish-link:focus {
+  background: #0b3a62;
+  color: #ffffff;
+  text-decoration: none;
+  outline: 2px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+#admin-access-button:disabled {
+  border-color: #cbd5e1;
+  background: #64748b;
+  color: #f8fafc;
+  cursor: not-allowed;
+}
+
+#admin-publish-link[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .admin-access-control {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  #admin-access-button,
+  #admin-publish-link {
+    padding: 0.45rem 0.65rem;
+  }
+}

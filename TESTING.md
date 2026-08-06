@@ -305,3 +305,28 @@
 - Strict endpoint parity: Markdown, assets, manifest core, and quality core all true.
 - Search-index polish: 10 focused tests passed; generated index and search JSON contain no inline deletion script; Delete controls and external asset link are present.
 - Capability-aware UX: 19 focused site/cloud tests passed; full suite 67 passed; unavailable controls and disabled styling verified; strict parity remained fully true.
+
+## 2026-08-06 Admin Delete Access Validation
+
+- Focused site/cloud suites:
+  - `C:/Python39/python.exe -m unittest tests.test_site_publish tests.test_cloud_deployment -v`
+  - result: 21 passed, 0 failed, 0 skipped
+- Full suite:
+  - `C:/Python39/python.exe -m unittest discover -s tests -v`
+  - result: 69 passed, 0 failed, 0 skipped
+- Authorization coverage verifies correct-secret success, wrong-secret 403, hosted missing-secret 503, and independent delete endpoint enforcement.
+- Static-asset coverage verifies initially hidden/disabled Delete controls, server validation endpoint use, fixed upper-right Admin styling, protected Publish shortcut, and absence of local/session storage.
+- MkDocs build after the upper-right revision: pass.
+- Browser checks:
+	- desktop: Admin button fixed in the upper-right; successful validation revealed two Delete controls and the Publish shortcut
+	- mobile viewport `390x844`: Admin button remained visible in the upper-right
+- Strict endpoint comparison run: `artifacts/endpoint_release_check_live/run_1786004221/`
+  - `COMPARE_MD=True`
+  - `COMPARE_ASSETS=True`
+  - `COMPARE_MANIFEST_CORE=True`
+  - `COMPARE_QUALITY_CORE=True`
+- Logs:
+	- `artifacts/logs/admin_button_focused_tests.log`
+	- `artifacts/logs/admin_button_full_tests.log`
+	- `artifacts/logs/admin_button_mkdocs_build.log`
+	- `artifacts/logs/admin_button_endpoint_parity.log`

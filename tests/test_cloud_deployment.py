@@ -88,6 +88,8 @@ class CloudConfigTests(unittest.TestCase):
         text = (base / "render.yaml").read_text(encoding="utf-8")
         self.assertIn("healthCheckPath: /health", text)
         self.assertIn("PUBLISH_SECRET", text)
+        self.assertRegex(text, r"(?s)- key: PUBLISH_SECRET\s+sync: false")
+        self.assertNotIn("123" + "456", text)
         self.assertIn("DATA_ROOT", text)
         self.assertIn("mountPath:", text)
 

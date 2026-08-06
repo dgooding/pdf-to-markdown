@@ -55,6 +55,11 @@ This file records current repository architecture checkpoints for the document-t
 - Publish/delete index and build transactions are serialized with a worker-thread lock compatible with Python 3.9 module reloads.
 - Documents-page deletion behavior is loaded through `javascripts/delete-published.js`; generated Markdown contains controls only so MkDocs search indexes content rather than implementation code.
 - `GET /api/site-capabilities` exposes only a boolean mutation-availability flag so the static Documents UI can fail gracefully without revealing configuration details.
+- `POST /api/admin-access` validates an administrator passcode through the same `require_mutation_secret(...)` boundary without returning secret material.
+- A high-contrast Admin button is fixed in the upper-right on every MkDocs page; Delete controls and a Publish shortcut remain hidden until server validation succeeds.
+- The validated secret is retained only in JavaScript memory for the current page and is sent again to the independently protected delete endpoint; browser storage is not used.
+- Authorization failures clear the in-memory value and relock deletion controls.
+- Admin mode intentionally exposes all currently supported document-management actions (Publish and Delete), not arbitrary filesystem or server access.
 
 ## MkDocs Positioning
 - MkDocs remains developer-only validation/staging support.

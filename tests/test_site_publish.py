@@ -147,6 +147,28 @@ class SitePublishTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'"mutations_enabled":false', response.body)
 
+    def test_admin_access_requires_correct_publish_secret(self) -> None:
+        with patch.object(app_module, "_PUBLISH_SECRET", "required-secret"):
+            with self.assertRaises(HTTPException) as denied:
+                asyncio.run(app_module.admin_access(publish_secret="wrong"))
+
+            self.assertEqual(denied.exception.status_code, 403)
+            allowed = asyncio.run(app_module.admin_access(publish_secret="required-secret"))
+
+        self.assertEqual(allowed.status_code, 200)
+        self.assertIn(b'"authorized":true', allowed.body)
+
+    def test_hosted_admin_access_fails_closed_without_publish_secret(self) -> None:
+        with (
+            patch.object(app_module, "_IS_HOSTED", True),
+            patch.object(app_module, "_PUBLISH_SECRET", ""),
+        ):
+            with self.assertRaises(HTTPException) as denied:
+                asyncio.run(app_module.admin_access(publish_secret="anything"))
+
+        self.assertEqual(denied.exception.status_code, 503)
+        self.assertIn("PUBLISH_SECRET is configured", denied.exception.detail)
+
     def test_editor_uses_simplified_publish_workflow(self) -> None:
         self.assertIn("Document Converter", _EDITOR_HTML)
         self.assertIn("Publish to Documents", _EDITOR_HTML)
@@ -167,9 +189,23 @@ class SitePublishTests(unittest.TestCase):
         self.assertIn(".wy-menu-vertical li.toctree-l1 > ul", css)
         self.assertIn(".rst-footer-buttons", css)
         self.assertIn(".rst-versions", css)
+        self.assertIn(".admin-access-control", css)
+        self.assertIn("position: fixed", css)
+        self.assertIn("top: 1rem", css)
+        self.assertIn("right: 1rem", css)
+        self.assertIn("#admin-access-button", css)
+        self.assertIn("#admin-publish-link[hidden]", css)
+        self.assertIn("display: none !important", css)
         self.assertIn("/api/delete-published", delete_script)
+        self.assertIn("/api/admin-access", delete_script)
         self.assertIn("/api/site-capabilities", delete_script)
-        self.assertIn("Delete unavailable", delete_script)
+        self.assertIn('button.textContent = "Admin"', delete_script)
+        self.assertIn('publishLink.href = "/editor"', delete_script)
+        self.assertIn('publishLink.textContent = "Publish"', delete_script)
+        self.assertIn("document.body.appendChild(control)", delete_script)
+        self.assertIn("adminPublishSecret", delete_script)
+        self.assertNotIn("localStorage", delete_script)
+        self.assertNotIn("sessionStorage", delete_script)
 
     def test_update_published_index_lists_published_pages(self) -> None:
         publish_markdown_to_mkdocs_site(
@@ -185,6 +221,7 @@ class SitePublishTests(unittest.TestCase):
         self.assertIn("guides/reset-password/", index_text)
         self.assertIn('class="delete-published-document"', index_text)
         self.assertIn('data-site-path="guides/reset-password"', index_text)
+        self.assertIn("hidden disabled", index_text)
         self.assertNotIn("/api/delete-published", index_text)
 
 

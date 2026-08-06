@@ -360,3 +360,17 @@
 - Verification: focused hosted/site tests 18 passed; full suite 66 passed.
 - Search polish moved delete behavior into `javascripts/delete-published.js`, keeping implementation code out of hosted search results.
 - Hosted Documents now query `/api/site-capabilities` and visibly disable Delete controls when administrator secret setup is incomplete.
+
+## 2026-08-06 Admin Delete Access
+
+- Added a prominent upper-right Admin button to every MkDocs page, with an admin-only Publish shortcut.
+- Delete controls now start hidden and disabled, then unlock only after `POST /api/admin-access` validates the existing `PUBLISH_SECRET` boundary.
+- The validated secret remains in page memory only and is revalidated by `POST /api/delete-published`; no passcode is embedded in source or browser storage.
+- Wrong credentials return 403, and missing hosted configuration remains fail-closed with 503.
+- Verification: 21 focused tests passed; 69 full-suite tests passed; MkDocs build passed; desktop/mobile browser checks passed; strict endpoint parity remained fully true.
+- Evidence logs:
+	- `artifacts/logs/admin_button_focused_tests.log`
+	- `artifacts/logs/admin_button_full_tests.log`
+	- `artifacts/logs/admin_button_mkdocs_build.log`
+	- `artifacts/logs/admin_button_endpoint_parity.log`
+- Remaining deployment action: set the requested passcode privately as Render `PUBLISH_SECRET` and redeploy.

@@ -1,0 +1,8 @@
+INFO    -  Cleaning site directory
+INFO    -  Building documentation to directory: C:\Users\A083101\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\Desktop\PDF to Markdown App Needs Py3.9\mkdocs_preview\site
+INFO    -  The following pages exist in the docs directory, but are not included in the "nav" configuration:
+  - published\promotion-forecast-power-app-2\index.md
+  - published\user-manuals\service-desk-publish-smoke\index.md
+INFO    -  An absolute path to '/editor' is included in the 'nav' configuration, which presumably points to an external resource.
+INFO    -  Doc file 'index.md' contains an absolute link '/editor', it was left as is.
+INFO    -  Documentation built in 0.45 seconds

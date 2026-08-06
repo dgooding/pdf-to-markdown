@@ -323,7 +323,7 @@ def update_published_index(docs_root: Path) -> None:
     for rel_dir, title in entries:
       lines.append(
         f'- [{title}]({rel_dir}/index.md) — `{rel_dir}` '
-        f'<button type="button" class="delete-published-document" data-site-path="{rel_dir}">Delete</button>'
+        f'<button type="button" class="delete-published-document" data-site-path="{rel_dir}" hidden disabled>Delete</button>'
       )
   else:
     lines.extend([
@@ -474,49 +474,172 @@ This site provides a simple, searchable home for IT support documents.
   color: #6b7280;
   cursor: not-allowed;
 }
+
+.admin-access-control {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#admin-access-button,
+#admin-publish-link {
+  display: inline-block;
+  padding: 0.55rem 0.85rem;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  background: #0f4c81;
+  color: #ffffff;
+  font: 700 0.85rem/1 "Segoe UI", Arial, sans-serif;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+  cursor: pointer;
+}
+
+#admin-access-button:hover,
+#admin-access-button:focus,
+#admin-publish-link:hover,
+#admin-publish-link:focus {
+  background: #0b3a62;
+  color: #ffffff;
+  text-decoration: none;
+  outline: 2px solid #fbbf24;
+  outline-offset: 2px;
+}
+
+#admin-access-button:disabled {
+  border-color: #cbd5e1;
+  background: #64748b;
+  color: #f8fafc;
+  cursor: not-allowed;
+}
+
+#admin-publish-link[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .admin-access-control {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  #admin-access-button,
+  #admin-publish-link {
+    padding: 0.45rem 0.65rem;
+  }
+}
 """,
     encoding="utf-8",
   )
 
   (MKDOCS_DOCS_DIR / "javascripts" / "delete-published.js").write_text(
-    """async function configureDeleteControls() {
+    """let adminPublishSecret = "";
+
+function setDeleteControlsUnlocked(unlocked) {
   const buttons = document.querySelectorAll(".delete-published-document");
-  if (!buttons.length) return;
+  buttons.forEach(function (button) {
+    button.hidden = !unlocked;
+    button.disabled = !unlocked;
+  });
+}
+
+function createAdminControls() {
+  if (document.getElementById("admin-access-button")) return null;
+  const control = document.createElement("div");
+  control.className = "admin-access-control";
+  const button = document.createElement("button");
+  button.type = "button";
+  button.id = "admin-access-button";
+  button.textContent = "Admin";
+  button.setAttribute("aria-pressed", "false");
+  const publishLink = document.createElement("a");
+  publishLink.href = "/editor";
+  publishLink.id = "admin-publish-link";
+  publishLink.textContent = "Publish";
+  publishLink.title = "Open the converter to publish a document";
+  publishLink.hidden = true;
+  control.appendChild(publishLink);
+  control.appendChild(button);
+  document.body.appendChild(control);
+  return { button: button, publishLink: publishLink };
+}
+
+async function configureDeleteControls() {
+  setDeleteControlsUnlocked(false);
+  const controls = createAdminControls();
+  if (!controls) return;
   try {
     const response = await fetch("/api/site-capabilities");
     const capabilities = await response.json();
     if (capabilities.mutations_enabled) return;
-    buttons.forEach(function (button) {
-      button.disabled = true;
-      button.textContent = "Delete unavailable";
-      button.title = "Administrator setup is required before hosted documents can be deleted.";
-    });
+    controls.button.textContent = "Admin unavailable";
+    controls.button.title = "Administrator setup is required before hosted documents can be changed.";
+    controls.button.disabled = true;
   } catch (error) {
-    buttons.forEach(function (button) {
-      button.disabled = true;
-      button.title = "Unable to verify deletion availability.";
-    });
+    controls.button.textContent = "Admin unavailable";
+    controls.button.title = "Unable to verify administrator access.";
+    controls.button.disabled = true;
   }
 }
 
 document.addEventListener("DOMContentLoaded", configureDeleteControls);
 
 document.addEventListener("click", async function (event) {
+  const adminButton = event.target.closest("#admin-access-button");
+  if (adminButton) {
+    if (adminButton.disabled) return;
+    const candidateSecret = window.prompt("Enter the admin passcode:");
+    if (candidateSecret === null) return;
+    const form = new FormData();
+    form.append("publish_secret", candidateSecret);
+    const response = await fetch("/api/admin-access", { method: "POST", body: form });
+    const result = await response.json().catch(function () { return {}; });
+    if (!response.ok) {
+      adminPublishSecret = "";
+      setDeleteControlsUnlocked(false);
+      const publishLink = document.getElementById("admin-publish-link");
+      if (publishLink) publishLink.hidden = true;
+      window.alert(result.detail || "Admin access denied.");
+      return;
+    }
+    adminPublishSecret = candidateSecret;
+    setDeleteControlsUnlocked(true);
+    adminButton.textContent = "Admin active";
+    adminButton.setAttribute("aria-pressed", "true");
+    const publishLink = document.getElementById("admin-publish-link");
+    if (publishLink) publishLink.hidden = false;
+    return;
+  }
+
   const button = event.target.closest(".delete-published-document");
   if (!button || button.disabled) return;
   const sitePath = button.dataset.sitePath;
   if (!window.confirm("Delete " + sitePath + "? This cannot be undone.")) return;
-  const publishSecret = window.prompt("Enter the publish secret to delete this document:");
-  if (publishSecret === null) return;
   button.disabled = true;
   const form = new FormData();
   form.append("site_path", sitePath);
-  form.append("publish_secret", publishSecret);
+  form.append("publish_secret", adminPublishSecret);
   const response = await fetch("/api/delete-published", { method: "POST", body: form });
   const result = await response.json().catch(function () { return {}; });
   if (!response.ok) {
     window.alert(result.detail || "Unable to delete the document.");
-    button.disabled = false;
+    if (response.status === 403 || response.status === 503) {
+      adminPublishSecret = "";
+      setDeleteControlsUnlocked(false);
+      const adminButton = document.getElementById("admin-access-button");
+      if (adminButton) {
+        adminButton.textContent = "Admin";
+        adminButton.setAttribute("aria-pressed", "false");
+      }
+      const publishLink = document.getElementById("admin-publish-link");
+      if (publishLink) publishLink.hidden = true;
+    } else {
+      button.disabled = false;
+    }
     return;
   }
   window.location.reload();
@@ -1302,6 +1425,12 @@ async def delete_from_site(
 @app.get("/api/site-capabilities")
 async def site_capabilities() -> JSONResponse:
   return JSONResponse({"mutations_enabled": site_mutations_enabled()})
+
+
+@app.post("/api/admin-access")
+async def admin_access(publish_secret: str = Form("")) -> JSONResponse:
+  require_mutation_secret(publish_secret, "Admin access")
+  return JSONResponse({"authorized": True})
 
 
 _EDITOR_HTML = r"""<!doctype html>

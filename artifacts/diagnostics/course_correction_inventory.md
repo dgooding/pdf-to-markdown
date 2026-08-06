@@ -477,3 +477,13 @@
 - Verification: focused site/cloud tests 18 passed; full suite 66 passed; live conversion passed.
 - Moved deletion JavaScript from generated Markdown into a static asset after live search exposed inline script text; rebuilt search index is script-free.
 - Added `/api/site-capabilities` and disabled-state UI so missing administrator setup is communicated before users attempt deletion.
+
+## 2026-08-06 Admin delete access
+- Added `POST /api/admin-access`, which reuses `require_mutation_secret(...)` and discloses no configured secret.
+- Added a high-contrast upper-right Admin button on every MkDocs page through the generated JavaScript/CSS assets; successful login also reveals a Publish shortcut.
+- Published Delete controls now begin hidden and disabled, unlock only after server validation, and continue to require authorization at `POST /api/delete-published`.
+- Successful credentials remain in page memory only; 403/503 responses clear the value and relock controls.
+- Updated `tests/test_site_publish.py` and `tests/test_cloud_deployment.py` with authorization, fail-closed, generated-asset, no-browser-storage, and private Render configuration guardrails.
+- Verification: 21 focused tests passed; 69 full-suite tests passed; MkDocs build passed; desktop/mobile browser checks passed; strict endpoint parity remained fully true.
+- Final browser state: pre-login Publish/Delete controls hidden; authenticated state shows Admin active, Publish, and both Delete controls; mobile upper-right placement verified at `390x844`.
+- Deployment boundary: the requested passcode must be set privately as Render `PUBLISH_SECRET`; no passcode value was committed.
