@@ -351,3 +351,10 @@
 - Added normalized-path and root-containment checks before recursive document removal.
 - Synchronized persistent `DATA_ROOT/published` content into the MkDocs build source for hosted deployments.
 - Verification: 9 focused tests passed; MkDocs build and generated delete controls verified; 65 full-suite tests passed; strict endpoint parity remained fully true.
+
+## 2026-08-06 Hosted Mutation Security
+- Deployed the public Render service at `https://pdf-to-markdown-1gzl.onrender.com`.
+- Hosted publish/delete operations now return 503 when `PUBLISH_SECRET` is missing instead of allowing anonymous mutations.
+- Configured secrets use constant-time comparison; site mutation transactions use a Python 3.9-safe thread lock.
+- Live conversion smoke test passed with a completed job and valid Markdown download.
+- Verification: focused hosted/site tests 18 passed; full suite 66 passed.

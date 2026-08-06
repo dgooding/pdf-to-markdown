@@ -295,3 +295,11 @@
 - Generated `published/index.html` contains the delete controls and API target.
 - Full suite: 65 passed, 0 failed, 0 skipped.
 - Strict endpoint parity: Markdown, assets, manifest core, and quality core all true.
+
+## 2026-08-06 Hosted Mutation Security Validation
+- Live Render health, editor, site, and Documents routes returned 200.
+- Live conversion completed at 100%; Markdown download returned 200 with expected content.
+- Hosted missing-secret regression verifies HTTP 503 fail-closed behavior.
+- Focused site/cloud suites in reload-sensitive order: 18 passed.
+- Full suite: 66 passed, 0 failed, 0 skipped.
+- Strict endpoint parity: Markdown, assets, manifest core, and quality core all true.

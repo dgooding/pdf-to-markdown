@@ -7,7 +7,7 @@
 - remote: `https://github.com/dgooding/pdf-to-markdown.git`
 - repository_visibility: `public`
 - prototype-v2-rc1 tag exists: `False`
-- recommended_next_action: Deploy and smoke-test the Render service.
+- recommended_next_action: Complete hosted secret and persistence configuration.
 
 ## Commands requiring human authorization
 - `git commit ...`

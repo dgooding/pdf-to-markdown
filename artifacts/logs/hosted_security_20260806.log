@@ -1,0 +1,10 @@
+Hosted mutation security validation
+Date: 2026-08-06
+Live URL: https://pdf-to-markdown-1gzl.onrender.com
+Health/editor/docs/documents: HTTP 200
+Documents delete controls: present
+Live conversion: completed, Markdown download HTTP 200, content verified
+Security correction: hosted missing PUBLISH_SECRET fails closed with HTTP 503
+Focused site/cloud suites: 18 passed
+Full suite: 66 passed, 0 failed, 0 skipped
+Strict parity: Markdown, assets, manifest core, and quality core all true

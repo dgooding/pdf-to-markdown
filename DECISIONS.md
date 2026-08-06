@@ -47,3 +47,5 @@
 42. Keep the source repository public while protecting hosted document mutations with `PUBLISH_SECRET` rather than repository visibility.
 43. Expose document deletion on the Documents page, require confirmation and the publish secret, and enforce normalized path containment on the server.
 44. Treat `DATA_ROOT/published` as the hosted persistent source and synchronize it into the MkDocs source tree before static builds.
+45. Hosted document mutations must fail closed when `PUBLISH_SECRET` is absent; never treat a missing production secret as anonymous authorization.
+46. Serialize publish/delete rebuild transactions with a thread lock inside worker threads for Python 3.9 event-loop compatibility.

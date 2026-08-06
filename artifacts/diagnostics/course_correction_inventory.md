@@ -469,3 +469,9 @@
 - Corrected hosted document persistence by synchronizing `DATA_ROOT/published` into the MkDocs source before builds.
 - Added focused regression coverage in `tests/test_site_publish.py`.
 - Verification: 9 focused tests passed; MkDocs HTML control check passed; 65 full-suite tests passed; strict parity fully true.
+
+## 2026-08-06 Hosted fail-closed correction
+- Live Render smoke testing showed that an omitted `PUBLISH_SECRET` allowed mutation requests to reach document lookup.
+- Added hosted-environment detection and HTTP 503 fail-closed behavior for missing secrets.
+- Replaced module-level `asyncio.Lock` with a worker-thread transaction lock after reload-sensitive Python 3.9 testing exposed event-loop teardown failure.
+- Verification: focused site/cloud tests 18 passed; full suite 66 passed; live conversion passed.

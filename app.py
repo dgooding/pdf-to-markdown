@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import hmac
 import os
 import json
 import re
@@ -8,6 +9,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 import uuid
 import zipfile
@@ -30,6 +32,7 @@ _BIND_HOST = os.getenv("HOST", "127.0.0.1")
 _BIND_PORT = int(os.getenv("PORT", "8000"))
 # Secret required for POST /api/publish; empty string leaves publishing open (local default)
 _PUBLISH_SECRET = os.getenv("PUBLISH_SECRET", "")
+_IS_HOSTED = os.getenv("RENDER", "").lower() == "true"
 # Persistent data root; use env DATA_ROOT on hosted deployments so a mounted volume is used
 _DATA_ROOT = Path(os.getenv("DATA_ROOT", str(BASE_DIR)))
 _DATA_ROOT_CONFIGURED = bool(os.getenv("DATA_ROOT", "").strip())
@@ -49,7 +52,7 @@ MAX_FILES_PER_REQUEST = 50
 app = FastAPI(title="MkDocs File Converter API", version="1.0.0")
 
 jobs: dict[str, dict[str, Any]] = {}
-site_mutation_lock = asyncio.Lock()
+site_mutation_lock = threading.Lock()
 STALE_JOB_SECONDS = int(os.getenv("STALE_JOB_SECONDS", str(60 * 60)))
 
 
@@ -75,6 +78,16 @@ class StatusPayload(BaseModel):
 
 def now_ts() -> float:
     return time.time()
+
+
+def require_mutation_secret(provided_secret: str, action: str) -> None:
+  if _IS_HOSTED and not _PUBLISH_SECRET:
+    raise HTTPException(
+      status_code=503,
+      detail=f"{action} is disabled until PUBLISH_SECRET is configured.",
+    )
+  if _PUBLISH_SECRET and not hmac.compare_digest(provided_secret, _PUBLISH_SECRET):
+    raise HTTPException(status_code=403, detail=f"{action} is restricted. Provide the correct publish secret.")
 
 
 def cleanup_job(job_id: str) -> None:
@@ -1176,8 +1189,7 @@ async def publish_to_site(
   publish_secret: str = Form(""),
   document_name: str = Form(""),
 ) -> JSONResponse:
-  if _PUBLISH_SECRET and publish_secret != _PUBLISH_SECRET:
-    raise HTTPException(status_code=403, detail="Publishing is restricted. Provide the correct publish secret.")
+  require_mutation_secret(publish_secret, "Publishing")
   cleanup_stale_jobs()
   job = jobs.get(job_id)
   if not job:
@@ -1192,17 +1204,20 @@ async def publish_to_site(
   source_assets_dir = Path(job["output_dir"]) / "docs" / "assets"
   normalized_doc = slugify(document_name) if document_name.strip() else slugify(Path(job["source_file"]).stem)
 
-  try:
-    async with site_mutation_lock:
-      published = await asyncio.to_thread(
-        publish_markdown_to_mkdocs_site,
+  def publish_and_build() -> dict[str, str]:
+    with site_mutation_lock:
+      result = publish_markdown_to_mkdocs_site(
         source_markdown=output_file,
         source_assets_dir=source_assets_dir,
         docs_root=PUBLISHED_DOCS_DIR,
         site_path=normalized_doc,
       )
-      await asyncio.to_thread(update_published_index, PUBLISHED_DOCS_DIR)
-      await asyncio.to_thread(build_itsd_site)
+      update_published_index(PUBLISHED_DOCS_DIR)
+      build_itsd_site()
+      return result
+
+  try:
+    published = await asyncio.to_thread(publish_and_build)
   except FileExistsError as exc:
     raise HTTPException(status_code=409, detail=str(exc)) from exc
   except Exception as exc:  # noqa: BLE001
@@ -1223,18 +1238,20 @@ async def delete_from_site(
   site_path: str = Form(""),
   publish_secret: str = Form(""),
 ) -> JSONResponse:
-  if _PUBLISH_SECRET and publish_secret != _PUBLISH_SECRET:
-    raise HTTPException(status_code=403, detail="Deletion is restricted. Provide the correct publish secret.")
+  require_mutation_secret(publish_secret, "Deletion")
 
-  try:
-    async with site_mutation_lock:
-      deleted = await asyncio.to_thread(
-        delete_published_document,
+  def delete_and_build() -> dict[str, str]:
+    with site_mutation_lock:
+      result = delete_published_document(
         docs_root=PUBLISHED_DOCS_DIR,
         site_path=site_path,
       )
-      await asyncio.to_thread(update_published_index, PUBLISHED_DOCS_DIR)
-      await asyncio.to_thread(build_itsd_site)
+      update_published_index(PUBLISHED_DOCS_DIR)
+      build_itsd_site()
+      return result
+
+  try:
+    deleted = await asyncio.to_thread(delete_and_build)
   except ValueError as exc:
     raise HTTPException(status_code=400, detail=str(exc)) from exc
   except FileNotFoundError as exc:

@@ -51,6 +51,8 @@ This file records current repository architecture checkpoints for the document-t
 - Hosted deployments use `DATA_ROOT/published` as the authoritative persistent document source and synchronize it into `mkdocs_preview/docs/published/` before each MkDocs build.
 - `POST /api/delete-published` removes a normalized, contained document directory and rebuilds the index/site.
 - Publish and delete operations use the same optional `PUBLISH_SECRET` authorization boundary.
+- On Render, mutations fail closed with HTTP 503 when `PUBLISH_SECRET` is not configured; local development retains the existing optional-secret behavior.
+- Publish/delete index and build transactions are serialized with a worker-thread lock compatible with Python 3.9 module reloads.
 
 ## MkDocs Positioning
 - MkDocs remains developer-only validation/staging support.

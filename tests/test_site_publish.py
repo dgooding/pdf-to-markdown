@@ -121,6 +121,22 @@ class SitePublishTests(unittest.TestCase):
             self.assertEqual(deleted.status_code, 200)
             self.assertIn(b'"status":"deleted"', deleted.body)
 
+    def test_hosted_delete_fails_closed_without_publish_secret(self) -> None:
+        with (
+            patch.object(app_module, "_IS_HOSTED", True),
+            patch.object(app_module, "_PUBLISH_SECRET", ""),
+        ):
+            with self.assertRaises(HTTPException) as denied:
+                asyncio.run(
+                    app_module.delete_from_site(
+                        site_path="reset-password",
+                        publish_secret="",
+                    )
+                )
+
+        self.assertEqual(denied.exception.status_code, 503)
+        self.assertIn("PUBLISH_SECRET is configured", denied.exception.detail)
+
     def test_editor_uses_simplified_publish_workflow(self) -> None:
         self.assertIn("Document Converter", _EDITOR_HTML)
         self.assertIn("Publish to Documents", _EDITOR_HTML)
