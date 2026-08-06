@@ -2,6 +2,14 @@
 
 This app converts uploaded documents into MkDocs-compatible markdown packages with extracted assets.
 
+## Live App
+
+- Converter: https://pdf-to-markdown-1gzl.onrender.com/editor
+- Searchable documents: https://pdf-to-markdown-1gzl.onrender.com/docs/published/
+- Health check: https://pdf-to-markdown-1gzl.onrender.com/health
+
+The public demo runs on Render's free tier, so its first request after inactivity may take up to a minute while the service wakes. Conversion and Markdown downloads are enabled. Hosted publish/delete controls fail closed unless an administrator configures `PUBLISH_SECRET`. Persistent disks require a paid Render plan and are not enabled.
+
 ## Run on Windows
 
 1. Install 64-bit Python 3.9.
@@ -83,7 +91,7 @@ Manifest example location:
 
 ## Tests
 
-Test suite: `tests/test_conversion_pipeline.py`
+Test suite: `tests/`
 
 Covers:
 
