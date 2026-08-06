@@ -137,6 +137,16 @@ class SitePublishTests(unittest.TestCase):
         self.assertEqual(denied.exception.status_code, 503)
         self.assertIn("PUBLISH_SECRET is configured", denied.exception.detail)
 
+    def test_hosted_capabilities_report_disabled_without_publish_secret(self) -> None:
+        with (
+            patch.object(app_module, "_IS_HOSTED", True),
+            patch.object(app_module, "_PUBLISH_SECRET", ""),
+        ):
+            response = asyncio.run(app_module.site_capabilities())
+
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'"mutations_enabled":false', response.body)
+
     def test_editor_uses_simplified_publish_workflow(self) -> None:
         self.assertIn("Document Converter", _EDITOR_HTML)
         self.assertIn("Publish to Documents", _EDITOR_HTML)
@@ -158,6 +168,8 @@ class SitePublishTests(unittest.TestCase):
         self.assertIn(".rst-footer-buttons", css)
         self.assertIn(".rst-versions", css)
         self.assertIn("/api/delete-published", delete_script)
+        self.assertIn("/api/site-capabilities", delete_script)
+        self.assertIn("Delete unavailable", delete_script)
 
     def test_update_published_index_lists_published_pages(self) -> None:
         publish_markdown_to_mkdocs_site(

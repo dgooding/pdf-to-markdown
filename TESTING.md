@@ -304,3 +304,4 @@
 - Full suite: 66 passed, 0 failed, 0 skipped.
 - Strict endpoint parity: Markdown, assets, manifest core, and quality core all true.
 - Search-index polish: 10 focused tests passed; generated index and search JSON contain no inline deletion script; Delete controls and external asset link are present.
+- Capability-aware UX: 19 focused site/cloud tests passed; full suite 67 passed; unavailable controls and disabled styling verified; strict parity remained fully true.

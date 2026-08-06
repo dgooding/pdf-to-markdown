@@ -45,3 +45,11 @@ body {
   background: #b91c1c;
   color: #fff;
 }
+
+.delete-published-document:disabled,
+.delete-published-document:disabled:hover {
+  border-color: #9ca3af;
+  background: #f3f4f6;
+  color: #6b7280;
+  cursor: not-allowed;
+}

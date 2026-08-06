@@ -476,3 +476,4 @@
 - Replaced module-level `asyncio.Lock` with a worker-thread transaction lock after reload-sensitive Python 3.9 testing exposed event-loop teardown failure.
 - Verification: focused site/cloud tests 18 passed; full suite 66 passed; live conversion passed.
 - Moved deletion JavaScript from generated Markdown into a static asset after live search exposed inline script text; rebuilt search index is script-free.
+- Added `/api/site-capabilities` and disabled-state UI so missing administrator setup is communicated before users attempt deletion.

@@ -359,3 +359,4 @@
 - Live conversion smoke test passed with a completed job and valid Markdown download.
 - Verification: focused hosted/site tests 18 passed; full suite 66 passed.
 - Search polish moved delete behavior into `javascripts/delete-published.js`, keeping implementation code out of hosted search results.
+- Hosted Documents now query `/api/site-capabilities` and visibly disable Delete controls when administrator secret setup is incomplete.

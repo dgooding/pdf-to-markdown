@@ -9,3 +9,4 @@ Focused site/cloud suites: 18 passed
 Full suite: 66 passed, 0 failed, 0 skipped
 Strict parity: Markdown, assets, manifest core, and quality core all true
 Search index: inline deletion script absent; external deletion asset linked
+Capability UX: unavailable hosted Delete controls disabled with administrator setup guidance

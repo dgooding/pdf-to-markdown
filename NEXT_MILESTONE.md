@@ -1,6 +1,7 @@
 # Next Milestone
 
 - Complete the Render `PUBLISH_SECRET` setup and verify both authorized publishing and deletion; add persistent disk storage if durable hosted document mutations are required.
+- On the free Render plan, keep mutation controls safely disabled unless a secret is configured; do not enable paid persistent storage without explicit approval.
 - Complete actual human review of the 17 prepared synthetic fixtures and run the approved 5–10 document real-world pilot.
 - Optional UX follow-up: decide whether to expose a second visible assets/package control in `/editor` in addition to the default Markdown download.
 - Optional content-governance follow-up: define a preferred published-doc taxonomy (for example `troubleshooting/`, `faqs/`, `user-manuals/`) and approval rules for site publishing.
