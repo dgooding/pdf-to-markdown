@@ -1,0 +1,102 @@
+name: Convert and publish incoming documents
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "incoming/**"
+  workflow_dispatch:
+    inputs:
+      pdf_mode:
+        description: PDF conversion mode
+        required: true
+        default: hybrid
+        type: choice
+        options:
+          - hybrid
+          - ocr
+          - visual
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: document-publishing
+  cancel-in-progress: false
+
+jobs:
+  convert-publish-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+          cache: pip
+
+      - name: Install OCR and Python dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes tesseract-ocr
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Convert and publish inbox
+        env:
+          PDF_MODE: ${{ inputs.pdf_mode || 'hybrid' }}
+        run: |
+          python github_document_ops.py process-incoming \
+            --incoming-dir incoming \
+            --published-root mkdocs_preview/docs/published \
+            --diagnostics-dir artifacts/github-actions/current \
+            --pdf-mode "$PDF_MODE"
+
+      - name: Run focused repository tests
+        run: python -m unittest tests.test_github_document_ops tests.test_site_publish -v
+
+      - name: Commit published output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A incoming mkdocs_preview/docs/published
+          if git diff --cached --quiet; then
+            echo "No incoming documents required publication."
+          else
+            git commit -m "docs: publish incoming documents"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Build MkDocs site
+        run: python -m mkdocs build --strict -f mkdocs_preview/mkdocs.yml
+
+      - name: Upload conversion diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: conversion-diagnostics-${{ github.run_id }}
+          path: artifacts/github-actions/current
+          if-no-files-found: error
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: mkdocs_preview/site
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

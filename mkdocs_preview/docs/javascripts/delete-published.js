@@ -1,107 +1,42 @@
-let adminPublishSecret = "";
-
-function setDeleteControlsUnlocked(unlocked) {
-  const buttons = document.querySelectorAll(".delete-published-document");
-  buttons.forEach(function (button) {
-    button.hidden = !unlocked;
-    button.disabled = !unlocked;
-  });
-}
+const repositoryUrl = "https://github.com/dgooding/pdf-to-markdown";
+const pagesRoot = "/pdf-to-markdown/";
 
 function createAdminControls() {
   if (document.getElementById("admin-access-button")) return null;
   const control = document.createElement("div");
   control.className = "admin-access-control";
-  const button = document.createElement("button");
-  button.type = "button";
-  button.id = "admin-access-button";
-  button.textContent = "Admin";
-  button.setAttribute("aria-pressed", "false");
-  const publishLink = document.createElement("a");
-  publishLink.href = "/editor";
-  publishLink.id = "admin-publish-link";
-  publishLink.textContent = "Publish";
-  publishLink.title = "Open the converter to publish a document";
-  publishLink.hidden = true;
-  control.appendChild(publishLink);
-  control.appendChild(button);
+  const adminLink = document.createElement("a");
+  adminLink.id = "admin-access-button";
+  adminLink.href = pagesRoot + "converter/";
+  adminLink.textContent = "Admin";
+  adminLink.title = "Open GitHub document administration";
+  control.appendChild(adminLink);
   document.body.appendChild(control);
-  return { button: button, publishLink: publishLink };
+  return adminLink;
 }
 
-async function configureDeleteControls() {
-  setDeleteControlsUnlocked(false);
-  const controls = createAdminControls();
-  if (!controls) return;
-  try {
-    const response = await fetch("/api/site-capabilities");
-    const capabilities = await response.json();
-    if (capabilities.mutations_enabled) return;
-    controls.button.textContent = "Admin unavailable";
-    controls.button.title = "Administrator setup is required before hosted documents can be changed.";
-    controls.button.disabled = true;
-  } catch (error) {
-    controls.button.textContent = "Admin unavailable";
-    controls.button.title = "Unable to verify administrator access.";
-    controls.button.disabled = true;
-  }
+function configureGitHubControls() {
+  createAdminControls();
+  document.querySelectorAll(".delete-published-document").forEach(function (button) {
+    button.hidden = false;
+    button.disabled = false;
+    button.title = "Request deletion through GitHub";
+  });
 }
 
-document.addEventListener("DOMContentLoaded", configureDeleteControls);
+document.addEventListener("DOMContentLoaded", configureGitHubControls);
 
-document.addEventListener("click", async function (event) {
-  const adminButton = event.target.closest("#admin-access-button");
-  if (adminButton) {
-    if (adminButton.disabled) return;
-    const candidateSecret = window.prompt("Enter the admin passcode:");
-    if (candidateSecret === null) return;
-    const form = new FormData();
-    form.append("publish_secret", candidateSecret);
-    const response = await fetch("/api/admin-access", { method: "POST", body: form });
-    const result = await response.json().catch(function () { return {}; });
-    if (!response.ok) {
-      adminPublishSecret = "";
-      setDeleteControlsUnlocked(false);
-      const publishLink = document.getElementById("admin-publish-link");
-      if (publishLink) publishLink.hidden = true;
-      window.alert(result.detail || "Admin access denied.");
-      return;
-    }
-    adminPublishSecret = candidateSecret;
-    setDeleteControlsUnlocked(true);
-    adminButton.textContent = "Admin active";
-    adminButton.setAttribute("aria-pressed", "true");
-    const publishLink = document.getElementById("admin-publish-link");
-    if (publishLink) publishLink.hidden = false;
-    return;
-  }
-
+document.addEventListener("click", function (event) {
   const button = event.target.closest(".delete-published-document");
   if (!button || button.disabled) return;
+  event.preventDefault();
   const sitePath = button.dataset.sitePath;
-  if (!window.confirm("Delete " + sitePath + "? This cannot be undone.")) return;
-  button.disabled = true;
-  const form = new FormData();
-  form.append("site_path", sitePath);
-  form.append("publish_secret", adminPublishSecret);
-  const response = await fetch("/api/delete-published", { method: "POST", body: form });
-  const result = await response.json().catch(function () { return {}; });
-  if (!response.ok) {
-    window.alert(result.detail || "Unable to delete the document.");
-    if (response.status === 403 || response.status === 503) {
-      adminPublishSecret = "";
-      setDeleteControlsUnlocked(false);
-      const adminButton = document.getElementById("admin-access-button");
-      if (adminButton) {
-        adminButton.textContent = "Admin";
-        adminButton.setAttribute("aria-pressed", "false");
-      }
-      const publishLink = document.getElementById("admin-publish-link");
-      if (publishLink) publishLink.hidden = true;
-    } else {
-      button.disabled = false;
-    }
-    return;
-  }
-  window.location.reload();
+  const issueUrl = new URL(repositoryUrl + "/issues/new");
+  issueUrl.searchParams.set("title", "[delete-published] " + sitePath);
+  issueUrl.searchParams.set(
+    "body",
+    "Delete the published document at `" + sitePath + "`.\n\n" +
+      "The GitHub Actions workflow will verify repository write permission before making changes."
+  );
+  window.location.href = issueUrl.toString();
 });

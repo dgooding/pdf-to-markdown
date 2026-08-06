@@ -383,3 +383,17 @@
 - Focused verification: 21 tests passed, including wrong-code rejection, successful Admin access, and successful protected deletion.
 - Full verification: 69 tests passed; strict Markdown/assets/manifest/quality parity remained true.
 - Hosted-mode browser verification with no environment secret: `mutations_enabled=true`, Admin active, Publish visible, and two Delete controls unlocked.
+
+## 2026-08-06 GitHub-only Migration
+
+- GitHub Pages and Actions replace Render as the production platform.
+- Added full-fidelity inbox conversion/publishing through `.github/workflows/convert-publish.yml`.
+- Added permission-checked deletion through `.github/workflows/delete-published.yml` and standard/recovery deployment through `.github/workflows/pages.yml`.
+- Added `github_document_ops.py` for normalized, contained repository publish/delete/index operations and `incoming/` as the public admin intake folder.
+- Replaced the Pages passcode/API JavaScript with an upper-right GitHub Admin link and prefilled deletion requests.
+- Removed `render.yaml`, the hosted fallback digest, and Render-specific tests.
+- Local FastAPI `/editor` remains available for offline use; GitHub permissions authorize production mutations.
+- Public-source warning accepted: files uploaded to `incoming/` remain recoverable from Git history.
+- Focused repository/deployment/site tests: 25 passed; strict MkDocs build passed.
+- Full suite: 73 passed, 0 failed, 0 skipped.
+- Strict endpoint parity: Markdown, assets, manifest core, and quality core all true.

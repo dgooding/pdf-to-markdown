@@ -4,8 +4,10 @@
 This file records current repository architecture checkpoints for the document-to-MkDocs conversion platform.
 
 ## Core Product Surface
-- Primary application entrypoint: `app.py`
-- Primary user route: `/editor`
+- Production site: GitHub Pages at `https://dgooding.github.io/pdf-to-markdown/`
+- Production conversion/publishing: GitHub Actions workflows under `.github/workflows/`
+- Local/offline application entrypoint: `app.py`
+- Local user route: `/editor`
 - Redirect routes: `/` and `/converter` -> `/editor`
 - Startup script: `LAUNCH.bat`
 
@@ -37,7 +39,8 @@ This file records current repository architecture checkpoints for the document-t
 
 ## ITSD Site Integration
 - MkDocs project root: `mkdocs_preview/`
-- Built site output served by FastAPI: `mkdocs_preview/site/` mounted at `/docs`
+- Production MkDocs output is deployed by GitHub Pages.
+- Local builds remain available at `mkdocs_preview/site/` and may be served by FastAPI at `/docs`.
 - Application startup reuses an existing static build; missing sites and successful publishes trigger a rebuild.
 - Read the Docs theme provides a persistent left navigation and search field.
 - Site navigation is intentionally limited to Home, Converter, and Documents.
@@ -48,24 +51,18 @@ This file records current repository architecture checkpoints for the document-t
 - Published converter output is staged under:
   - `mkdocs_preview/docs/published/<site-path>/index.md`
   - `mkdocs_preview/docs/published/<site-path>/assets/*`
-- Hosted deployments use `DATA_ROOT/published` as the authoritative persistent document source and synchronize it into `mkdocs_preview/docs/published/` before each MkDocs build.
-- `POST /api/delete-published` removes a normalized, contained document directory and rebuilds the index/site.
-- Publish and delete operations use the same authorization boundary.
-- On Render, a built-in SHA-256 digest validates the requested fallback admin code when `PUBLISH_SECRET` is absent; a configured `PUBLISH_SECRET` overrides that fallback.
-- Publish/delete index and build transactions are serialized with a worker-thread lock compatible with Python 3.9 module reloads.
-- Documents-page deletion behavior is loaded through `javascripts/delete-published.js`; generated Markdown contains controls only so MkDocs search indexes content rather than implementation code.
-- `GET /api/site-capabilities` exposes only a boolean mutation-availability flag; hosted mutations remain available through either the configured secret or built-in fallback.
-- `POST /api/admin-access` validates an administrator passcode through the same `require_mutation_secret(...)` boundary without returning secret material.
-- A high-contrast Admin button is fixed in the upper-right on every MkDocs page; Delete controls and a Publish shortcut remain hidden until server validation succeeds.
-- The validated secret is retained only in JavaScript memory for the current page and is sent again to the independently protected delete endpoint; browser storage is not used.
-- Authorization failures clear the in-memory value and relock deletion controls.
-- Admin mode intentionally exposes all currently supported document-management actions (Publish and Delete), not arbitrary filesystem or server access.
+- `github_document_ops.py` is the authoritative repository-safe publish/delete/index command layer shared by Actions and local FastAPI imports.
+- `.github/workflows/convert-publish.yml` converts files committed under `incoming/`, commits generated Markdown/assets, and deploys Pages.
+- `.github/workflows/delete-published.yml` verifies GitHub collaborator permission before deleting issue-requested paths; manual dispatch is restricted by repository Actions access.
+- `.github/workflows/pages.yml` provides ordinary and recovery Pages deployment.
+- A shared `document-publishing` concurrency group serializes mutation/deployment workflows.
+- The upper-right Admin button opens the GitHub-native converter/admin guide. Delete controls create prefilled GitHub requests; Pages contains no passcode, token, or runtime API credential.
+- Git commit history is the persistent source and audit trail for published content.
 
 ## MkDocs Positioning
-- MkDocs remains developer-only validation/staging support.
+- MkDocs is the production static-site generator for GitHub Pages.
 - MkDocs is not auto-launched by normal application startup.
-- Normal startup does not run a redundant MkDocs build when `site/index.html` exists.
-- Primary runtime remains the converter UI at `/editor`.
+- The local FastAPI editor remains available for offline/developer conversion.
 
 ## Fixture and Benchmark Architecture (Milestone 1)
 - Deterministic synthetic corpus generator: `generate_test_corpus.py`

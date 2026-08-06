@@ -1,6 +1,31 @@
 # RUNBOOK — prototype-v2-rc1
 
+## Production on GitHub
+
+- Public site: `https://dgooding.github.io/pdf-to-markdown/`
+- Upload intake: `https://github.com/dgooding/pdf-to-markdown/upload/main/incoming`
+- Conversion status: `https://github.com/dgooding/pdf-to-markdown/actions/workflows/convert-publish.yml`
+- Pages status: `https://github.com/dgooding/pdf-to-markdown/actions/workflows/pages.yml`
+- Delete workflow: `https://github.com/dgooding/pdf-to-markdown/actions/workflows/delete-published.yml`
+- Production authorization is repository write permission; no Pages passcode or browser token is used.
+
+### Publish through GitHub
+
+1. Upload supported source files to `incoming/` and commit to `main`.
+2. Monitor **Convert and publish incoming documents** in Actions.
+3. Confirm the Actions bot commits generated Markdown/assets and removes processed inbox files from the latest revision.
+4. Confirm Pages deployment and the new entry under **Documents**.
+
+### Delete through GitHub
+
+1. Click Delete beside a document or run **Delete published document** manually.
+2. The issue path verifies the requester has `write`, `maintain`, or `admin` permission.
+3. Confirm the deletion commit and Pages deployment.
+
+Source uploads are public and remain recoverable from Git history.
+
 ## Defaults and behavior
+- FastAPI is local/offline tooling, not the production host.
 - Default application startup port (repository launch policy): `8000` via `LAUNCH.bat`.
 - Current validated runtime instance used in release checks: `http://127.0.0.1:8001/editor`.
 - Development override behavior: `uvicorn --port <PORT>` may be used for alternate local ports.

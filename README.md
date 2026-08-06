@@ -2,13 +2,16 @@
 
 This app converts uploaded documents into MkDocs-compatible markdown packages with extracted assets.
 
-## Live App
+## Production Site
 
-- Converter: https://pdf-to-markdown-1gzl.onrender.com/editor
-- Searchable documents: https://pdf-to-markdown-1gzl.onrender.com/docs/published/
-- Health check: https://pdf-to-markdown-1gzl.onrender.com/health
+- [Site](https://dgooding.github.io/pdf-to-markdown/)
+- [Converter and admin guide](https://dgooding.github.io/pdf-to-markdown/converter/)
+- [Searchable documents](https://dgooding.github.io/pdf-to-markdown/published/)
+- [GitHub Actions](https://github.com/dgooding/pdf-to-markdown/actions)
 
-The public demo runs on Render's free tier, so its first request after inactivity may take up to a minute while the service wakes. Conversion, Markdown downloads, and code-protected publish/delete controls are enabled. A private Render `PUBLISH_SECRET` can override the built-in demo code. Persistent disks require a paid Render plan and are not enabled.
+Production runs entirely on GitHub. GitHub Pages hosts the static site, GitHub Actions runs the full Python conversion pipeline, and repository write permissions authorize publishing and deletion. Repository administrators upload source files to `incoming/`; Actions converts, publishes, commits, and deploys them.
+
+> **Public repository warning:** files uploaded to `incoming/` are public and remain recoverable from Git history after processing.
 
 ## Run on Windows
 
@@ -17,6 +20,16 @@ The public demo runs on Render's free tier, so its first request after inactivit
 3. Open `http://127.0.0.1:8000/editor` if the browser does not open automatically.
 
 `LAUNCH.bat` installs all pinned dependencies from `wheelhouse/`, so first-run setup works without internet access.
+
+The local FastAPI editor is retained for private/offline conversion. It is not the production GitHub Pages runtime.
+
+## GitHub Publishing Workflow
+
+1. A repository administrator uploads PDF, DOCX, Markdown, or TXT files at `https://github.com/dgooding/pdf-to-markdown/upload/main/incoming`.
+2. `.github/workflows/convert-publish.yml` converts and publishes the files.
+3. Generated Markdown/assets are committed under `mkdocs_preview/docs/published/`.
+4. GitHub Pages is rebuilt and deployed.
+5. Delete controls create permission-checked GitHub requests handled by `.github/workflows/delete-published.yml`.
 
 ## GitHub Repository Layout
 

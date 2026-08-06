@@ -64,8 +64,7 @@ body {
   gap: 0.5rem;
 }
 
-#admin-access-button,
-#admin-publish-link {
+#admin-access-button {
   display: inline-block;
   padding: 0.55rem 0.85rem;
   border: 2px solid #ffffff;
@@ -79,25 +78,12 @@ body {
 }
 
 #admin-access-button:hover,
-#admin-access-button:focus,
-#admin-publish-link:hover,
-#admin-publish-link:focus {
+#admin-access-button:focus {
   background: #0b3a62;
   color: #ffffff;
   text-decoration: none;
   outline: 2px solid #fbbf24;
   outline-offset: 2px;
-}
-
-#admin-access-button:disabled {
-  border-color: #cbd5e1;
-  background: #64748b;
-  color: #f8fafc;
-  cursor: not-allowed;
-}
-
-#admin-publish-link[hidden] {
-  display: none !important;
 }
 
 @media (max-width: 768px) {
@@ -106,8 +92,28 @@ body {
     right: 0.5rem;
   }
 
-  #admin-access-button,
-  #admin-publish-link {
+  #admin-access-button {
     padding: 0.45rem 0.65rem;
   }
+}
+
+.github-admin-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.github-admin-actions a {
+  display: inline-block;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid #176b87;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.github-admin-actions .github-admin-primary {
+  background: #176b87;
+  color: #ffffff;
+  font-weight: 700;
 }

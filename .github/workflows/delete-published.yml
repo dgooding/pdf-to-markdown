@@ -1,0 +1,138 @@
+name: Delete published document
+
+on:
+  workflow_dispatch:
+    inputs:
+      site_path:
+        description: Normalized published path, for example guides/reset-password
+        required: true
+        type: string
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write
+  issues: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: document-publishing
+  cancel-in-progress: false
+
+jobs:
+  delete-and-deploy:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.issue.title, '[delete-published] ')
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Authorize issue requester and read path
+        if: github.event_name == 'issues'
+        id: authorize
+        uses: actions/github-script@v7
+        with:
+          result-encoding: string
+          script: |
+            const prefix = '[delete-published] ';
+            const title = context.payload.issue.title;
+            let permission = 'none';
+            try {
+              const response = await github.rest.repos.getCollaboratorPermissionLevel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                username: context.actor,
+              });
+              permission = response.data.permission;
+            } catch (error) {
+              core.info(`No collaborator permission found for ${context.actor}.`);
+            }
+            if (!['admin', 'maintain', 'write'].includes(permission)) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: 'Deletion denied: repository write permission is required.',
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                state: 'closed',
+              });
+              core.setFailed('Repository write permission is required.');
+              return '';
+            }
+            return title.slice(prefix.length).trim();
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+          cache: pip
+
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Delete published path
+        env:
+          SITE_PATH: ${{ github.event_name == 'workflow_dispatch' && inputs.site_path || steps.authorize.outputs.result }}
+        run: |
+          python github_document_ops.py delete \
+            --published-root mkdocs_preview/docs/published \
+            --site-path "$SITE_PATH"
+
+      - name: Run focused repository tests
+        run: python -m unittest tests.test_github_document_ops tests.test_site_publish -v
+
+      - name: Commit deletion
+        env:
+          SITE_PATH: ${{ github.event_name == 'workflow_dispatch' && inputs.site_path || steps.authorize.outputs.result }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A mkdocs_preview/docs/published
+          git commit -m "docs: delete ${SITE_PATH}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Build MkDocs site
+        run: python -m mkdocs build --strict -f mkdocs_preview/mkdocs.yml
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: mkdocs_preview/site
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Close completed delete request
+        if: github.event_name == 'issues' && success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: 'Document deleted and GitHub Pages deployment completed.',
+            });
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              state: 'closed',
+            });

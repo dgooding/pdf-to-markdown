@@ -497,3 +497,14 @@
 - Plaintext admin code remains absent from tracked application/configuration files.
 - Verification: 21 focused tests and 69 full-suite tests passed; strict endpoint parity remained fully true.
 - Hosted-mode browser verification without `PUBLISH_SECRET`: capability true, Admin active, Publish visible, and two Delete controls enabled.
+
+## 2026-08-06 GitHub-only production migration
+
+- Added `github_document_ops.py` as the shared path-safe repository mutation layer.
+- Added GitHub Actions for incoming conversion/publishing, permission-checked deletion, and Pages deployment.
+- Added public `incoming/` intake and a GitHub-native converter/admin guide.
+- Replaced Pages API/passcode JavaScript with GitHub Admin and issue-request links.
+- Removed `render.yaml`, the hosted fallback passcode digest, and Render-specific deployment tests.
+- Preserved local FastAPI conversion and endpoint parity while moving production persistence/authentication to Git commits and repository permissions.
+- Focused tests: 25 passed; strict MkDocs build passed.
+- Full suite: 73 passed; strict endpoint parity remained fully true.

@@ -1,5 +1,9 @@
 site_name: ITSD Service Desk
 site_description: Searchable IT support documentation and document conversion
+site_url: https://dgooding.github.io/pdf-to-markdown/
+repo_url: https://github.com/dgooding/pdf-to-markdown
+repo_name: dgooding/pdf-to-markdown
+edit_uri: edit/main/mkdocs_preview/docs/
 theme:
   name: readthedocs
   highlightjs: false
@@ -11,11 +15,12 @@ plugins:
 markdown_extensions:
   - tables
   - fenced_code
+  - admonition
 extra_css:
   - stylesheets/extra.css
 extra_javascript:
   - javascripts/delete-published.js
 nav:
   - Home: index.md
-  - Converter: /editor
+  - Converter: converter.md
   - Documents: published/index.md

@@ -345,3 +345,18 @@
 	- `artifacts/logs/builtin_admin_focused_tests.log`
 	- `artifacts/logs/builtin_admin_full_tests.log`
 	- `artifacts/logs/builtin_admin_endpoint_parity.log`
+
+## 2026-08-06 GitHub-only Migration Validation
+
+- Focused repository, deployment, and site suites: 25 passed, 0 failed.
+- Strict MkDocs build for `site_url: https://dgooding.github.io/pdf-to-markdown/`: passed.
+- Workflow coverage verifies official Pages actions, least-privilege Pages permissions, public inbox conversion, serialized mutation workflows, collaborator permission checks, and absence of `PUBLISH_SECRET`.
+- Static-site coverage verifies no `/api/` calls, passcodes, browser storage, or tokens in Pages JavaScript.
+- Repository-operation coverage verifies inbox conversion, duplicate protection, source cleanup, path containment, index generation, and deletion.
+- Full suite: 73 passed, 0 failed, 0 skipped.
+- Strict endpoint comparison run: `artifacts/endpoint_release_check_live/run_1786011149/`; all four comparisons true.
+- Logs:
+	- `artifacts/logs/github_migration_focused_tests.log`
+	- `artifacts/logs/github_migration_mkdocs_build.log`
+	- `artifacts/logs/github_migration_full_tests.log`
+	- `artifacts/logs/github_migration_endpoint_parity.log`

@@ -121,46 +121,8 @@ class SitePublishTests(unittest.TestCase):
             self.assertEqual(deleted.status_code, 200)
             self.assertIn(b'"status":"deleted"', deleted.body)
 
-    def test_hosted_delete_uses_builtin_admin_code_without_publish_secret(self) -> None:
-        publish_markdown_to_mkdocs_site(
-            source_markdown=self.source_md,
-            source_assets_dir=self.source_assets,
-            docs_root=self.docs_root,
-            site_path="reset-password",
-        )
-
-        with (
-            patch.object(app_module, "_IS_HOSTED", True),
-            patch.object(app_module, "_PUBLISH_SECRET", ""),
-            patch.object(app_module, "PUBLISHED_DOCS_DIR", self.docs_root),
-            patch.object(app_module, "build_itsd_site"),
-        ):
-            with self.assertRaises(HTTPException) as denied:
-                asyncio.run(
-                    app_module.delete_from_site(
-                        site_path="reset-password",
-                        publish_secret="wrong",
-                    )
-                )
-            self.assertEqual(denied.exception.status_code, 403)
-            self.assertTrue((self.docs_root / "reset-password" / "index.md").exists())
-
-            deleted = asyncio.run(
-                app_module.delete_from_site(
-                    site_path="reset-password",
-                    publish_secret="123" + "456",
-                )
-            )
-
-        self.assertEqual(deleted.status_code, 200)
-        self.assertFalse((self.docs_root / "reset-password").exists())
-
-    def test_hosted_capabilities_report_enabled_with_builtin_admin_code(self) -> None:
-        with (
-            patch.object(app_module, "_IS_HOSTED", True),
-            patch.object(app_module, "_PUBLISH_SECRET", ""),
-        ):
-            response = asyncio.run(app_module.site_capabilities())
+    def test_local_capabilities_remain_enabled(self) -> None:
+        response = asyncio.run(app_module.site_capabilities())
 
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'"mutations_enabled":true', response.body)
@@ -176,16 +138,10 @@ class SitePublishTests(unittest.TestCase):
         self.assertEqual(allowed.status_code, 200)
         self.assertIn(b'"authorized":true', allowed.body)
 
-    def test_hosted_admin_access_uses_builtin_code_without_publish_secret(self) -> None:
-        with (
-            patch.object(app_module, "_IS_HOSTED", True),
-            patch.object(app_module, "_PUBLISH_SECRET", ""),
-        ):
-            with self.assertRaises(HTTPException) as denied:
-                asyncio.run(app_module.admin_access(publish_secret="anything"))
-            allowed = asyncio.run(app_module.admin_access(publish_secret="123" + "456"))
+    def test_local_admin_access_is_open_without_explicit_secret(self) -> None:
+        with patch.object(app_module, "_PUBLISH_SECRET", ""):
+            allowed = asyncio.run(app_module.admin_access(publish_secret=""))
 
-        self.assertEqual(denied.exception.status_code, 403)
         self.assertEqual(allowed.status_code, 200)
         self.assertIn(b'"authorized":true', allowed.body)
 
@@ -214,16 +170,13 @@ class SitePublishTests(unittest.TestCase):
         self.assertIn("top: 1rem", css)
         self.assertIn("right: 1rem", css)
         self.assertIn("#admin-access-button", css)
-        self.assertIn("#admin-publish-link[hidden]", css)
-        self.assertIn("display: none !important", css)
-        self.assertIn("/api/delete-published", delete_script)
-        self.assertIn("/api/admin-access", delete_script)
-        self.assertIn("/api/site-capabilities", delete_script)
-        self.assertIn('button.textContent = "Admin"', delete_script)
-        self.assertIn('publishLink.href = "/editor"', delete_script)
-        self.assertIn('publishLink.textContent = "Publish"', delete_script)
+        self.assertIn("https://github.com/dgooding/pdf-to-markdown", delete_script)
+        self.assertIn("/pdf-to-markdown/", delete_script)
+        self.assertIn("[delete-published]", delete_script)
+        self.assertIn("issues/new", delete_script)
         self.assertIn("document.body.appendChild(control)", delete_script)
-        self.assertIn("adminPublishSecret", delete_script)
+        self.assertNotIn("/api/", delete_script)
+        self.assertNotIn("publish_secret", delete_script)
         self.assertNotIn("localStorage", delete_script)
         self.assertNotIn("sessionStorage", delete_script)
 
@@ -241,7 +194,7 @@ class SitePublishTests(unittest.TestCase):
         self.assertIn("guides/reset-password/", index_text)
         self.assertIn('class="delete-published-document"', index_text)
         self.assertIn('data-site-path="guides/reset-password"', index_text)
-        self.assertIn("hidden disabled", index_text)
+        self.assertNotIn("hidden disabled", index_text)
         self.assertNotIn("/api/delete-published", index_text)
 
 

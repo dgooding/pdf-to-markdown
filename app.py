@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import asyncio
-import hashlib
 import hmac
 import os
 import json
@@ -25,6 +24,12 @@ from pydantic import BaseModel
 from starlette.background import BackgroundTask
 
 from convert_to_md import ConversionContext, convert_file_to_markdown, ensure_assets_folder, slugify
+from github_document_ops import (
+  delete_published_document,
+  normalize_site_path,
+  publish_markdown_to_mkdocs_site,
+  update_published_index,
+)
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -33,9 +38,6 @@ _BIND_HOST = os.getenv("HOST", "127.0.0.1")
 _BIND_PORT = int(os.getenv("PORT", "8000"))
 # Secret required for POST /api/publish; empty string leaves publishing open (local default)
 _PUBLISH_SECRET = os.getenv("PUBLISH_SECRET", "")
-_IS_HOSTED = os.getenv("RENDER", "").lower() == "true"
-# One-way digest of the hosted fallback admin code; PUBLISH_SECRET overrides it when configured.
-_HOSTED_ADMIN_PASSCODE_SHA256 = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
 # Persistent data root; use env DATA_ROOT on hosted deployments so a mounted volume is used
 _DATA_ROOT = Path(os.getenv("DATA_ROOT", str(BASE_DIR)))
 _DATA_ROOT_CONFIGURED = bool(os.getenv("DATA_ROOT", "").strip())
@@ -84,20 +86,12 @@ def now_ts() -> float:
 
 
 def require_mutation_secret(provided_secret: str, action: str) -> None:
-  if _PUBLISH_SECRET:
-    authorized = hmac.compare_digest(provided_secret, _PUBLISH_SECRET)
-  elif _IS_HOSTED:
-    provided_digest = hashlib.sha256(provided_secret.encode("utf-8")).hexdigest()
-    authorized = hmac.compare_digest(provided_digest, _HOSTED_ADMIN_PASSCODE_SHA256)
-  else:
-    authorized = True
-
-  if not authorized:
+  if _PUBLISH_SECRET and not hmac.compare_digest(provided_secret, _PUBLISH_SECRET):
     raise HTTPException(status_code=403, detail=f"{action} is restricted. Provide the correct admin code.")
 
 
 def site_mutations_enabled() -> bool:
-  return not _IS_HOSTED or bool(_PUBLISH_SECRET or _HOSTED_ADMIN_PASSCODE_SHA256)
+  return True
 
 
 def cleanup_job(job_id: str) -> None:
@@ -214,133 +208,6 @@ def suggest_fix(error_message: str) -> str:
   return "Check the file and try again."
 
 
-def normalize_site_path(site_path: str, fallback_stem: str) -> str:
-  raw = (site_path or "").strip().replace("\\", "/")
-  if raw.lower().endswith(".md"):
-    raw = raw[:-3]
-
-  parts: list[str] = []
-  for chunk in raw.split("/"):
-    chunk = chunk.strip()
-    if not chunk or chunk in {".", ".."}:
-      continue
-    parts.append(slugify(chunk))
-
-  if not parts:
-    parts = [slugify(fallback_stem)]
-
-  return "/".join(parts)
-
-
-def publish_markdown_to_mkdocs_site(
-  *,
-  source_markdown: Path,
-  source_assets_dir: Path | None,
-  docs_root: Path,
-  site_path: str,
-) -> dict[str, str]:
-  normalized = normalize_site_path(site_path, source_markdown.stem)
-  target_dir = docs_root / Path(normalized)
-  target_markdown = target_dir / "index.md"
-  if target_markdown.exists():
-    raise FileExistsError(f'A document named "{normalized}" is already published.')
-
-  target_dir.mkdir(parents=True, exist_ok=True)
-  target_markdown.write_text(source_markdown.read_text(encoding="utf-8", errors="ignore"), encoding="utf-8")
-
-  target_assets_dir = target_dir / "assets"
-  if target_assets_dir.exists():
-    shutil.rmtree(target_assets_dir, ignore_errors=True)
-
-  if source_assets_dir and source_assets_dir.exists():
-    for item in source_assets_dir.rglob("*"):
-      if not item.is_file():
-        continue
-      destination = target_assets_dir / item.relative_to(source_assets_dir)
-      destination.parent.mkdir(parents=True, exist_ok=True)
-      shutil.copy2(item, destination)
-
-  return {
-    "site_path": normalized,
-    "folder": normalized.rsplit("/", 1)[0] if "/" in normalized else "",
-    "document_name": normalized.rsplit("/", 1)[-1],
-    "target_markdown": str(target_markdown),
-    "published_url": f"/docs/published/{normalized}/",
-  }
-
-
-def delete_published_document(*, docs_root: Path, site_path: str) -> dict[str, str]:
-  requested = site_path.strip().replace("\\", "/").strip("/")
-  if not requested:
-    raise ValueError("Document path is required.")
-
-  normalized = normalize_site_path(requested, "")
-  if normalized != requested:
-    raise ValueError("Invalid document path.")
-
-  resolved_root = docs_root.resolve()
-  target_dir = (docs_root / normalized).resolve()
-  try:
-    target_dir.relative_to(resolved_root)
-  except ValueError as exc:
-    raise ValueError("Invalid document path.") from exc
-
-  target_markdown = target_dir / "index.md"
-  if target_dir == resolved_root or not target_markdown.is_file():
-    raise FileNotFoundError(f'Document "{normalized}" was not found.')
-
-  shutil.rmtree(target_dir)
-  parent = target_dir.parent
-  while parent != resolved_root and parent.is_dir() and not any(parent.iterdir()):
-    parent.rmdir()
-    parent = parent.parent
-
-  return {"site_path": normalized, "status": "deleted"}
-
-
-def _read_first_heading(markdown_file: Path) -> str:
-  for line in markdown_file.read_text(encoding="utf-8", errors="ignore").splitlines():
-    stripped = line.strip()
-    if stripped.startswith("#"):
-      return stripped.lstrip("#").strip() or markdown_file.parent.name.replace("-", " ").title()
-  return markdown_file.parent.name.replace("-", " ").title()
-
-
-def update_published_index(docs_root: Path) -> None:
-  docs_root.mkdir(parents=True, exist_ok=True)
-  entries: list[tuple[str, str]] = []
-  for markdown_file in sorted(docs_root.rglob("index.md")):
-    if markdown_file == docs_root / "index.md":
-      continue
-    rel_dir = markdown_file.parent.relative_to(docs_root).as_posix()
-    entries.append((rel_dir, _read_first_heading(markdown_file)))
-
-  lines = [
-    "# Published Documents",
-    "",
-    "Documents published from the ITSD converter appear here.",
-    "",
-    "Use the **Converter** item in the site navigation to publish a new document directly into this site.",
-    "",
-  ]
-
-  if entries:
-    lines.extend(["## Available Documents", ""])
-    for rel_dir, title in entries:
-      lines.append(
-        f'- [{title}]({rel_dir}/index.md) — `{rel_dir}` '
-        f'<button type="button" class="delete-published-document" data-site-path="{rel_dir}" hidden disabled>Delete</button>'
-      )
-  else:
-    lines.extend([
-      "## Available Documents",
-      "",
-      "No documents have been published yet.",
-    ])
-
-  (docs_root / "index.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-
-
 def sync_published_docs_to_mkdocs() -> None:
   destination = MKDOCS_DOCS_DIR / "published"
   if PUBLISHED_DOCS_DIR.resolve() == destination.resolve():
@@ -355,6 +222,18 @@ def ensure_itsd_site_scaffold() -> None:
   (MKDOCS_DOCS_DIR / "stylesheets").mkdir(parents=True, exist_ok=True)
   (MKDOCS_DOCS_DIR / "javascripts").mkdir(parents=True, exist_ok=True)
   PUBLISHED_DOCS_DIR.mkdir(parents=True, exist_ok=True)
+
+  checked_in_site_files = [
+    MKDOCS_CONFIG_FILE,
+    MKDOCS_DOCS_DIR / "index.md",
+    MKDOCS_DOCS_DIR / "converter.md",
+    MKDOCS_DOCS_DIR / "stylesheets" / "extra.css",
+    MKDOCS_DOCS_DIR / "javascripts" / "delete-published.js",
+  ]
+  if all(path.is_file() for path in checked_in_site_files):
+    update_published_index(PUBLISHED_DOCS_DIR)
+    sync_published_docs_to_mkdocs()
+    return
 
   def remove_readonly(function: Any, path: str, _: Any) -> None:
     Path(path).chmod(0o700)

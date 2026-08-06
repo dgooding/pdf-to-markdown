@@ -7,7 +7,7 @@
 - remote: `https://github.com/dgooding/pdf-to-markdown.git`
 - repository_visibility: `public`
 - prototype-v2-rc1 tag exists: `False`
-- recommended_next_action: Complete hosted secret setup only when durable mutations are approved.
+- recommended_next_action: Deploy and verify GitHub Pages/Actions, then retire Render.
 
 ## Commands requiring human authorization
 - `git commit ...`
