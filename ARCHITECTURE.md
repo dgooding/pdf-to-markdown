@@ -50,11 +50,11 @@ This file records current repository architecture checkpoints for the document-t
   - `mkdocs_preview/docs/published/<site-path>/assets/*`
 - Hosted deployments use `DATA_ROOT/published` as the authoritative persistent document source and synchronize it into `mkdocs_preview/docs/published/` before each MkDocs build.
 - `POST /api/delete-published` removes a normalized, contained document directory and rebuilds the index/site.
-- Publish and delete operations use the same optional `PUBLISH_SECRET` authorization boundary.
-- On Render, mutations fail closed with HTTP 503 when `PUBLISH_SECRET` is not configured; local development retains the existing optional-secret behavior.
+- Publish and delete operations use the same authorization boundary.
+- On Render, a built-in SHA-256 digest validates the requested fallback admin code when `PUBLISH_SECRET` is absent; a configured `PUBLISH_SECRET` overrides that fallback.
 - Publish/delete index and build transactions are serialized with a worker-thread lock compatible with Python 3.9 module reloads.
 - Documents-page deletion behavior is loaded through `javascripts/delete-published.js`; generated Markdown contains controls only so MkDocs search indexes content rather than implementation code.
-- `GET /api/site-capabilities` exposes only a boolean mutation-availability flag so the static Documents UI can fail gracefully without revealing configuration details.
+- `GET /api/site-capabilities` exposes only a boolean mutation-availability flag; hosted mutations remain available through either the configured secret or built-in fallback.
 - `POST /api/admin-access` validates an administrator passcode through the same `require_mutation_secret(...)` boundary without returning secret material.
 - A high-contrast Admin button is fixed in the upper-right on every MkDocs page; Delete controls and a Publish shortcut remain hidden until server validation succeeds.
 - The validated secret is retained only in JavaScript memory for the current page and is sent again to the independently protected delete endpoint; browser storage is not used.

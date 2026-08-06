@@ -482,8 +482,18 @@
 - Added `POST /api/admin-access`, which reuses `require_mutation_secret(...)` and discloses no configured secret.
 - Added a high-contrast upper-right Admin button on every MkDocs page through the generated JavaScript/CSS assets; successful login also reveals a Publish shortcut.
 - Published Delete controls now begin hidden and disabled, unlock only after server validation, and continue to require authorization at `POST /api/delete-published`.
-- Successful credentials remain in page memory only; 403/503 responses clear the value and relock controls.
-- Updated `tests/test_site_publish.py` and `tests/test_cloud_deployment.py` with authorization, fail-closed, generated-asset, no-browser-storage, and private Render configuration guardrails.
+- Successful credentials remain in page memory only; authorization failures clear the value and relock controls.
+- Updated `tests/test_site_publish.py` and `tests/test_cloud_deployment.py` with authorization, generated-asset, no-browser-storage, and hosted configuration guardrails.
 - Verification: 21 focused tests passed; 69 full-suite tests passed; MkDocs build passed; desktop/mobile browser checks passed; strict endpoint parity remained fully true.
 - Final browser state: pre-login Publish/Delete controls hidden; authenticated state shows Admin active, Publish, and both Delete controls; mobile upper-right placement verified at `390x844`.
-- Deployment boundary: the requested passcode must be set privately as Render `PUBLISH_SECRET`; no passcode value was committed.
+- Deployment boundary at this checkpoint: Render configuration was still required; the later built-in fallback correction below supersedes that requirement.
+
+## 2026-08-06 Built-in hosted admin fallback correction
+
+- Live verification showed the deployed Admin button but `mutations_enabled=false` because Render had no loaded `PUBLISH_SECRET`.
+- Replaced the HTTP 503 branch with a hosted fallback that compares the supplied code to a tracked SHA-256 digest using constant-time comparison.
+- A configured `PUBLISH_SECRET` remains the precedence override; local optional-secret behavior is unchanged.
+- Added focused coverage for capability availability, wrong-code 403, correct-code Admin access, and correct-code protected deletion.
+- Plaintext admin code remains absent from tracked application/configuration files.
+- Verification: 21 focused tests and 69 full-suite tests passed; strict endpoint parity remained fully true.
+- Hosted-mode browser verification without `PUBLISH_SECRET`: capability true, Admin active, Publish visible, and two Delete controls enabled.

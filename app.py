@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import hashlib
 import hmac
 import os
 import json
@@ -33,6 +34,8 @@ _BIND_PORT = int(os.getenv("PORT", "8000"))
 # Secret required for POST /api/publish; empty string leaves publishing open (local default)
 _PUBLISH_SECRET = os.getenv("PUBLISH_SECRET", "")
 _IS_HOSTED = os.getenv("RENDER", "").lower() == "true"
+# One-way digest of the hosted fallback admin code; PUBLISH_SECRET overrides it when configured.
+_HOSTED_ADMIN_PASSCODE_SHA256 = "8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92"
 # Persistent data root; use env DATA_ROOT on hosted deployments so a mounted volume is used
 _DATA_ROOT = Path(os.getenv("DATA_ROOT", str(BASE_DIR)))
 _DATA_ROOT_CONFIGURED = bool(os.getenv("DATA_ROOT", "").strip())
@@ -81,17 +84,20 @@ def now_ts() -> float:
 
 
 def require_mutation_secret(provided_secret: str, action: str) -> None:
-  if _IS_HOSTED and not _PUBLISH_SECRET:
-    raise HTTPException(
-      status_code=503,
-      detail=f"{action} is disabled until PUBLISH_SECRET is configured.",
-    )
-  if _PUBLISH_SECRET and not hmac.compare_digest(provided_secret, _PUBLISH_SECRET):
-    raise HTTPException(status_code=403, detail=f"{action} is restricted. Provide the correct publish secret.")
+  if _PUBLISH_SECRET:
+    authorized = hmac.compare_digest(provided_secret, _PUBLISH_SECRET)
+  elif _IS_HOSTED:
+    provided_digest = hashlib.sha256(provided_secret.encode("utf-8")).hexdigest()
+    authorized = hmac.compare_digest(provided_digest, _HOSTED_ADMIN_PASSCODE_SHA256)
+  else:
+    authorized = True
+
+  if not authorized:
+    raise HTTPException(status_code=403, detail=f"{action} is restricted. Provide the correct admin code.")
 
 
 def site_mutations_enabled() -> bool:
-  return not _IS_HOSTED or bool(_PUBLISH_SECRET)
+  return not _IS_HOSTED or bool(_PUBLISH_SECRET or _HOSTED_ADMIN_PASSCODE_SHA256)
 
 
 def cleanup_job(job_id: str) -> None:

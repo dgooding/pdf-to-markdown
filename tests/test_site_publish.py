@@ -121,23 +121,41 @@ class SitePublishTests(unittest.TestCase):
             self.assertEqual(deleted.status_code, 200)
             self.assertIn(b'"status":"deleted"', deleted.body)
 
-    def test_hosted_delete_fails_closed_without_publish_secret(self) -> None:
+    def test_hosted_delete_uses_builtin_admin_code_without_publish_secret(self) -> None:
+        publish_markdown_to_mkdocs_site(
+            source_markdown=self.source_md,
+            source_assets_dir=self.source_assets,
+            docs_root=self.docs_root,
+            site_path="reset-password",
+        )
+
         with (
             patch.object(app_module, "_IS_HOSTED", True),
             patch.object(app_module, "_PUBLISH_SECRET", ""),
+            patch.object(app_module, "PUBLISHED_DOCS_DIR", self.docs_root),
+            patch.object(app_module, "build_itsd_site"),
         ):
             with self.assertRaises(HTTPException) as denied:
                 asyncio.run(
                     app_module.delete_from_site(
                         site_path="reset-password",
-                        publish_secret="",
+                        publish_secret="wrong",
                     )
                 )
+            self.assertEqual(denied.exception.status_code, 403)
+            self.assertTrue((self.docs_root / "reset-password" / "index.md").exists())
 
-        self.assertEqual(denied.exception.status_code, 503)
-        self.assertIn("PUBLISH_SECRET is configured", denied.exception.detail)
+            deleted = asyncio.run(
+                app_module.delete_from_site(
+                    site_path="reset-password",
+                    publish_secret="123" + "456",
+                )
+            )
 
-    def test_hosted_capabilities_report_disabled_without_publish_secret(self) -> None:
+        self.assertEqual(deleted.status_code, 200)
+        self.assertFalse((self.docs_root / "reset-password").exists())
+
+    def test_hosted_capabilities_report_enabled_with_builtin_admin_code(self) -> None:
         with (
             patch.object(app_module, "_IS_HOSTED", True),
             patch.object(app_module, "_PUBLISH_SECRET", ""),
@@ -145,7 +163,7 @@ class SitePublishTests(unittest.TestCase):
             response = asyncio.run(app_module.site_capabilities())
 
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'"mutations_enabled":false', response.body)
+        self.assertIn(b'"mutations_enabled":true', response.body)
 
     def test_admin_access_requires_correct_publish_secret(self) -> None:
         with patch.object(app_module, "_PUBLISH_SECRET", "required-secret"):
@@ -158,16 +176,18 @@ class SitePublishTests(unittest.TestCase):
         self.assertEqual(allowed.status_code, 200)
         self.assertIn(b'"authorized":true', allowed.body)
 
-    def test_hosted_admin_access_fails_closed_without_publish_secret(self) -> None:
+    def test_hosted_admin_access_uses_builtin_code_without_publish_secret(self) -> None:
         with (
             patch.object(app_module, "_IS_HOSTED", True),
             patch.object(app_module, "_PUBLISH_SECRET", ""),
         ):
             with self.assertRaises(HTTPException) as denied:
                 asyncio.run(app_module.admin_access(publish_secret="anything"))
+            allowed = asyncio.run(app_module.admin_access(publish_secret="123" + "456"))
 
-        self.assertEqual(denied.exception.status_code, 503)
-        self.assertIn("PUBLISH_SECRET is configured", denied.exception.detail)
+        self.assertEqual(denied.exception.status_code, 403)
+        self.assertEqual(allowed.status_code, 200)
+        self.assertIn(b'"authorized":true', allowed.body)
 
     def test_editor_uses_simplified_publish_workflow(self) -> None:
         self.assertIn("Document Converter", _EDITOR_HTML)

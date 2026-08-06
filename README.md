@@ -8,7 +8,7 @@ This app converts uploaded documents into MkDocs-compatible markdown packages wi
 - Searchable documents: https://pdf-to-markdown-1gzl.onrender.com/docs/published/
 - Health check: https://pdf-to-markdown-1gzl.onrender.com/health
 
-The public demo runs on Render's free tier, so its first request after inactivity may take up to a minute while the service wakes. Conversion and Markdown downloads are enabled. Hosted publish/delete controls fail closed unless an administrator configures `PUBLISH_SECRET`. Persistent disks require a paid Render plan and are not enabled.
+The public demo runs on Render's free tier, so its first request after inactivity may take up to a minute while the service wakes. Conversion, Markdown downloads, and code-protected publish/delete controls are enabled. A private Render `PUBLISH_SECRET` can override the built-in demo code. Persistent disks require a paid Render plan and are not enabled.
 
 ## Run on Windows
 

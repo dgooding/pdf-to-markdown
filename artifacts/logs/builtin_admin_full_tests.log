@@ -1,0 +1,79 @@
+test_batch_dry_run (test_batch_convert.BatchConvertTests) ... ok
+test_batch_run_and_resume (test_batch_convert.BatchConvertTests) ... ok
+test_normalize_manifest_core_keeps_required_fields (test_benchmark_runner.BenchmarkRunnerTests) ... ok
+test_normalize_quality_core_keeps_required_fields (test_benchmark_runner.BenchmarkRunnerTests) ... ok
+test_data_root_defaults_to_base_dir (test_cloud_deployment.CloudConfigTests)
+Without DATA_ROOT, published docs fall inside the repository. ... ok
+test_docker_files_exist (test_cloud_deployment.CloudConfigTests) ... ok
+test_env_defaults_preserved (test_cloud_deployment.CloudConfigTests)
+Default values must not change so local LAUNCH.bat continues to work. ... ok
+test_health_endpoint_returns_ok (test_cloud_deployment.CloudConfigTests) ... ok
+test_health_route_exists_in_app (test_cloud_deployment.CloudConfigTests)
+health_check route must be registered on the FastAPI app. ... ok
+test_publish_secret_env_respected (test_cloud_deployment.CloudConfigTests)
+PUBLISH_SECRET env var must be loaded by app module. ... ok
+test_publish_secret_field_in_editor_html (test_cloud_deployment.CloudConfigTests)
+Editor must contain the publish-secret input for hosted deployments. ... ok
+test_render_yaml_contains_required_fields (test_cloud_deployment.CloudConfigTests) ... ok
+test_bold_opening_not_deep_heading (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_decorative_vectors_do_not_force_false_fullpage_fallback (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_docx_conversion_keeps_structure (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_full_page_and_embedded_duplication_detected_or_avoided (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_integration_file_sample_if_present (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_pdf_basic_native_text (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_pdf_bullet_glyphs_normalized (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_pdf_dedup_does_not_create_false_cross_page_image_placements (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_pdf_headings_inferred (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_pdf_image_only_fallback (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_pdf_manifest_includes_ocr_provider_and_table_strategy_fields (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_pdf_visual_mode (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_published_markdown_has_no_environment_diagnostics (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_special_filename_pdf (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_table_fallback_excludes_surrounding_paragraphs (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_targeted_fallback_preferred_over_full_page_when_table_present (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_two_column_pdf_reading_order_prefers_column_grouping (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_txt_conversion (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_vertical_slice_document_model_and_dual_status (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_vertical_slice_quality_report_exists (test_conversion_pipeline.ConversionPipelineTests) ... ok
+test_authoritative_service_non_pdf_emits_manifest_and_quality (test_endpoint_integration.EndpointIntegrationTests) ... ok
+test_endpoint_markdown_download_returns_md_file (test_endpoint_integration.EndpointIntegrationTests) ... ok
+test_endpoint_markdown_references_resolve_inside_zip (test_endpoint_integration.EndpointIntegrationTests) ... ok
+test_endpoint_matches_authoritative_service_output_core (test_endpoint_integration.EndpointIntegrationTests) ... ok
+test_endpoint_zip_contains_required_outputs (test_endpoint_integration.EndpointIntegrationTests) ... ok
+test_non_pdf_manifest_allows_legitimate_windows_path_content (test_endpoint_integration.EndpointIntegrationTests) ... ok
+test_calibration_computation (test_fidelity_review_tools.FidelityReviewToolsTests) ... ok
+test_cleanup_measurements (test_fidelity_review_tools.FidelityReviewToolsTests) ... ok
+test_defect_ranking (test_fidelity_review_tools.FidelityReviewToolsTests) ... ok
+test_human_defaults_enforced (test_fidelity_review_tools.FidelityReviewToolsTests) ... ok
+test_missing_real_pilot_folder_waiting (test_fidelity_review_tools.FidelityReviewToolsTests) ... ok
+test_schema_contains_required_sets (test_fidelity_review_tools.FidelityReviewToolsTests) ... ok
+test_validate_scorecard_required_fields (test_fidelity_review_tools.FidelityReviewToolsTests) ... ok
+test_generated_docx_and_pdf_are_openable_and_validated (test_fixture_generation.FixtureGenerationTests) ... ok
+test_generation_changes_values_for_different_seed (test_fixture_generation.FixtureGenerationTests) ... ok
+test_generation_is_deterministic_for_same_seed (test_fixture_generation.FixtureGenerationTests) ... ok
+test_no_confidential_patterns_in_generated_sidecars (test_fixture_generation.FixtureGenerationTests) ... ok
+test_confidential_metadata_redaction (test_manual_fidelity_review_guardrails.ManualFidelityReviewGuardrailTests) ... ok
+test_human_review_packet_generated_with_17_fixtures_and_blank_fields (test_manual_fidelity_review_guardrails.ManualFidelityReviewGuardrailTests) ... ok
+test_no_conversion_algorithm_file_mutation (test_manual_fidelity_review_guardrails.ManualFidelityReviewGuardrailTests) ... ok
+test_port_8012_not_auto_started (test_manual_fidelity_review_guardrails.ManualFidelityReviewGuardrailTests) ... ok
+test_real_pilot_waiting_when_intake_empty (test_manual_fidelity_review_guardrails.ManualFidelityReviewGuardrailTests) ... ok
+test_stage_basic (test_mkdocs_stage_migration.MkdocsStageMigrationTests) ... ok
+test_stage_conflict_skip (test_mkdocs_stage_migration.MkdocsStageMigrationTests) ... ok
+test_admin_access_requires_correct_publish_secret (test_site_publish.SitePublishTests) ... ok
+test_delete_endpoint_requires_publish_secret (test_site_publish.SitePublishTests) ... ok
+test_delete_published_document_rejects_unsafe_path (test_site_publish.SitePublishTests) ... ok
+test_delete_published_document_removes_document_and_empty_parent (test_site_publish.SitePublishTests) ... ok
+test_editor_uses_simplified_publish_workflow (test_site_publish.SitePublishTests) ... ok
+test_hosted_admin_access_uses_builtin_code_without_publish_secret (test_site_publish.SitePublishTests) ... ok
+test_hosted_capabilities_report_enabled_with_builtin_admin_code (test_site_publish.SitePublishTests) ... ok
+test_hosted_delete_uses_builtin_admin_code_without_publish_secret (test_site_publish.SitePublishTests) ... ok
+test_normalize_site_path_slugifies_segments (test_site_publish.SitePublishTests) ... ok
+test_publish_markdown_to_mkdocs_site_copies_content (test_site_publish.SitePublishTests) ... ok
+test_publish_rejects_existing_document (test_site_publish.SitePublishTests) ... ok
+test_site_navigation_stays_flat (test_site_publish.SitePublishTests) ... ok
+test_update_published_index_lists_published_pages (test_site_publish.SitePublishTests) ... ok
+
+----------------------------------------------------------------------
+Ran 69 tests in 92.881s
+
+OK

@@ -1,0 +1,31 @@
+test_admin_access_requires_correct_publish_secret (tests.test_site_publish.SitePublishTests) ... ok
+test_delete_endpoint_requires_publish_secret (tests.test_site_publish.SitePublishTests) ... ok
+test_delete_published_document_rejects_unsafe_path (tests.test_site_publish.SitePublishTests) ... ok
+test_delete_published_document_removes_document_and_empty_parent (tests.test_site_publish.SitePublishTests) ... ok
+test_editor_uses_simplified_publish_workflow (tests.test_site_publish.SitePublishTests) ... ok
+test_hosted_admin_access_uses_builtin_code_without_publish_secret (tests.test_site_publish.SitePublishTests) ... ok
+test_hosted_capabilities_report_enabled_with_builtin_admin_code (tests.test_site_publish.SitePublishTests) ... ok
+test_hosted_delete_uses_builtin_admin_code_without_publish_secret (tests.test_site_publish.SitePublishTests) ... ok
+test_normalize_site_path_slugifies_segments (tests.test_site_publish.SitePublishTests) ... ok
+test_publish_markdown_to_mkdocs_site_copies_content (tests.test_site_publish.SitePublishTests) ... ok
+test_publish_rejects_existing_document (tests.test_site_publish.SitePublishTests) ... ok
+test_site_navigation_stays_flat (tests.test_site_publish.SitePublishTests) ... ok
+test_update_published_index_lists_published_pages (tests.test_site_publish.SitePublishTests) ... ok
+test_data_root_defaults_to_base_dir (tests.test_cloud_deployment.CloudConfigTests)
+Without DATA_ROOT, published docs fall inside the repository. ... ok
+test_docker_files_exist (tests.test_cloud_deployment.CloudConfigTests) ... ok
+test_env_defaults_preserved (tests.test_cloud_deployment.CloudConfigTests)
+Default values must not change so local LAUNCH.bat continues to work. ... ok
+test_health_endpoint_returns_ok (tests.test_cloud_deployment.CloudConfigTests) ... ok
+test_health_route_exists_in_app (tests.test_cloud_deployment.CloudConfigTests)
+health_check route must be registered on the FastAPI app. ... ok
+test_publish_secret_env_respected (tests.test_cloud_deployment.CloudConfigTests)
+PUBLISH_SECRET env var must be loaded by app module. ... ok
+test_publish_secret_field_in_editor_html (tests.test_cloud_deployment.CloudConfigTests)
+Editor must contain the publish-secret input for hosted deployments. ... ok
+test_render_yaml_contains_required_fields (tests.test_cloud_deployment.CloudConfigTests) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 3.105s
+
+OK

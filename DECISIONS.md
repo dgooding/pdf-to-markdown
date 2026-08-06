@@ -52,4 +52,5 @@
 47. Keep interactive Documents-page behavior in a static JavaScript asset so MkDocs search results remain content-focused.
 48. Expose a non-sensitive hosted capability flag and disable unavailable mutation controls instead of allowing users to discover missing setup through failed requests.
 49. Provide administrator controls through an always-visible upper-right Admin button that validates against the server before revealing Delete and Publish controls; never treat client-side visibility as authorization.
-50. Keep the administrator passcode out of tracked source and browser storage. Configure it only as hosted `PUBLISH_SECRET`, retain a successful entry in page memory, and revalidate every destructive request at the API boundary.
+50. Keep the administrator passcode plaintext out of tracked source and browser storage; retain a successful entry in page memory and revalidate every destructive request at the API boundary.
+51. Remove the Render-configuration blocker by validating the requested hosted fallback code against a tracked one-way digest when `PUBLISH_SECRET` is absent; a configured environment secret remains the stronger override. This supersedes decision 45 for the current public demo.

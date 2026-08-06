@@ -364,13 +364,22 @@
 ## 2026-08-06 Admin Delete Access
 
 - Added a prominent upper-right Admin button to every MkDocs page, with an admin-only Publish shortcut.
-- Delete controls now start hidden and disabled, then unlock only after `POST /api/admin-access` validates the existing `PUBLISH_SECRET` boundary.
+- Delete controls now start hidden and disabled, then unlock only after `POST /api/admin-access` validates the configured secret or hosted fallback code.
 - The validated secret remains in page memory only and is revalidated by `POST /api/delete-published`; no passcode is embedded in source or browser storage.
-- Wrong credentials return 403, and missing hosted configuration remains fail-closed with 503.
+- Wrong credentials return 403; missing hosted configuration no longer disables Admin mode.
 - Verification: 21 focused tests passed; 69 full-suite tests passed; MkDocs build passed; desktop/mobile browser checks passed; strict endpoint parity remained fully true.
 - Evidence logs:
 	- `artifacts/logs/admin_button_focused_tests.log`
 	- `artifacts/logs/admin_button_full_tests.log`
 	- `artifacts/logs/admin_button_mkdocs_build.log`
 	- `artifacts/logs/admin_button_endpoint_parity.log`
-- Remaining deployment action: set the requested passcode privately as Render `PUBLISH_SECRET` and redeploy.
+- A configured Render `PUBLISH_SECRET` remains an optional stronger override.
+
+## 2026-08-06 Built-in Hosted Admin Fallback
+
+- Removed the live `Admin unavailable` blocker caused by missing Render environment configuration.
+- Hosted Admin, Publish, and Delete now validate the requested code against a one-way digest when `PUBLISH_SECRET` is absent.
+- A configured `PUBLISH_SECRET` still takes precedence and can replace the demo code without another source change.
+- Focused verification: 21 tests passed, including wrong-code rejection, successful Admin access, and successful protected deletion.
+- Full verification: 69 tests passed; strict Markdown/assets/manifest/quality parity remained true.
+- Hosted-mode browser verification with no environment secret: `mutations_enabled=true`, Admin active, Publish visible, and two Delete controls unlocked.

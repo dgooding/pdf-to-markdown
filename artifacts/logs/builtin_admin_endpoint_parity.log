@@ -1,0 +1,10 @@
+ENDPOINT_TESTED /api/convert
+HTTP_STATUS 200
+OUTPUT_MD artifacts/endpoint_release_check_live/run_1786008701/extracted/docs/index.md
+OUTPUT_ASSETS artifacts/endpoint_release_check_live/run_1786008701/extracted/docs/assets
+OUTPUT_MANIFEST artifacts/endpoint_release_check_live/run_1786008701/extracted/file-sample_150kb-manifest.json
+OUTPUT_QUALITY artifacts/endpoint_release_check_live/run_1786008701/extracted/file-sample_150kb-quality-report.json
+COMPARE_MD True
+COMPARE_ASSETS True
+COMPARE_MANIFEST_CORE True
+COMPARE_QUALITY_CORE True

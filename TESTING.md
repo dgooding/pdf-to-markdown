@@ -314,7 +314,7 @@
 - Full suite:
   - `C:/Python39/python.exe -m unittest discover -s tests -v`
   - result: 69 passed, 0 failed, 0 skipped
-- Authorization coverage verifies correct-secret success, wrong-secret 403, hosted missing-secret 503, and independent delete endpoint enforcement.
+- Authorization coverage verifies configured-secret success, built-in hosted-code success, wrong-code 403, and independent delete endpoint enforcement.
 - Static-asset coverage verifies initially hidden/disabled Delete controls, server validation endpoint use, fixed upper-right Admin styling, protected Publish shortcut, and absence of local/session storage.
 - MkDocs build after the upper-right revision: pass.
 - Browser checks:
@@ -330,3 +330,18 @@
 	- `artifacts/logs/admin_button_full_tests.log`
 	- `artifacts/logs/admin_button_mkdocs_build.log`
 	- `artifacts/logs/admin_button_endpoint_parity.log`
+
+## 2026-08-06 Built-in Hosted Admin Fallback Validation
+
+- Focused site/cloud suites: 21 passed, 0 failed, 0 skipped.
+- Hosted capability without `PUBLISH_SECRET`: `mutations_enabled=true`.
+- Wrong built-in code: HTTP 403.
+- Correct built-in code: Admin access HTTP 200 and protected deletion HTTP 200.
+- Plaintext code scan across `app.py`, tests, `render.yaml`, and `.env.example`: no matches.
+- Full suite: 69 passed, 0 failed, 0 skipped.
+- Strict endpoint comparison run: `artifacts/endpoint_release_check_live/run_1786008701/`; Markdown, assets, manifest core, and quality core all true.
+- Hosted-mode browser with `RENDER=true` and no `PUBLISH_SECRET`: capability true; Admin active; Publish visible; two Delete controls enabled.
+- Logs:
+	- `artifacts/logs/builtin_admin_focused_tests.log`
+	- `artifacts/logs/builtin_admin_full_tests.log`
+	- `artifacts/logs/builtin_admin_endpoint_parity.log`
