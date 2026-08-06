@@ -1,3 +1,5 @@
+# github-pages-smoke
+
 GitHub Pages Publishing Smoke
 
 This harmless document verifies that GitHub Actions converts an incoming text file, publishes Markdown, commits the result, and deploys GitHub Pages.
