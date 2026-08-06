@@ -1,0 +1,63 @@
+{
+  "fixture_id": "PDF-001",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "pdf",
+  "expected_semantic_representation": "markdown_with_targeted_fallback_when_unsafe",
+  "intended_page_count": 1,
+  "expected_titles": [
+    "Native Text PDF"
+  ],
+  "expected_heading_hierarchy": [
+    "#",
+    "##"
+  ],
+  "expected_paragraphs": [
+    "This is a native paragraph for semantic extraction validation."
+  ],
+  "expected_list_items": [
+    "bullet one",
+    "bullet two",
+    "numbered one"
+  ],
+  "expected_links": [
+    {
+      "text": "Example native hyperlink",
+      "url": "https://example.com/native"
+    }
+  ],
+  "expected_tables": [],
+  "expected_images": [],
+  "expected_captions": [],
+  "expected_page_headers": [
+    "Synthetic Header Native"
+  ],
+  "expected_page_footers": [
+    "Synthetic Footer Native"
+  ],
+  "expected_page_numbers": [],
+  "expected_columns": [
+    1
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_text_colors": [
+    "blue",
+    "black"
+  ],
+  "expected_bold_spans": [],
+  "expected_italic_spans": [],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [
+    "Synthetic Header Native",
+    "Synthetic Footer Native"
+  ],
+  "expected_fallback_representation": "none",
+  "expected_review_requirement": "no",
+  "known_intentional_ambiguity": []
+}

@@ -1,0 +1,34 @@
+FAQ and showcase content update
+Date: 2026-08-05
+
+Files added:
+- mkdocs_preview/docs/faq.md
+- mkdocs_preview/docs/faq/tldr-converter.md
+- mkdocs_preview/docs/faq/standalone-application.md
+- mkdocs_preview/docs/faq/build-estimate.md
+- mkdocs_preview/docs/faq/white-paper.md
+- mkdocs_preview/docs/faq/course-breakdown.md
+- mkdocs_preview/docs/builder-profile.md
+
+Files updated:
+- mkdocs_preview/mkdocs.yml
+- mkdocs_preview/docs/index.md
+- mkdocs_preview/docs/stylesheets/extra.css
+- ARCHITECTURE.md
+- DECISIONS.md
+- NEXT_MILESTONE.md
+- PROJECT_STATE.md
+- TESTING.md
+- artifacts/diagnostics/course_correction_inventory.md
+
+Verification:
+1. C:/Python39/python.exe -m mkdocs build -f mkdocs_preview/mkdocs.yml
+   Result: pass
+2. Live route checks
+   - /docs/ => 200
+   - /docs/faq/ => 200
+   - /docs/builder-profile/ => 200
+3. Live content checks
+   - FAQ_BUTTON=True
+   - PROFILE_CARD=True
+   - FAQ_SECTION=True

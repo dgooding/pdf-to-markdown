@@ -1,0 +1,10 @@
+{
+  "recommendation": "approve_for_limited_pilot",
+  "basis": {
+    "technical_pass_rate": 1.0,
+    "endpoint_parity_rate": 1.0,
+    "human_review_documents": 0,
+    "real_pilot_status": "waiting_for_approved_inputs",
+    "false_confidence_count": null
+  }
+}

@@ -1,0 +1,22 @@
+Complex TXT Fixture - Multi-block Structure
+==================================================
+
+This plain-text file includes pseudo-markdown hints, bullets, wrapped lines, timestamps, IDs, and URLs.
+
+Section 1: Incident Summary
+- Ticket: INC-882119
+- Owner: Service Desk Automation
+- Date: 2026-07-30
+- SLA: 4h response / 24h resolution
+
+Section 2: Notes
+* Users reported intermittent sign-in challenges after MFA policy update.
+* Temporary mitigation deployed; long-term fix scheduled for sprint 32.
+* Ref links: https://learn.microsoft.com/ and https://www.mkdocs.org/
+
+Section 3: Grid-like Text
+Metric | Day1 | Day2 | Day3
+Open   |  52  |  47  |  39
+Closed |  41  |  54  |  61
+
+End of fixture.

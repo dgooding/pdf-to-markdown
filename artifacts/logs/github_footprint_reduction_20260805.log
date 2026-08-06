@@ -1,0 +1,35 @@
+GitHub footprint reduction
+Date: 2026-08-05
+
+Before:
+- 433.88 MiB
+- 10,050 files
+
+After cleanup:
+- 123.86 MiB
+- 1,060 files
+- Reduction: 310.02 MiB (71.5%)
+- Largest file: wheelhouse/pymupdf-1.26.5-cp39-abi3-win_amd64.whl (17.88 MiB)
+
+Preserved:
+- Application source and complete tests
+- Full Python 3.9 Windows offline wheelhouse
+- Deterministic generated fixture corpus
+- Validated benchmark benchmark_20260731_024647
+- Strict parity baseline and script
+- MkDocs source and published documents
+- Corrected human-review preparation packet
+
+Added:
+- .gitignore for generated output and local state
+- cleanup_for_github.ps1 with preview mode, idempotence, OneDrive staging, and Windows long-path deletion
+- README GitHub/offline workflow documentation
+
+Verification:
+- Cleanup dry run after completion: 0 targets
+- Forced offline pip resolution: passed
+- Full suite: 53 passed, 0 failed, 0 skipped
+- Strict Markdown parity: True
+- Strict asset parity: True
+- Strict manifest-core parity: True
+- Strict quality-core parity: True

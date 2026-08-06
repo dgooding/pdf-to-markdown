@@ -1,0 +1,113 @@
+{
+  "manifest": "tests\\fixtures\\generated\\generated-corpus.json",
+  "total_fixtures": 30,
+  "valid_docx": 10,
+  "valid_pdf": 20,
+  "expected_sidecars_present": 30,
+  "preview_images_present": 20,
+  "filename_issues": [],
+  "missing_files": [],
+  "text_presence_checks": [
+    {
+      "fixture": "DOCX-001",
+      "token": "Synthetic",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-001",
+      "token": "Synthetic",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-002",
+      "token": "Advanced",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-002",
+      "token": "List",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-003",
+      "token": "Advanced",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-003",
+      "token": "Paragraph",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-004",
+      "token": "Images",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-004",
+      "token": "Inline",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-005",
+      "token": "Charts",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-005",
+      "token": "Synthetic",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-006",
+      "token": "Complex",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-006",
+      "token": "Portrait",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-007",
+      "token": "Code",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-007",
+      "token": "PowerShell:",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-008",
+      "token": "Accessibility",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-008",
+      "token": "Descriptive",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-009",
+      "token": "Unicode",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-009",
+      "token": "Accented:",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-010",
+      "token": "Large",
+      "present": true
+    },
+    {
+      "fixture": "DOCX-010",
+      "token": "Large",
+      "present": true
+    }
+  ],
+  "ok": true
+}

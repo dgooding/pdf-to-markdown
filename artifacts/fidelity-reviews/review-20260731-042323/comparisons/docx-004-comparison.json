@@ -1,0 +1,12 @@
+{
+  "fixture_id": "DOCX-004",
+  "compare_md": true,
+  "compare_assets": true,
+  "compare_manifest_core": true,
+  "compare_quality_core": true,
+  "technical_status_direct": "passed",
+  "technical_status_endpoint": "passed",
+  "fidelity_status_direct": "moderate",
+  "fidelity_status_endpoint": "moderate",
+  "notes": []
+}

@@ -1,0 +1,59 @@
+{
+  "fixture_id": "PDF-009",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "pdf",
+  "expected_semantic_representation": "markdown_with_targeted_fallback_when_unsafe",
+  "intended_page_count": 1,
+  "expected_titles": [
+    "Two-Column Fixture"
+  ],
+  "expected_heading_hierarchy": [
+    "#"
+  ],
+  "expected_paragraphs": [
+    "L1: synthetic left column sentence.",
+    "R1: synthetic right column sentence."
+  ],
+  "expected_list_items": [],
+  "expected_links": [],
+  "expected_tables": [],
+  "expected_images": [
+    "logo_mark.png"
+  ],
+  "expected_captions": [
+    "Figure: Column image caption"
+  ],
+  "expected_page_headers": [
+    "TwoCol Header"
+  ],
+  "expected_page_footers": [
+    "TwoCol Footer"
+  ],
+  "expected_page_numbers": [],
+  "expected_columns": [
+    2
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_text_colors": [
+    "black"
+  ],
+  "expected_bold_spans": [],
+  "expected_italic_spans": [],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [
+    "TwoCol Header",
+    "TwoCol Footer"
+  ],
+  "expected_fallback_representation": "targeted_for_figure_only",
+  "expected_review_requirement": "possible",
+  "known_intentional_ambiguity": [
+    "Reading order must remain column-aware."
+  ]
+}

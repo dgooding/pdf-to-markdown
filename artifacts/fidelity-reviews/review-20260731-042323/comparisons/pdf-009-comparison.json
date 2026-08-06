@@ -1,0 +1,12 @@
+{
+  "fixture_id": "PDF-009",
+  "compare_md": true,
+  "compare_assets": true,
+  "compare_manifest_core": true,
+  "compare_quality_core": true,
+  "technical_status_direct": "passed",
+  "technical_status_endpoint": "passed",
+  "fidelity_status_direct": "high",
+  "fidelity_status_endpoint": "high",
+  "notes": []
+}

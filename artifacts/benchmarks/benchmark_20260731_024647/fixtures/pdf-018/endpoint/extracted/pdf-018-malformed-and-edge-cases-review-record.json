@@ -1,0 +1,68 @@
+{
+  "source_identifier": "PDF-018 malformed and edge cases.pdf",
+  "reviewer_status": "not_reviewed",
+  "reviewer": null,
+  "review_notes": null,
+  "technical_status": "passed",
+  "fidelity_status": "review_required",
+  "page_strategies": [
+    {
+      "page_number": 1,
+      "selected_candidate": "p1-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 2,
+      "selected_candidate": "p2-hybrid",
+      "technical_status": "passed",
+      "fidelity_status": "review_required"
+    }
+  ],
+  "coverage": {
+    "semantic": 0.474,
+    "visual": 0.5,
+    "accessible": 0.474,
+    "unhandled": 0.026
+  },
+  "ocr_usage": {
+    "pages_with_ocr": [],
+    "ocr_record_count": 0,
+    "provider_available": false
+  },
+  "table_strategies": [],
+  "visual_fallbacks": {
+    "full_page_fallback_pages": [
+      2
+    ],
+    "fallback_records": [
+      {
+        "source_page": 2,
+        "region_bbox": [
+          0.0,
+          0.0,
+          612.0,
+          792.0
+        ],
+        "fallback_type": "full_page",
+        "triggering_condition": "native_text_unreliable",
+        "alternatives_attempted": [
+          "native_semantic",
+          "targeted_region_fallback"
+        ],
+        "confidence": 0.41,
+        "text_overlap_detected": false,
+        "review_required": true
+      }
+    ]
+  },
+  "warnings": [
+    "Page 2: OCR recommended but unavailable."
+  ],
+  "review_reasons": [
+    "fallback_requires_review",
+    "high_fallback_ratio"
+  ],
+  "cleanup_estimate": "medium",
+  "generated_at": "2026-07-31T08:48:16.086550Z"
+}

@@ -1,0 +1,37 @@
+# Python/runtime state
+__pycache__/
+*.py[cod]
+.installed
+.env
+.venv/
+venv/
+
+# Local editor state
+.vscode/
+
+# Built site output (regenerated on first startup/publish)
+mkdocs_preview/site/
+
+# Reproducible analysis and evaluation output
+analysis_output/
+analysis_pdf/
+analysis_pdf_visual/
+test_results/
+
+# Historical conversion runs
+artifacts/after_*/
+artifacts/baseline*/
+artifacts/before_after/
+artifacts/final_app_run/
+artifacts/endpoint_release_check/
+artifacts/endpoint_release_check_live/run_*/
+
+# Keep only the validated benchmark used by the review workflow
+artifacts/benchmarks/benchmark_*/
+!artifacts/benchmarks/benchmark_20260731_024647/
+!artifacts/benchmarks/benchmark_20260731_024647/**
+
+# Keep only the corrected human-review preparation packet
+artifacts/fidelity-reviews/review-*/
+!artifacts/fidelity-reviews/review-20260731-042323/
+!artifacts/fidelity-reviews/review-20260731-042323/**

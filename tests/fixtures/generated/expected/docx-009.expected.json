@@ -1,0 +1,51 @@
+{
+  "fixture_id": "DOCX-009",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "docx",
+  "expected_semantic_representation": "markdown",
+  "intended_page_count": 2,
+  "expected_titles": [
+    "Unicode & Special Characters"
+  ],
+  "expected_heading_hierarchy": [
+    "#"
+  ],
+  "expected_paragraphs": [
+    "Accented: café naïve façade coöperate",
+    "Quotes: “curly quotes” and apostrophe’s test",
+    "Dashes: en–dash em—dash ellipsis…",
+    "Math/Currency: ∑ π √2 € £ ¥ ₩",
+    "Superscript/subscript approximation: x^2 and H2O",
+    "Trademark-like: ™ ® ©",
+    "Emoji: ✅ 📄 🔍",
+    "Combining: Á é í",
+    "CJK sample: 変換テスト 漢字"
+  ],
+  "expected_list_items": [],
+  "expected_links": [],
+  "expected_tables": [],
+  "expected_images": [],
+  "expected_captions": [],
+  "expected_page_headers": [],
+  "expected_page_footers": [],
+  "expected_columns": [
+    1
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_bold_spans": [],
+  "expected_italic_spans": [],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [],
+  "expected_fallback_representation": "none",
+  "expected_review_requirement": "possible",
+  "known_intentional_ambiguity": [
+    "Bidirectional text not included by default in this environment."
+  ]
+}

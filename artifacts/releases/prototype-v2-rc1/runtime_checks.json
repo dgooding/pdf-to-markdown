@@ -1,0 +1,14 @@
+{
+  "editor_status": 200,
+  "api_convert_status": 200,
+  "job_status": "completed",
+  "download_status": 200,
+  "zip_has_index": true,
+  "zip_has_asset_file": true,
+  "zip_has_manifest": true,
+  "zip_has_quality": true,
+  "zip_has_banned_internal_utilities": false,
+  "zip_markdown_refs_resolve": true,
+  "mkdocs_auto_started": false,
+  "port_8012_listening": false
+}

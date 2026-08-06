@@ -1,0 +1,231 @@
+{
+  "source": "PDF-002 custom bullets.pdf",
+  "output_markdown": "PDF-002 custom bullets.md",
+  "page_count": 1,
+  "pages_with_native_text": [
+    1
+  ],
+  "pages_with_ocr": [],
+  "images_extracted": [],
+  "image_placements": [],
+  "regions_rendered": [],
+  "tables_detected": [],
+  "ocr_provider": {
+    "configured_path": null,
+    "on_path": false,
+    "executable": null,
+    "available": false,
+    "version": null,
+    "error": "tesseract_not_found"
+  },
+  "ocr_records": [],
+  "warnings": [],
+  "validation": {
+    "passed": true,
+    "missing_assets": [],
+    "unresolved_references": [],
+    "text_coverage_percent": 129.56,
+    "heading_jumps_reasonable": true,
+    "has_suspicious_bullet_glyphs": false,
+    "has_absolute_paths": false
+  },
+  "technical_status": "passed",
+  "fidelity_status": "high",
+  "document_result": {
+    "source_path": "PDF-002 custom bullets.pdf",
+    "page_count": 1,
+    "pages": [
+      {
+        "page_number": 1,
+        "width": 612.0,
+        "height": 792.0,
+        "native_text_available": true,
+        "native_character_count": 243,
+        "embedded_image_count": 0,
+        "vector_drawing_count": 0,
+        "classifications": [
+          {
+            "label": "native_text",
+            "confidence": "high",
+            "evidence": [
+              "native_char_count=243"
+            ],
+            "rule": "char_count_gt_120"
+          }
+        ],
+        "regions": [
+          {
+            "region_id": "p1-native-text",
+            "region_type": "paragraph",
+            "bbox": [
+              0.0,
+              0.0,
+              612.0,
+              792.0
+            ],
+            "confidence": 0.991,
+            "source_objects": [
+              "native_text"
+            ],
+            "selected_strategy": "native_semantic",
+            "output_content": "#### Custom Bullets\n\n? Standard bullet item\n\n? Square bullet item\n\n? Hollow bullet item\n\n1. Numbered item\n\na. Lettered nested item\n\ni. Roman nested item\n\n2. Wrapped list item with long content that should continue as same logical list entry after wrapping.",
+            "asset_placements": [],
+            "warnings": [],
+            "review_required": false
+          }
+        ],
+        "candidates": [
+          {
+            "candidate_id": "p1-native",
+            "strategy": "native_semantic",
+            "page_number": 1,
+            "regions": [
+              {
+                "region_id": "p1-native-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  612.0,
+                  792.0
+                ],
+                "confidence": 0.991,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "native_semantic",
+                "output_content": "#### Custom Bullets\n\n? Standard bullet item\n\n? Square bullet item\n\n? Hollow bullet item\n\n1. Numbered item\n\na. Lettered nested item\n\ni. Roman nested item\n\n2. Wrapped list item with long content that should continue as same logical list entry after wrapping.",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9906,
+            "reading_order_score": 0.92,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9906,
+              "reading_order_plausibility": 0.92,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.25,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.02,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.35
+            },
+            "total_score": 2.6406,
+            "rejection_reasons": []
+          },
+          {
+            "candidate_id": "p1-hybrid",
+            "strategy": "hybrid_targeted_fallback",
+            "page_number": 1,
+            "regions": [
+              {
+                "region_id": "p1-hybrid-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  612.0,
+                  792.0
+                ],
+                "confidence": 0.991,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "#### Custom Bullets\n\n? Standard bullet item\n\n? Square bullet item\n\n? Hollow bullet item\n\n1. Numbered item\n\na. Lettered nested item\n\ni. Roman nested item\n\n2. Wrapped list item with long content that should continue as same logical list entry after wrapping.",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9906,
+            "reading_order_score": 0.88,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9906,
+              "reading_order_plausibility": 0.88,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.22,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.01,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.28
+            },
+            "total_score": 2.5106,
+            "rejection_reasons": [
+              "Rejected because total_score=2.5106 < selected=2.6406."
+            ]
+          }
+        ],
+        "selected_candidate": "p1-native",
+        "fallback_records": [],
+        "semantic_coverage": 0.9906,
+        "visual_coverage": 0.0,
+        "accessible_coverage": 0.9906,
+        "unhandled_coverage": 0.0094,
+        "technical_status": "passed",
+        "fidelity_status": "high",
+        "review_reasons": []
+      }
+    ],
+    "assets": [],
+    "warnings": [],
+    "technical_status": "passed",
+    "fidelity_status": "high"
+  },
+  "candidate_scoring": {
+    "weights_note": "Component scores are additive and intentionally transparent for debugability.",
+    "components": [
+      "native_text_coverage",
+      "reading_order_plausibility",
+      "suspicious_glyph_penalty",
+      "heading_plausibility",
+      "list_plausibility",
+      "chart_leakage_penalty",
+      "table_leakage_penalty",
+      "duplicate_risk_penalty",
+      "cross_page_asset_penalty",
+      "missing_asset_penalty",
+      "unresolved_ref_penalty",
+      "fullpage_penalty",
+      "targeted_fallback_bonus",
+      "unhandled_penalty",
+      "accessibility_bonus"
+    ]
+  },
+  "effective_configuration": {
+    "pdf_mode": "hybrid",
+    "prefer_markitdown": true,
+    "improve_markdown": false,
+    "strict_validation": true,
+    "render_dpi": 220,
+    "preserve_page_markers": true,
+    "allow_inline_html": true,
+    "tesseract_cmd_configured": false
+  }
+}

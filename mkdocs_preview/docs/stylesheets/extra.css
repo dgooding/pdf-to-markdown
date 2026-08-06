@@ -1,0 +1,32 @@
+body {
+  color: #20252b;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.wy-nav-side {
+  background: #263238;
+}
+
+.wy-side-nav-search {
+  background: #1f5f78;
+}
+
+.wy-nav-content {
+  max-width: 1040px;
+}
+
+.rst-content a {
+  color: #176b87;
+}
+
+.rst-content h1,
+.rst-content h2 {
+  color: #172027;
+}
+
+.wy-menu-vertical li.toctree-l1 > ul,
+.wy-menu-vertical .toctree-expand,
+.rst-footer-buttons,
+.rst-versions {
+  display: none !important;
+}

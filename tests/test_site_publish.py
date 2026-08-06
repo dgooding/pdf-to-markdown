@@ -1,0 +1,98 @@
+from __future__ import annotations
+
+import tempfile
+import unittest
+from pathlib import Path
+
+from app import (
+    _EDITOR_HTML,
+    MKDOCS_CONFIG_FILE,
+    MKDOCS_DOCS_DIR,
+    normalize_site_path,
+    publish_markdown_to_mkdocs_site,
+    update_published_index,
+)
+
+
+class SitePublishTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.tmp = Path(tempfile.mkdtemp(prefix="site-publish-tests-"))
+        self.docs_root = self.tmp / "published"
+        self.source_md = self.tmp / "sample.md"
+        self.source_assets = self.tmp / "assets"
+        self.source_assets.mkdir(parents=True, exist_ok=True)
+        self.source_md.write_text("# Reset Password\n\n![img](assets/reset.png)\n", encoding="utf-8")
+        (self.source_assets / "reset.png").write_bytes(b"png")
+
+    def test_normalize_site_path_slugifies_segments(self) -> None:
+        self.assertEqual(
+            normalize_site_path("Troubleshooting/Password Reset.md", "fallback-name"),
+            "troubleshooting/password-reset",
+        )
+
+    def test_publish_markdown_to_mkdocs_site_copies_content(self) -> None:
+        result = publish_markdown_to_mkdocs_site(
+            source_markdown=self.source_md,
+            source_assets_dir=self.source_assets,
+            docs_root=self.docs_root,
+            site_path="Troubleshooting/Password Reset",
+        )
+
+        target_md = Path(result["target_markdown"])
+        self.assertTrue(target_md.exists())
+        self.assertIn("/docs/published/troubleshooting/password-reset/", result["published_url"])
+        self.assertEqual(result["folder"], "troubleshooting")
+        self.assertEqual(result["document_name"], "password-reset")
+        self.assertTrue((target_md.parent / "assets" / "reset.png").exists())
+
+    def test_publish_rejects_existing_document(self) -> None:
+        publish_markdown_to_mkdocs_site(
+            source_markdown=self.source_md,
+            source_assets_dir=self.source_assets,
+            docs_root=self.docs_root,
+            site_path="reset-password",
+        )
+
+        with self.assertRaisesRegex(FileExistsError, "already published"):
+            publish_markdown_to_mkdocs_site(
+                source_markdown=self.source_md,
+                source_assets_dir=self.source_assets,
+                docs_root=self.docs_root,
+                site_path="reset-password",
+            )
+
+    def test_editor_uses_simplified_publish_workflow(self) -> None:
+        self.assertIn("Document Converter", _EDITOR_HTML)
+        self.assertIn("Publish to Documents", _EDITOR_HTML)
+        self.assertNotIn('id="site-folder"', _EDITOR_HTML)
+        self.assertNotIn("Create or manage folders", _EDITOR_HTML)
+        self.assertNotIn('/docs/documentation/', _EDITOR_HTML)
+        self.assertNotIn('/docs/contact/', _EDITOR_HTML)
+
+    def test_site_navigation_stays_flat(self) -> None:
+        config = MKDOCS_CONFIG_FILE.read_text(encoding="utf-8")
+        css = (MKDOCS_DOCS_DIR / "stylesheets" / "extra.css").read_text(encoding="utf-8")
+
+        self.assertIn("navigation_depth: 1", config)
+        self.assertIn("titles_only: true", config)
+        self.assertIn("prev_next_buttons_location: none", config)
+        self.assertIn(".wy-menu-vertical li.toctree-l1 > ul", css)
+        self.assertIn(".rst-footer-buttons", css)
+        self.assertIn(".rst-versions", css)
+
+    def test_update_published_index_lists_published_pages(self) -> None:
+        publish_markdown_to_mkdocs_site(
+            source_markdown=self.source_md,
+            source_assets_dir=self.source_assets,
+            docs_root=self.docs_root,
+            site_path="guides/reset-password",
+        )
+        update_published_index(self.docs_root)
+
+        index_text = (self.docs_root / "index.md").read_text(encoding="utf-8")
+        self.assertIn("Reset Password", index_text)
+        self.assertIn("guides/reset-password/", index_text)
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

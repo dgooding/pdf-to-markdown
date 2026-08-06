@@ -1,0 +1,56 @@
+{
+  "fixture_id": "DOCX-002",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "docx",
+  "expected_semantic_representation": "markdown",
+  "intended_page_count": 2,
+  "expected_titles": [
+    "Advanced Lists"
+  ],
+  "expected_heading_hierarchy": [
+    "#"
+  ],
+  "expected_paragraphs": [
+    "List preface paragraph.",
+    "A normal paragraph between list blocks."
+  ],
+  "expected_list_items": [
+    "Top bullet A",
+    "Nested bullet A.1",
+    "Number item 1",
+    "Continuation list item after paragraph"
+  ],
+  "expected_links": [
+    {
+      "text": "example.com",
+      "url": "https://example.com/lists"
+    }
+  ],
+  "expected_tables": [],
+  "expected_images": [],
+  "expected_captions": [],
+  "expected_page_headers": [],
+  "expected_page_footers": [],
+  "expected_columns": [
+    1
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_bold_spans": [
+    "Wrapped list text continuation style sample"
+  ],
+  "expected_italic_spans": [],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [],
+  "expected_fallback_representation": "none",
+  "expected_review_requirement": "no",
+  "known_intentional_ambiguity": [
+    "Custom bullet glyphs may normalize differently by engine."
+  ]
+}

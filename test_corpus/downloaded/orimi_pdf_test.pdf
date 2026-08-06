@@ -1,0 +1,422 @@
+﻿<!doctype html>
+<html class="">
+<!-- HEAD WHOOPS & DLP -->
+<head>
+	<meta charset="UTF-8">
+	<title>Whoops! Content can't be displayed</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!--------->
+	<!-- CSS -->
+	<!--------->
+	<!--<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="css/bootstrap_ms.css" rel="stylesheet" type="text/css">-->
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,600|Raleway:300,600" rel="stylesheet" type="text/css">
+	<!--[if lte IE 8]>
+	<link href=\'//fonts.googleapis.com/css?family=Open+Sans:300\' rel=\'stylesheet\' type=\'text/css\'>
+	<link href=\'//fonts.googleapis.com/css?family=Open+Sans:400\' rel=\'stylesheet\' type=\'text/css\'>
+	<link href=\'//fonts.googleapis.com/css?family=Raleway:300\' rel=\'stylesheet\' type=\'text/css\'>
+	<link href=\'//fonts.googleapis.com/css?family=Raleway:600\' rel=\'stylesheet\' type=\'text/css\'>
+	<![endif]-->
+	<link href="nfstyles.css" rel="stylesheet" type="text/css">
+	<style>
+		#whoops, #dlp {
+			display: none;
+		}
+	</style>
+
+	<!-------->
+	<!-- JS -->
+	<!-------->
+	<script src="jquery-1.11.3.min.js"></script>
+	<script src="main.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			if (z_kind && (z_kind.includes('data_leakage') || z_kind.includes('webmail_data_leakage'))) {
+				$('#dlp').show();
+				document.title = 'DLP Notification';
+			} else {
+				$('#whoops').show();
+			}
+		});
+	</script>
+</head>
+
+
+<body>
+	<!------------>
+	<!-- WHOOPS -->
+	<!------------>
+	<div id="whoops">
+		<div id="wrapper" class="clearfix">
+			<div id="flo">
+				<img src="pmark.jpg">
+			</div>
+			<div id="main">
+				<h1>Whoops!</h1>
+				<h2>Looks like you've reached web content that can't be displayed on Progressive computers based on our workplace policies.</h2>
+				<p>If the work you're doing requires you to access this site, submit an Unblock Request Form, and someone will be in touch with you.</p>
+				<p>Note: You can also submit a request for personal use, too, as long as they don't violate any of Progressive's <a href="https://progressiveinsurance.sharepoint.com/sites/highway/pgrway/Pages/WPP-Home2.aspx">workplace policies</a>.</p>
+
+				<div class="button">
+				<script>document.write('<a href="' + reviewLink + '&review=true' + '">Unblock Request Form</a>');</script></div>
+				<div id="overlay" class=""></div>
+				<p class="small inline"><a id="reportIt" href="">Report a problem</a>.</p><img class="success" src="check.png">
+			</div>
+		</div>
+	</div>
+
+	<!--------->
+	<!-- DLP -->
+	<!--------->
+	<div id="dlp" style="margin: 1.5rem;">
+		<style>
+			/* Font Definitions */
+			@font-face {
+				font-family: Calibri;
+				panose-1: 2 15 5 2 2 2 4 3 2 4;
+				mso-font-charset: 0;
+				mso-generic-font-family: swiss;
+				mso-font-pitch: variable;
+				mso-font-signature: -520092929 1073786111 9 0 415 0;
+			}
+			/* Style Definitions */
+			p.MsoNormal, li.MsoNormal, div.MsoNormal {
+				mso-style-unhide: no;
+				mso-style-qformat: yes;
+				mso-style-parent: "";
+				margin: 0in;
+				margin-bottom: .0001pt;
+				mso-pagination: widow-orphan;
+				font-size: 12.0pt;
+				font-family: "Times New Roman","serif";
+				mso-fareast-font-family: "Times New Roman";
+				mso-fareast-theme-font: minor-fareast;
+			}
+
+			p.style3, li.style3, div.style3 {
+				mso-style-name: style3;
+				mso-style-unhide: no;
+				mso-margin-top-alt: auto;
+				margin-right: 0in;
+				mso-margin-bottom-alt: auto;
+				margin-left: 0in;
+				mso-pagination: widow-orphan;
+				font-size: 12.0pt;
+				font-family: "Arial","sans-serif";
+				mso-fareast-font-family: "Times New Roman";
+				mso-fareast-theme-font: minor-fareast;
+				color: #CC6600;
+				font-weight: bold;
+			}
+
+			p.style4, li.style4, div.style4 {
+				mso-style-name: style4;
+				mso-style-unhide: no;
+				mso-margin-top-alt: auto;
+				margin-right: 0in;
+				mso-margin-bottom-alt: auto;
+				margin-left: 0in;
+				mso-pagination: widow-orphan;
+				font-size: 12.0pt;
+				font-family: "Arial","sans-serif";
+				mso-fareast-font-family: "Times New Roman";
+				mso-fareast-theme-font: minor-fareast;
+			}
+
+			p.style10, li.style10, div.style10 {
+				mso-style-name: style10;
+				mso-style-unhide: no;
+				mso-margin-top-alt: auto;
+				margin-right: 0in;
+				mso-margin-bottom-alt: auto;
+				margin-left: 0in;
+				mso-pagination: widow-orphan;
+				font-size: 12.0pt;
+				font-family: "Times New Roman","serif";
+				mso-fareast-font-family: "Times New Roman";
+				mso-fareast-theme-font: minor-fareast;
+				color: white;
+			}
+
+			p.style12, li.style12, div.style12 {
+				mso-style-name: style12;
+				mso-style-unhide: no;
+				mso-margin-top-alt: auto;
+				margin-right: 0in;
+				mso-margin-bottom-alt: auto;
+				margin-left: 0in;
+				mso-pagination: widow-orphan;
+				font-size: 7.5pt;
+				font-family: "Times New Roman","serif";
+				mso-fareast-font-family: "Times New Roman";
+				mso-fareast-theme-font: minor-fareast;
+				color: #999999;
+			}
+
+			span.style101 {
+				mso-style-name: style101;
+				mso-style-unhide: no;
+				color: white;
+			}
+
+			span.style31 {
+				mso-style-name: style31;
+				mso-style-unhide: no;
+				mso-ansi-font-size: 12.0pt;
+				mso-bidi-font-size: 12.0pt;
+				font-family: "Arial","sans-serif";
+				mso-ascii-font-family: Arial;
+				mso-hansi-font-family: Arial;
+				mso-bidi-font-family: Arial;
+				color: #CC6600;
+				font-weight: bold;
+			}
+
+			.MsoChpDefault {
+				mso-style-type: export-only;
+				mso-default-props: yes;
+				font-size: 10.0pt;
+				mso-ansi-font-size: 10.0pt;
+				mso-bidi-font-size: 10.0pt;
+			}
+
+			@page WordSection1 {
+				size: 8.5in 11.0in;
+				margin: 1.0in 1.0in 1.0in 1.0in;
+				mso-header-margin: .5in;
+				mso-footer-margin: .5in;
+				mso-paper-source: 0;
+			}
+
+			div.WordSection1 {
+				page: WordSection1;
+			}
+
+			table.MsoNormalTable {
+				mso-style-name: "Table Normal";
+				mso-tstyle-rowband-size: 0;
+				mso-tstyle-colband-size: 0;
+				mso-style-noshow: yes;
+				mso-style-priority: 99;
+				mso-style-parent: "";
+				mso-padding-alt: 0in 5.4pt 0in 5.4pt;
+				mso-para-margin: 0in;
+				mso-para-margin-bottom: .0001pt;
+				mso-pagination: widow-orphan;
+				font-size: 10.0pt;
+				font-family: "Times New Roman","serif";
+			}
+
+			table.MsoTableGrid {
+				mso-style-name: "Table Grid";
+				mso-tstyle-rowband-size: 0;
+				mso-tstyle-colband-size: 0;
+				mso-style-priority: 59;
+				mso-style-unhide: no;
+				border: solid windowtext 1.0pt;
+				mso-border-alt: solid windowtext .5pt;
+				mso-padding-alt: 0in 5.4pt 0in 5.4pt;
+				mso-border-insideh: .5pt solid windowtext;
+				mso-border-insidev: .5pt solid windowtext;
+				mso-para-margin: 0in;
+				mso-para-margin-bottom: .0001pt;
+				mso-pagination: widow-orphan;
+				font-size: 11.0pt;
+				font-family: "Calibri","sans-serif";
+				mso-ascii-font-family: Calibri;
+				mso-ascii-theme-font: minor-latin;
+				mso-fareast-font-family: Calibri;
+				mso-fareast-theme-font: minor-latin;
+				mso-hansi-font-family: Calibri;
+				mso-hansi-theme-font: minor-latin;
+				mso-bidi-font-family: "Times New Roman";
+				mso-bidi-theme-font: minor-bidi;
+			}
+		</style>
+
+		<div class=WordSection1>
+			<table class=MsoTableGrid border=1
+				   cellspacing=0
+				   cellpadding=0
+				   width=638
+				   style='width:6.65in; border-collapse:collapse; border:none; mso-border-alt:solid windowtext .5pt; mso-yfti-tbllook:1184; mso-padding-alt:0in 5.4pt 0in 5.4pt'>
+				<tr style='mso-yfti-irow:0; mso-yfti-firstrow:yes; height:25.15pt'>
+					<td width=638
+						valign=bottom
+						style='width:6.65in; border:solid windowtext 1.0pt; mso-border-alt:solid windowtext .5pt; background:#17365D; mso-background-themecolor: text2;mso-background-themeshade:191; padding:0in 5.4pt 0in 5.4pt; height:25.15pt'>
+						<p class=MsoNormal align=right style='text-align:right'>
+							<span style='font-size:11.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-font-family:"Times New Roman"; mso-bidi-theme-font:minor-bidi'>
+								<!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+								coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+								filled="f" stroked="f">
+								<v:stroke joinstyle="miter"/>
+								<v:formulas>
+									<v:f eqn="if lineDrawn pixelLineWidth 0"/>
+									<v:f eqn="sum @0 1 0"/>
+									<v:f eqn="sum 0 0 @1"/>
+									<v:f eqn="prod @2 1 2"/>
+									<v:f eqn="prod @3 21600 pixelWidth"/>
+									<v:f eqn="prod @3 21600 pixelHeight"/>
+									<v:f eqn="sum @0 0 1"/>
+									<v:f eqn="prod @6 1 2"/>
+									<v:f eqn="prod @7 21600 pixelWidth"/>
+									<v:f eqn="sum @8 21600 0"/>
+									<v:f eqn="prod @7 21600 pixelHeight"/>
+									<v:f eqn="sum @10 21600 0"/>
+								</v:formulas>
+								<v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+								<o:lock v:ext="edit" aspectratio="t"/>
+								</v:shapetype><v:shape id="_x0000_i1025" type="#_x0000_t75" style='width:467.25pt;
+								height:43.5pt' o:ole="">
+								<v:imagedata src="dlpprevent_files/image001.png" o:title=""/>
+								</v:shape><![endif]-->
+								<![if !vml]><img width=623 height=58
+										 src="dlpprevent_files/image002.jpg" v:shapes="_x0000_i1025"><![endif]>
+								<!--[if gte mso 9]><xml>
+								<o:OLEObject Type="Embed" ProgID="PBrush" ShapeID="_x0000_i1025"
+									DrawAspect="Content" ObjectID="_1486989701">
+								</o:OLEObject>
+								</xml><![endif]-->
+							</span>
+							<i style='mso-bidi-font-style:normal'>
+								<span style='font-size:10.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font: minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin'>
+									<o:p></o:p>
+								</span>
+							</i>
+						</p>
+					</td>
+				</tr>
+				<tr style='mso-yfti-irow:1; mso-yfti-lastrow:yes'>
+					<td width=638 valign=top style='width:6.65in; border:solid windowtext 1.0pt; border-top:none; mso-border-top-alt:solid windowtext .5pt; mso-border-alt:solid windowtext .5pt; padding:0in 5.4pt 0in 5.4pt'>
+						<p class=MsoNormal>
+							<i style='mso-bidi-font-style:normal'>
+								<span style='font-size:10.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin'>
+									<o:p>&nbsp;</o:p>
+								</span>
+							</i>
+						</p>
+						<p class=MsoNormal>
+							<b style='mso-bidi-font-weight:normal'>
+								<span style='font-size:11.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin; color:#595959;mso-themecolor:text1;mso-themetint:166'>
+									Note:
+									<span style='mso-spacerun:yes'> </span>
+									One of your recent web transmissions was blocked by the Progressive DLP (Data Loss Prevention) System.
+									<span style='mso-spacerun:yes'>  </span>
+									Please read this entire message for more details.
+								</span>
+							</b>
+							<b style='mso-bidi-font-weight:normal'>
+								<span style='font-size:11.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin'>
+									<br style='mso-special-character:line-break'>
+									<![if !supportLineBreakNewLine]>
+									<br style='mso-special-character:line-break'>
+									<![endif]>
+									<o:p></o:p>
+								</span>
+							</b>
+						</p>
+						<p class=MsoNormal>
+							<span style='font-size:10.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin; color:#595959; mso-themecolor:text1; mso-themetint:166'>
+								Hello,
+								<o:p></o:p>
+							</span>
+						</p>
+						<p class=MsoNormal>
+							<span style='font-size:10.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin; color:#595959; mso-themecolor:text1; mso-themetint:166'>
+								<br>
+								Progressive DLP (Data Loss Prevention) has determined that you MAY have recently
+								attempted to transmit information that is considered highly sensitive to a
+								web site outside of our corporate network that exceeded
+								established thresholds and resulted in that transmission being blocked.
+								<br style='mso-special-character:line-break'>
+								<![if !supportLineBreakNewLine]>
+								<br style='mso-special-character:line-break'>
+								<![endif]>
+								<o:p></o:p>
+							</span>
+						</p>
+						<p class=MsoNormal>
+							<span style='font-size:10.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin; color:#595959; mso-themecolor:text1; mso-themetint:166'>
+								Highly sensitive information, including Social Security numbers, payment card
+								numbers, driver's license numbers, or financial account numbers, should never
+								be sent outside of Progressive's network in an unsecure manner.
+								<span style='mso-spacerun:yes'>  </span>
+								Passwords should never be sent outside of
+								our company’s network.
+								<br style='mso-special-character:line-break'>
+								<![if !supportLineBreakNewLine]>
+								<br style='mso-special-character:line-break'>
+								<![endif]>
+								<o:p></o:p>
+							</span>
+						</p>
+						<p class=MsoNormal>
+							<i style='mso-bidi-font-style:normal'>
+								<span style='font-size:11.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin; color:#595959; mso-themecolor:text1; mso-themetint:166'>
+									Our Progressive DLP team will review your data transmission and validate the business need for
+									the sensitive data it may contain.
+									<span style='mso-spacerun:yes'>  </span>
+									You will receive additional information regarding approved methods to transmit
+									this information once that is completed.
+									<o:p></o:p>
+								</span>
+							</i>
+						</p>
+						<p class=MsoNormal>
+							<i style='mso-bidi-font-style:normal'>
+								<span style='font-size:11.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin; color:#595959; mso-themecolor:text1; mso-themetint:166'>
+									<o:p>&nbsp;</o:p>
+								</span>
+							</i>
+						</p>
+						<p class=MsoNormal>
+							<span style='font-size:10.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin; color:#595959; mso-themecolor:text1; mso-themetint:166'>
+								For more information, please refer to the Enterprise Security website at
+							</span>
+							<span style='font-size:11.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-font-family:"Times New Roman"; mso-bidi-theme-font:minor-bidi'>
+								<a href="http://thehighway/enterprisesecurity/Pages/EnterpriseSecurity.aspx">
+									<b style='mso-bidi-font-weight:normal'>
+										<span style='font-size:10.0pt; color:#595959; mso-themecolor:text1; mso-themetint:166'>
+											http://thehighway/enterprisesecurity/Pages/EnterpriseSecurity.aspx
+										</span>
+									</b>
+								</a>
+							</span>
+							<span style='font-size:10.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin; color:#595959; mso-themecolor:text1; mso-themetint:166'>
+								<o:p></o:p>
+							</span>
+						</p>
+						<p class=MsoNormal>
+							<span style='font-size:10.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin; color:#595959; mso-themecolor:text1; mso-themetint:166'>
+								<o:p>&nbsp;</o:p>
+							</span>
+						</p>
+						<p class=MsoNormal>
+							<span style='font-size:10.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin; color:#595959; mso-themecolor:text1; mso-themetint:166'>
+								Questions regarding this process can be directed to
+								<br>
+								<b style='mso-bidi-font-weight:normal'>
+									<u><a href="mailto:DLP-Triage@progressive.com">DLP-Triage@progressive.com</u>
+								</b>.
+								<o:p></o:p>
+							</span>
+						</p>
+						<p class=MsoNormal>
+							<i style='mso-bidi-font-style:normal'>
+								<span style='font-size:10.0pt; font-family:"Calibri","sans-serif"; mso-ascii-theme-font:minor-latin; mso-hansi-theme-font:minor-latin; mso-bidi-theme-font:minor-latin'>
+									<o:p>&nbsp;</o:p>
+								</span>
+							</i>
+						</p>
+					</td>
+				</tr>
+			</table>
+			<p class=MsoNormal><o:p>&nbsp;</o:p></p>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,408 @@
+{
+  "source": "PDF-005 complex table.pdf",
+  "output_markdown": "PDF-005 complex table.md",
+  "page_count": 1,
+  "pages_with_native_text": [
+    1
+  ],
+  "pages_with_ocr": [],
+  "images_extracted": [],
+  "image_placements": [
+    {
+      "source_page": 1,
+      "source_object_id": "chart-region:1",
+      "bbox": [
+        62.98,
+        218.95,
+        567.05,
+        463.29
+      ],
+      "content_hash": "e44f62568720c22024a5044917f898a055d1fb7fcd44ab73519d58f01a1053a2",
+      "asset_path": "assets/page-001-chart-001.png",
+      "placement_reason": "chart_region_crop",
+      "confidence": 0.62,
+      "image_source": "rendered_crop",
+      "deduplicated": false
+    }
+  ],
+  "regions_rendered": [],
+  "tables_detected": [
+    {
+      "page": 1,
+      "kind": "table_markdown",
+      "confidence": 0.82,
+      "strategy_selected": "markdown_table",
+      "strategy_attempt_order": [
+        "tagged_or_structured",
+        "ruled_or_borderless",
+        "markdown_table"
+      ],
+      "bbox": [
+        50.0,
+        120.0,
+        730.0,
+        480.0
+      ]
+    }
+  ],
+  "ocr_provider": {
+    "configured_path": null,
+    "on_path": false,
+    "executable": null,
+    "available": false,
+    "version": null,
+    "error": "tesseract_not_found"
+  },
+  "ocr_records": [],
+  "warnings": [],
+  "validation": {
+    "passed": true,
+    "missing_assets": [],
+    "unresolved_references": [],
+    "text_coverage_percent": 722.55,
+    "heading_jumps_reasonable": true,
+    "has_suspicious_bullet_glyphs": false,
+    "has_absolute_paths": false
+  },
+  "technical_status": "passed",
+  "fidelity_status": "review_required",
+  "document_result": {
+    "source_path": "PDF-005 complex table.pdf",
+    "page_count": 1,
+    "pages": [
+      {
+        "page_number": 1,
+        "width": 792.0,
+        "height": 612.0,
+        "native_text_available": true,
+        "native_character_count": 324,
+        "embedded_image_count": 0,
+        "vector_drawing_count": 12,
+        "classifications": [
+          {
+            "label": "native_text",
+            "confidence": "high",
+            "evidence": [
+              "native_char_count=324"
+            ],
+            "rule": "char_count_gt_120"
+          },
+          {
+            "label": "mixed_content",
+            "confidence": "medium",
+            "evidence": [
+              "char_count=324",
+              "images=0",
+              "vectors=12"
+            ],
+            "rule": "text_plus_visuals"
+          },
+          {
+            "label": "chart_heavy",
+            "confidence": "medium",
+            "evidence": [
+              "chart_regions=1"
+            ],
+            "rule": "large_vector_regions"
+          },
+          {
+            "label": "table_heavy",
+            "confidence": "medium",
+            "evidence": [
+              "table_regions=1"
+            ],
+            "rule": "table_detector"
+          },
+          {
+            "label": "vector_heavy",
+            "confidence": "medium",
+            "evidence": [
+              "vector_count=12"
+            ],
+            "rule": "vector_count_ge_8"
+          },
+          {
+            "label": "multi_column",
+            "confidence": "medium",
+            "evidence": [
+              "left_right_text_clusters"
+            ],
+            "rule": "x_cluster_split"
+          }
+        ],
+        "regions": [
+          {
+            "region_id": "p1-hybrid-text",
+            "region_type": "paragraph",
+            "bbox": [
+              0.0,
+              0.0,
+              792.0,
+              612.0
+            ],
+            "confidence": 0.951,
+            "source_objects": [
+              "native_text"
+            ],
+            "selected_strategy": "hybrid_targeted_fallback",
+            "output_content": "### Complex Table Fixture\n\nGrouped headers and merge-like layout simulation.\n\nFootnote: merged-cell complexity expected.\n\n| Group A |  | Group B |  |  |\n| --- | --- | --- | --- | --- |\n| Item | Value | Status | Notes |  |\n| Row 1 | $46.45 | resolved | Multiline note 1 |  |\n| Row 2 | $7451.78 | blocked | Multiline note 2 |  |\n| Row 3 | $8026.36 | review | Multiline note 3 |  |\n| Row 4 | $1625.73 | review | Multiline note 4 |  |\n| Row 5 | $2154.62 | resolved | Multiline note 5 |  |\n|  |  |  |  |  |",
+            "asset_placements": [],
+            "warnings": [],
+            "review_required": false
+          },
+          {
+            "region_id": "p1-table-1",
+            "region_type": "table",
+            "bbox": [
+              50.0,
+              120.0,
+              730.0,
+              480.0
+            ],
+            "confidence": 0.72,
+            "source_objects": [
+              "table_detector"
+            ],
+            "selected_strategy": "hybrid_targeted_fallback",
+            "output_content": "| Group A |  | Group B |  |  |\n| --- | --- | --- | --- | --- |\n| Item | Value | Status | Notes |  |\n| Row 1 | $46.45 | resolved | Multiline note 1 |  |\n| Row 2 | $7451.78 | blocked | Multiline note 2 |  |\n| Row 3 | $8026.36 | review | Multiline note 3 |  |\n| Row 4 | $1625.73 | review | Multiline note 4 |  |\n| Row 5 | $2154.62 | resolved | Multiline note 5 |  |\n|  |  |  |  |  |",
+            "asset_placements": [],
+            "warnings": [],
+            "review_required": false
+          },
+          {
+            "region_id": "p1-chart-1",
+            "region_type": "chart_candidate",
+            "bbox": [
+              62.98,
+              218.95,
+              567.05,
+              463.29
+            ],
+            "confidence": 0.62,
+            "source_objects": [
+              "vector_drawing_cluster"
+            ],
+            "selected_strategy": "hybrid_targeted_fallback",
+            "output_content": "![Figure from page 1](assets/page-001-chart-001.png)",
+            "asset_placements": [
+              "assets/page-001-chart-001.png"
+            ],
+            "warnings": [],
+            "review_required": false
+          }
+        ],
+        "candidates": [
+          {
+            "candidate_id": "p1-native",
+            "strategy": "native_semantic",
+            "page_number": 1,
+            "regions": [
+              {
+                "region_id": "p1-native-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  792.0,
+                  612.0
+                ],
+                "confidence": 0.951,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "native_semantic",
+                "output_content": "### Complex Table Fixture\n\nGrouped headers and merge-like layout simulation.\n\nFootnote: merged-cell complexity expected.\n\n| Group A |  | Group B |  |  |\n| --- | --- | --- | --- | --- |\n| Item | Value | Status | Notes |  |\n| Row 1 | $46.45 | resolved | Multiline note 1 |  |\n| Row 2 | $7451.78 | blocked | Multiline note 2 |  |\n| Row 3 | $8026.36 | review | Multiline note 3 |  |\n| Row 4 | $1625.73 | review | Multiline note 4 |  |\n| Row 5 | $2154.62 | resolved | Multiline note 5 |  |\n|  |  |  |  |  |",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9506,
+            "reading_order_score": 0.92,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9506,
+              "reading_order_plausibility": 0.92,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.25,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.02,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.35
+            },
+            "total_score": 2.6006,
+            "rejection_reasons": [
+              "Rejected because total_score=2.6006 < selected=2.6506."
+            ]
+          },
+          {
+            "candidate_id": "p1-hybrid",
+            "strategy": "hybrid_targeted_fallback",
+            "page_number": 1,
+            "regions": [
+              {
+                "region_id": "p1-hybrid-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  792.0,
+                  612.0
+                ],
+                "confidence": 0.951,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "### Complex Table Fixture\n\nGrouped headers and merge-like layout simulation.\n\nFootnote: merged-cell complexity expected.\n\n| Group A |  | Group B |  |  |\n| --- | --- | --- | --- | --- |\n| Item | Value | Status | Notes |  |\n| Row 1 | $46.45 | resolved | Multiline note 1 |  |\n| Row 2 | $7451.78 | blocked | Multiline note 2 |  |\n| Row 3 | $8026.36 | review | Multiline note 3 |  |\n| Row 4 | $1625.73 | review | Multiline note 4 |  |\n| Row 5 | $2154.62 | resolved | Multiline note 5 |  |\n|  |  |  |  |  |",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              },
+              {
+                "region_id": "p1-table-1",
+                "region_type": "table",
+                "bbox": [
+                  50.0,
+                  120.0,
+                  730.0,
+                  480.0
+                ],
+                "confidence": 0.72,
+                "source_objects": [
+                  "table_detector"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "| Group A |  | Group B |  |  |\n| --- | --- | --- | --- | --- |\n| Item | Value | Status | Notes |  |\n| Row 1 | $46.45 | resolved | Multiline note 1 |  |\n| Row 2 | $7451.78 | blocked | Multiline note 2 |  |\n| Row 3 | $8026.36 | review | Multiline note 3 |  |\n| Row 4 | $1625.73 | review | Multiline note 4 |  |\n| Row 5 | $2154.62 | resolved | Multiline note 5 |  |\n|  |  |  |  |  |",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              },
+              {
+                "region_id": "p1-chart-1",
+                "region_type": "chart_candidate",
+                "bbox": [
+                  62.98,
+                  218.95,
+                  567.05,
+                  463.29
+                ],
+                "confidence": 0.62,
+                "source_objects": [
+                  "vector_drawing_cluster"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "![Figure from page 1](assets/page-001-chart-001.png)",
+                "asset_placements": [
+                  "assets/page-001-chart-001.png"
+                ],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9506,
+            "reading_order_score": 0.88,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.7592,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9506,
+              "reading_order_plausibility": 0.88,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.22,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.01,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.18,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.28
+            },
+            "total_score": 2.6506,
+            "rejection_reasons": []
+          }
+        ],
+        "selected_candidate": "p1-hybrid",
+        "fallback_records": [
+          {
+            "source_page": 1,
+            "region_bbox": [
+              62.98,
+              218.95,
+              567.05,
+              463.29
+            ],
+            "fallback_type": "chart_crop",
+            "triggering_condition": "chart_region_detected",
+            "alternatives_attempted": [
+              "native_semantic"
+            ],
+            "confidence": 0.62,
+            "text_overlap_detected": false,
+            "review_required": false
+          }
+        ],
+        "semantic_coverage": 0.9506,
+        "visual_coverage": 0.7592,
+        "accessible_coverage": 0.9506,
+        "unhandled_coverage": 0.0494,
+        "technical_status": "passed",
+        "fidelity_status": "review_required",
+        "review_reasons": [
+          "high_fallback_ratio"
+        ]
+      }
+    ],
+    "assets": [],
+    "warnings": [],
+    "technical_status": "passed",
+    "fidelity_status": "review_required"
+  },
+  "candidate_scoring": {
+    "weights_note": "Component scores are additive and intentionally transparent for debugability.",
+    "components": [
+      "native_text_coverage",
+      "reading_order_plausibility",
+      "suspicious_glyph_penalty",
+      "heading_plausibility",
+      "list_plausibility",
+      "chart_leakage_penalty",
+      "table_leakage_penalty",
+      "duplicate_risk_penalty",
+      "cross_page_asset_penalty",
+      "missing_asset_penalty",
+      "unresolved_ref_penalty",
+      "fullpage_penalty",
+      "targeted_fallback_bonus",
+      "unhandled_penalty",
+      "accessibility_bonus"
+    ]
+  },
+  "effective_configuration": {
+    "pdf_mode": "hybrid",
+    "prefer_markitdown": true,
+    "improve_markdown": false,
+    "strict_validation": true,
+    "render_dpi": 220,
+    "preserve_page_markers": true,
+    "allow_inline_html": true,
+    "tesseract_cmd_configured": false
+  }
+}

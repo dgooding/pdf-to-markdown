@@ -1,0 +1,36 @@
+{
+  "source_identifier": "PDF-013 image-only illustration.pdf",
+  "reviewer_status": "not_reviewed",
+  "reviewer": null,
+  "review_notes": null,
+  "technical_status": "passed",
+  "fidelity_status": "high",
+  "page_strategies": [
+    {
+      "page_number": 1,
+      "selected_candidate": "p1-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    }
+  ],
+  "coverage": {
+    "semantic": 0.9158,
+    "visual": 0.2,
+    "accessible": 0.9158,
+    "unhandled": 0.0842
+  },
+  "ocr_usage": {
+    "pages_with_ocr": [],
+    "ocr_record_count": 0,
+    "provider_available": false
+  },
+  "table_strategies": [],
+  "visual_fallbacks": {
+    "full_page_fallback_pages": [],
+    "fallback_records": []
+  },
+  "warnings": [],
+  "review_reasons": [],
+  "cleanup_estimate": "low",
+  "generated_at": "2026-07-31T08:47:51.016888Z"
+}

@@ -1,0 +1,42 @@
+{
+  "source_identifier": "PDF-016 links and annotations.pdf",
+  "reviewer_status": "not_reviewed",
+  "reviewer": null,
+  "review_notes": null,
+  "technical_status": "passed",
+  "fidelity_status": "high",
+  "page_strategies": [
+    {
+      "page_number": 1,
+      "selected_candidate": "p1-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 2,
+      "selected_candidate": "p2-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    }
+  ],
+  "coverage": {
+    "semantic": 0.9731,
+    "visual": 0.0,
+    "accessible": 0.9731,
+    "unhandled": 0.0269
+  },
+  "ocr_usage": {
+    "pages_with_ocr": [],
+    "ocr_record_count": 0,
+    "provider_available": false
+  },
+  "table_strategies": [],
+  "visual_fallbacks": {
+    "full_page_fallback_pages": [],
+    "fallback_records": []
+  },
+  "warnings": [],
+  "review_reasons": [],
+  "cleanup_estimate": "low",
+  "generated_at": "2026-07-31T08:48:05.150042Z"
+}

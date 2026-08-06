@@ -1,0 +1,66 @@
+{
+  "fixture_id": "DOCX-001",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "docx",
+  "expected_semantic_representation": "markdown",
+  "intended_page_count": 2,
+  "expected_titles": [
+    "Synthetic Document Title"
+  ],
+  "expected_heading_hierarchy": [
+    "#",
+    "##",
+    "###"
+  ],
+  "expected_paragraphs": [
+    "Synthetic subtitle for semantic conversion validation",
+    "Page break continuity paragraph."
+  ],
+  "expected_list_items": [
+    "Simple bullet item",
+    "Simple numbered item"
+  ],
+  "expected_links": [
+    {
+      "text": "Example Link",
+      "url": "https://example.com/docs/semantic"
+    }
+  ],
+  "expected_tables": [],
+  "expected_images": [],
+  "expected_captions": [],
+  "expected_page_headers": [
+    "Synthetic Header"
+  ],
+  "expected_page_footers": [
+    "Synthetic Footer"
+  ],
+  "expected_columns": [
+    1
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_bold_spans": [
+    "Bold",
+    "Skyler Chen"
+  ],
+  "expected_italic_spans": [
+    "Italic"
+  ],
+  "expected_underlined_spans": [
+    "Underlined"
+  ],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [
+    "Synthetic Header",
+    "Synthetic Footer"
+  ],
+  "expected_fallback_representation": "none",
+  "expected_review_requirement": "no",
+  "known_intentional_ambiguity": []
+}

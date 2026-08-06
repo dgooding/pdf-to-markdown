@@ -1,0 +1,69 @@
+{
+  "fixture_id": "PDF-017",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "pdf",
+  "expected_semantic_representation": "markdown_with_targeted_fallback_when_unsafe",
+  "intended_page_count": 3,
+  "expected_titles": [
+    "Repeated Asset Page 1",
+    "Distinct Asset Page 2",
+    "Repeated Asset Page 3"
+  ],
+  "expected_heading_hierarchy": [
+    "#"
+  ],
+  "expected_paragraphs": [],
+  "expected_list_items": [],
+  "expected_links": [],
+  "expected_tables": [],
+  "expected_images": [
+    "chart_pie.png",
+    "chart_line.png",
+    "similar_a.png",
+    "similar_b.png"
+  ],
+  "expected_image_placements": [
+    {
+      "asset": "chart_pie.png",
+      "pages": [
+        1,
+        3
+      ]
+    },
+    {
+      "asset": "chart_line.png",
+      "pages": [
+        2
+      ]
+    }
+  ],
+  "expected_captions": [],
+  "expected_page_headers": [],
+  "expected_page_footers": [],
+  "expected_page_numbers": [],
+  "expected_columns": [
+    1
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_text_colors": [
+    "black"
+  ],
+  "expected_bold_spans": [],
+  "expected_italic_spans": [],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [
+    "chart_pie.png"
+  ],
+  "expected_fallback_representation": "none",
+  "expected_review_requirement": "possible",
+  "known_intentional_ambiguity": [
+    "Binary dedup allowed; placement must remain page-specific."
+  ]
+}

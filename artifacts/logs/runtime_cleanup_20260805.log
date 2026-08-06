@@ -1,0 +1,39 @@
+Runtime and repository cleanup
+Date: 2026-08-05
+
+Removed runtime code:
+- Folder-management helpers and API endpoints
+- Contact submission endpoint
+- FAQ/showcase HTML route
+- White-paper PDF generator
+- Unused PyMuPDF import and obsolete constants
+- Unused publish endpoint form fields
+- Redundant MkDocs build on normal startup when static output already exists
+
+Removed test/repository clutter:
+- Duplicate endpoint integration setUpClass
+- Obsolete folder-management tests
+- Python bytecode caches
+- Stale nested mkdocs_preview/mkdocs_preview build
+- _preview_test.md and existing.png scratch fixtures
+
+Preserved:
+- Conversion algorithms and authoritative service
+- Editor, preview, Markdown/ZIP downloads, and direct publishing
+- Searchable MkDocs site and all published documents
+- Test corpus, benchmark artifacts, review artifacts, and real sample inputs
+
+Verification:
+- Focused tests: 11 passed
+- Full suite: 53 passed
+- Strict Markdown parity: True
+- Strict asset parity: True
+- Strict manifest-core parity: True
+- Strict quality-core parity: True
+- Existing site rebuilt during import: False
+- /editor: 200
+- /docs/: 200
+- /docs/published/: 200
+- /api/site-folders: 404
+- /faq: 404
+- Edited-file diagnostics: clean

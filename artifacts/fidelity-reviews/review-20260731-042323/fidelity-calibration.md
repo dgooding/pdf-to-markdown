@@ -1,0 +1,17 @@
+# Fidelity Calibration
+
+{
+  "agreement_status": "pending_human_review",
+  "sample_size": 17,
+  "human_reviewed_sample_size": 0,
+  "matrix": {},
+  "exact_agreement_count": null,
+  "exact_agreement_percent": null,
+  "automated_overrating_count": null,
+  "automated_underrating_count": null,
+  "review_required_precision": null,
+  "review_required_recall": null,
+  "high_fidelity_precision": null,
+  "high_fidelity_false_confidence_count": null,
+  "false_confidence_status": "pending_human_review"
+}

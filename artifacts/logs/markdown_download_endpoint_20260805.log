@@ -1,0 +1,27 @@
+Markdown download endpoint change verification
+Date: 2026-08-05
+
+Edited files:
+- app.py
+- tests/test_endpoint_integration.py
+- ARCHITECTURE.md
+- DECISIONS.md
+- NEXT_MILESTONE.md
+- PROJECT_STATE.md
+- TESTING.md
+- artifacts/diagnostics/course_correction_inventory.md
+
+Commands run:
+1. C:/Python39/python.exe -m unittest tests.test_endpoint_integration -v
+   Result: 6 passed, 0 failed
+2. C:/Python39/python.exe -m unittest discover -s tests -v
+   Result: 48 passed, 0 failed
+3. C:/Python39/python.exe convert_to_md.py file-sample_150kB.pdf --output-dir artifacts/final_milestone --overwrite --pdf-mode hybrid
+   Result: pass
+4. C:/Python39/python.exe artifacts/endpoint_release_check_live/strict_compare_run.py
+   Result: COMPARE_MD=True, COMPARE_ASSETS=True, COMPARE_MANIFEST_CORE=True, COMPARE_QUALITY_CORE=True
+
+Notes:
+- Primary /editor download now targets /api/download-md/{job_id}.
+- ZIP package endpoint /api/download/{job_id} remains available.
+- Preview page now exposes both Markdown and ZIP download links.

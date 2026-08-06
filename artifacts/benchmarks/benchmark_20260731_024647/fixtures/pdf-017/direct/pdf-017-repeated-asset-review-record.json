@@ -1,0 +1,48 @@
+{
+  "source_identifier": "PDF-017 repeated asset.pdf",
+  "reviewer_status": "not_reviewed",
+  "reviewer": null,
+  "review_notes": null,
+  "technical_status": "passed",
+  "fidelity_status": "high",
+  "page_strategies": [
+    {
+      "page_number": 1,
+      "selected_candidate": "p1-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 2,
+      "selected_candidate": "p2-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 3,
+      "selected_candidate": "p3-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    }
+  ],
+  "coverage": {
+    "semantic": 0.969,
+    "visual": 0.2,
+    "accessible": 0.969,
+    "unhandled": 0.031
+  },
+  "ocr_usage": {
+    "pages_with_ocr": [],
+    "ocr_record_count": 0,
+    "provider_available": false
+  },
+  "table_strategies": [],
+  "visual_fallbacks": {
+    "full_page_fallback_pages": [],
+    "fallback_records": []
+  },
+  "warnings": [],
+  "review_reasons": [],
+  "cleanup_estimate": "low",
+  "generated_at": "2026-07-31T08:48:09.186742Z"
+}

@@ -1,0 +1,312 @@
+{
+  "source": "PDF-009 two column.pdf",
+  "output_markdown": "PDF-009 two column.md",
+  "page_count": 1,
+  "pages_with_native_text": [
+    1
+  ],
+  "pages_with_ocr": [],
+  "images_extracted": [
+    "page-001-image-001.png"
+  ],
+  "image_placements": [
+    {
+      "source_page": 1,
+      "source_object_id": "xref:11",
+      "bbox": [
+        430.0,
+        360.0,
+        720.0,
+        520.0
+      ],
+      "content_hash": "8fc9689281de5f2d5ac00b2a1b7c534e256f6964ea281b57d79523f943c1f5bb",
+      "asset_path": "assets/page-001-image-001.png",
+      "placement_reason": "embedded_image_rect",
+      "confidence": 1.0,
+      "image_source": "embedded",
+      "deduplicated": false
+    }
+  ],
+  "regions_rendered": [],
+  "tables_detected": [],
+  "ocr_provider": {
+    "configured_path": null,
+    "on_path": false,
+    "executable": null,
+    "available": false,
+    "version": null,
+    "error": "tesseract_not_found"
+  },
+  "ocr_records": [],
+  "warnings": [],
+  "validation": {
+    "passed": true,
+    "missing_assets": [],
+    "unresolved_references": [],
+    "text_coverage_percent": 107.69,
+    "heading_jumps_reasonable": true,
+    "has_suspicious_bullet_glyphs": false,
+    "has_absolute_paths": false
+  },
+  "technical_status": "passed",
+  "fidelity_status": "high",
+  "document_result": {
+    "source_path": "PDF-009 two column.pdf",
+    "page_count": 1,
+    "pages": [
+      {
+        "page_number": 1,
+        "width": 792.0,
+        "height": 612.0,
+        "native_text_available": true,
+        "native_character_count": 1441,
+        "embedded_image_count": 1,
+        "vector_drawing_count": 0,
+        "classifications": [
+          {
+            "label": "native_text",
+            "confidence": "high",
+            "evidence": [
+              "native_char_count=1441"
+            ],
+            "rule": "char_count_gt_120"
+          },
+          {
+            "label": "mixed_content",
+            "confidence": "medium",
+            "evidence": [
+              "char_count=1441",
+              "images=1",
+              "vectors=0"
+            ],
+            "rule": "text_plus_visuals"
+          },
+          {
+            "label": "multi_column",
+            "confidence": "medium",
+            "evidence": [
+              "left_right_text_clusters"
+            ],
+            "rule": "x_cluster_split"
+          }
+        ],
+        "regions": [
+          {
+            "region_id": "p1-hybrid-text",
+            "region_type": "paragraph",
+            "bbox": [
+              0.0,
+              0.0,
+              792.0,
+              612.0
+            ],
+            "confidence": 0.977,
+            "source_objects": [
+              "native_text"
+            ],
+            "selected_strategy": "hybrid_targeted_fallback",
+            "output_content": "<span style=\"color: #666666;\">TwoCol Header</span>\n\n### Two-Column Fixture\n\nL1: synthetic left column sentence.\n\nL2: synthetic left column sentence.\n\nL3: synthetic left column sentence.\n\nL4: synthetic left column sentence.\n\nL5: synthetic left column sentence.\n\nL6: synthetic left column sentence.\n\nL7: synthetic left column sentence.\n\nL8: synthetic left column sentence.\n\nL9: synthetic left column sentence.\n\nL10: synthetic left column sentence.\n\nL11: synthetic left column sentence.\n\nL12: synthetic left column sentence.\n\nL13: synthetic left column sentence.\n\nL14: synthetic left column sentence.\n\nL15: synthetic left column sentence.\n\nL16: synthetic left column sentence.\n\nL17: synthetic left column sentence.\n\nL18: synthetic left column sentence.\n\nL19: synthetic left column sentence.\n\n<span style=\"color: #666666;\">TwoCol Footer</span>\n\nR1: synthetic right column sentence.\n\nR2: synthetic right column sentence.\n\nR3: synthetic right column sentence.\n\nR4: synthetic right column sentence.\n\nR5: synthetic right column sentence.\n\nR6: synthetic right column sentence.\n\nR7: synthetic right column sentence.\n\nR8: synthetic right column sentence.\n\nR9: synthetic right column sentence.\n\nR10: synthetic right column sentence.\n\nR11: synthetic right column sentence.\n\nR12: synthetic right column sentence.\n\nR13: synthetic right column sentence.\n\nR14: synthetic right column sentence.\n\nR15: synthetic right column sentence.\n\nR16: synthetic right column sentence.\n\nR17: synthetic right column sentence.\n\nR18: synthetic right column sentence.\n\nR19: synthetic right column sentence.\n\nFigure: Column image caption",
+            "asset_placements": [],
+            "warnings": [],
+            "review_required": false
+          },
+          {
+            "region_id": "p1-embedded-assets-page-001-image-001-png",
+            "region_type": "embedded_image",
+            "bbox": [
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "confidence": 1.0,
+            "source_objects": [
+              "embedded_image_rect"
+            ],
+            "selected_strategy": "hybrid_targeted_fallback",
+            "output_content": "![Figure from page 1](assets/page-001-image-001.png)",
+            "asset_placements": [
+              "assets/page-001-image-001.png"
+            ],
+            "warnings": [],
+            "review_required": false
+          }
+        ],
+        "candidates": [
+          {
+            "candidate_id": "p1-native",
+            "strategy": "native_semantic",
+            "page_number": 1,
+            "regions": [
+              {
+                "region_id": "p1-native-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  792.0,
+                  612.0
+                ],
+                "confidence": 0.977,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "native_semantic",
+                "output_content": "<span style=\"color: #666666;\">TwoCol Header</span>\n\n### Two-Column Fixture\n\nL1: synthetic left column sentence.\n\nL2: synthetic left column sentence.\n\nL3: synthetic left column sentence.\n\nL4: synthetic left column sentence.\n\nL5: synthetic left column sentence.\n\nL6: synthetic left column sentence.\n\nL7: synthetic left column sentence.\n\nL8: synthetic left column sentence.\n\nL9: synthetic left column sentence.\n\nL10: synthetic left column sentence.\n\nL11: synthetic left column sentence.\n\nL12: synthetic left column sentence.\n\nL13: synthetic left column sentence.\n\nL14: synthetic left column sentence.\n\nL15: synthetic left column sentence.\n\nL16: synthetic left column sentence.\n\nL17: synthetic left column sentence.\n\nL18: synthetic left column sentence.\n\nL19: synthetic left column sentence.\n\n<span style=\"color: #666666;\">TwoCol Footer</span>\n\nR1: synthetic right column sentence.\n\nR2: synthetic right column sentence.\n\nR3: synthetic right column sentence.\n\nR4: synthetic right column sentence.\n\nR5: synthetic right column sentence.\n\nR6: synthetic right column sentence.\n\nR7: synthetic right column sentence.\n\nR8: synthetic right column sentence.\n\nR9: synthetic right column sentence.\n\nR10: synthetic right column sentence.\n\nR11: synthetic right column sentence.\n\nR12: synthetic right column sentence.\n\nR13: synthetic right column sentence.\n\nR14: synthetic right column sentence.\n\nR15: synthetic right column sentence.\n\nR16: synthetic right column sentence.\n\nR17: synthetic right column sentence.\n\nR18: synthetic right column sentence.\n\nR19: synthetic right column sentence.\n\nFigure: Column image caption",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9773,
+            "reading_order_score": 0.92,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 40,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9773,
+              "reading_order_plausibility": 0.92,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.25,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -1.17,
+              "table_leakage_penalty": -1.2,
+              "duplicate_risk_penalty": -0.02,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.35
+            },
+            "total_score": 0.2573,
+            "rejection_reasons": [
+              "Rejected because total_score=0.2573 < selected=1.6973."
+            ]
+          },
+          {
+            "candidate_id": "p1-hybrid",
+            "strategy": "hybrid_targeted_fallback",
+            "page_number": 1,
+            "regions": [
+              {
+                "region_id": "p1-hybrid-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  792.0,
+                  612.0
+                ],
+                "confidence": 0.977,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "<span style=\"color: #666666;\">TwoCol Header</span>\n\n### Two-Column Fixture\n\nL1: synthetic left column sentence.\n\nL2: synthetic left column sentence.\n\nL3: synthetic left column sentence.\n\nL4: synthetic left column sentence.\n\nL5: synthetic left column sentence.\n\nL6: synthetic left column sentence.\n\nL7: synthetic left column sentence.\n\nL8: synthetic left column sentence.\n\nL9: synthetic left column sentence.\n\nL10: synthetic left column sentence.\n\nL11: synthetic left column sentence.\n\nL12: synthetic left column sentence.\n\nL13: synthetic left column sentence.\n\nL14: synthetic left column sentence.\n\nL15: synthetic left column sentence.\n\nL16: synthetic left column sentence.\n\nL17: synthetic left column sentence.\n\nL18: synthetic left column sentence.\n\nL19: synthetic left column sentence.\n\n<span style=\"color: #666666;\">TwoCol Footer</span>\n\nR1: synthetic right column sentence.\n\nR2: synthetic right column sentence.\n\nR3: synthetic right column sentence.\n\nR4: synthetic right column sentence.\n\nR5: synthetic right column sentence.\n\nR6: synthetic right column sentence.\n\nR7: synthetic right column sentence.\n\nR8: synthetic right column sentence.\n\nR9: synthetic right column sentence.\n\nR10: synthetic right column sentence.\n\nR11: synthetic right column sentence.\n\nR12: synthetic right column sentence.\n\nR13: synthetic right column sentence.\n\nR14: synthetic right column sentence.\n\nR15: synthetic right column sentence.\n\nR16: synthetic right column sentence.\n\nR17: synthetic right column sentence.\n\nR18: synthetic right column sentence.\n\nR19: synthetic right column sentence.\n\nFigure: Column image caption",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              },
+              {
+                "region_id": "p1-embedded-assets-page-001-image-001-png",
+                "region_type": "embedded_image",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "confidence": 1.0,
+                "source_objects": [
+                  "embedded_image_rect"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "![Figure from page 1](assets/page-001-image-001.png)",
+                "asset_placements": [
+                  "assets/page-001-image-001.png"
+                ],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9773,
+            "reading_order_score": 0.88,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 40,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9773,
+              "reading_order_plausibility": 0.88,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.22,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.4,
+              "table_leakage_penalty": -0.4,
+              "duplicate_risk_penalty": -0.01,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.28
+            },
+            "total_score": 1.6973,
+            "rejection_reasons": []
+          }
+        ],
+        "selected_candidate": "p1-hybrid",
+        "fallback_records": [],
+        "semantic_coverage": 0.9773,
+        "visual_coverage": 0.2,
+        "accessible_coverage": 0.9773,
+        "unhandled_coverage": 0.0227,
+        "technical_status": "passed",
+        "fidelity_status": "high",
+        "review_reasons": []
+      }
+    ],
+    "assets": [
+      "page-001-image-001.png"
+    ],
+    "warnings": [],
+    "technical_status": "passed",
+    "fidelity_status": "high"
+  },
+  "candidate_scoring": {
+    "weights_note": "Component scores are additive and intentionally transparent for debugability.",
+    "components": [
+      "native_text_coverage",
+      "reading_order_plausibility",
+      "suspicious_glyph_penalty",
+      "heading_plausibility",
+      "list_plausibility",
+      "chart_leakage_penalty",
+      "table_leakage_penalty",
+      "duplicate_risk_penalty",
+      "cross_page_asset_penalty",
+      "missing_asset_penalty",
+      "unresolved_ref_penalty",
+      "fullpage_penalty",
+      "targeted_fallback_bonus",
+      "unhandled_penalty",
+      "accessibility_bonus"
+    ]
+  },
+  "effective_configuration": {
+    "pdf_mode": "hybrid",
+    "prefer_markitdown": true,
+    "improve_markdown": false,
+    "strict_validation": true,
+    "render_dpi": 220,
+    "preserve_page_markers": true,
+    "allow_inline_html": true,
+    "tesseract_cmd_configured": false
+  }
+}

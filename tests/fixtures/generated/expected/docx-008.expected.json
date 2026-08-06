@@ -1,0 +1,60 @@
+{
+  "fixture_id": "DOCX-008",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "docx",
+  "expected_semantic_representation": "markdown",
+  "intended_page_count": 2,
+  "expected_titles": [
+    "Accessibility and Structure"
+  ],
+  "expected_heading_hierarchy": [
+    "#",
+    "##",
+    "####"
+  ],
+  "expected_paragraphs": [
+    "Descriptive link:",
+    "Generic link:"
+  ],
+  "expected_list_items": [],
+  "expected_links": [
+    {
+      "text": "Open Synthetic Knowledge Base",
+      "url": "https://example.com/kb/1"
+    },
+    {
+      "text": "Click here",
+      "url": "https://example.com/generic"
+    }
+  ],
+  "expected_tables": [],
+  "expected_images": [
+    "status_cards.png",
+    "info_icon.png"
+  ],
+  "expected_captions": [
+    "Figure: Status cards by queue state"
+  ],
+  "expected_page_headers": [],
+  "expected_page_footers": [],
+  "expected_columns": [
+    1
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_bold_spans": [],
+  "expected_italic_spans": [],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [],
+  "expected_fallback_representation": "none",
+  "expected_review_requirement": "possible",
+  "known_intentional_ambiguity": [
+    "Intentional heading-level jump should trigger warning."
+  ]
+}

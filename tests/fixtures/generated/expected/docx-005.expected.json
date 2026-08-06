@@ -1,0 +1,64 @@
+{
+  "fixture_id": "DOCX-005",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "docx",
+  "expected_semantic_representation": "markdown",
+  "intended_page_count": 3,
+  "expected_titles": [
+    "Charts and Business Data"
+  ],
+  "expected_heading_hierarchy": [
+    "#"
+  ],
+  "expected_paragraphs": [
+    "Synthetic bar chart:",
+    "Synthetic line chart:"
+  ],
+  "expected_list_items": [],
+  "expected_links": [],
+  "expected_tables": [
+    {
+      "kind": "source_data",
+      "columns": 4
+    }
+  ],
+  "expected_images": [
+    "chart_bar.png",
+    "chart_line.png"
+  ],
+  "expected_charts": [
+    "bar",
+    "line"
+  ],
+  "expected_chart_labels": [
+    "Jan",
+    "Feb",
+    "Mar",
+    "North",
+    "South",
+    "Central"
+  ],
+  "expected_captions": [],
+  "expected_page_headers": [],
+  "expected_page_footers": [],
+  "expected_columns": [
+    1
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_bold_spans": [],
+  "expected_italic_spans": [],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [],
+  "expected_fallback_representation": "targeted_chart_visual",
+  "expected_review_requirement": "possible",
+  "known_intentional_ambiguity": [
+    "Charts are image-based in this fixture."
+  ]
+}

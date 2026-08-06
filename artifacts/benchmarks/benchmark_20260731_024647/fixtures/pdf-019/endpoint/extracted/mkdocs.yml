@@ -1,0 +1,11 @@
+site_name: Converted Document Preview
+site_description: Auto-generated MkDocs-ready document package
+theme:
+  name: mkdocs
+markdown_extensions:
+  - tables
+  - fenced_code
+extra_css:
+  - stylesheets/extra.css
+nav:
+  - Home: index.md

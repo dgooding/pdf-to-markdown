@@ -1,0 +1,630 @@
+{
+  "source": "PDF-010 mixed orientation.pdf",
+  "output_markdown": "PDF-010 mixed orientation.md",
+  "page_count": 3,
+  "pages_with_native_text": [
+    1,
+    2,
+    3
+  ],
+  "pages_with_ocr": [],
+  "images_extracted": [
+    "page-002-image-001.png",
+    "page-003-image-001.jpeg"
+  ],
+  "image_placements": [
+    {
+      "source_page": 2,
+      "source_object_id": "xref:11",
+      "bbox": [
+        50.0,
+        165.94,
+        420.0,
+        374.06
+      ],
+      "content_hash": "6addb8310ac55da9bff3c6c51bc094254494aab4f23d202350daef5dd3c8da3d",
+      "asset_path": "assets/page-002-image-001.png",
+      "placement_reason": "embedded_image_rect",
+      "confidence": 1.0,
+      "image_source": "embedded",
+      "deduplicated": false
+    },
+    {
+      "source_page": 3,
+      "source_object_id": "xref:19",
+      "bbox": [
+        80.0,
+        186.25,
+        520.0,
+        433.75
+      ],
+      "content_hash": "61520fc342c7f6316d579b2447da242fd3e4d5884d293abb99a214c0197b0a7a",
+      "asset_path": "assets/page-003-image-001.jpeg",
+      "placement_reason": "embedded_image_rect",
+      "confidence": 1.0,
+      "image_source": "embedded",
+      "deduplicated": false
+    }
+  ],
+  "regions_rendered": [],
+  "tables_detected": [],
+  "ocr_provider": {
+    "configured_path": null,
+    "on_path": false,
+    "executable": null,
+    "available": false,
+    "version": null,
+    "error": "tesseract_not_found"
+  },
+  "ocr_records": [],
+  "warnings": [],
+  "validation": {
+    "passed": true,
+    "missing_assets": [],
+    "unresolved_references": [],
+    "text_coverage_percent": 251.76,
+    "heading_jumps_reasonable": true,
+    "has_suspicious_bullet_glyphs": false,
+    "has_absolute_paths": false
+  },
+  "technical_status": "passed",
+  "fidelity_status": "high",
+  "document_result": {
+    "source_path": "PDF-010 mixed orientation.pdf",
+    "page_count": 3,
+    "pages": [
+      {
+        "page_number": 1,
+        "width": 612.0,
+        "height": 792.0,
+        "native_text_available": true,
+        "native_character_count": 42,
+        "embedded_image_count": 0,
+        "vector_drawing_count": 0,
+        "classifications": [
+          {
+            "label": "unknown",
+            "confidence": "low",
+            "evidence": [
+              "no_strong_rule"
+            ],
+            "rule": "fallback_unknown"
+          }
+        ],
+        "regions": [
+          {
+            "region_id": "p1-native-text",
+            "region_type": "paragraph",
+            "bbox": [
+              0.0,
+              0.0,
+              612.0,
+              792.0
+            ],
+            "confidence": 0.945,
+            "source_objects": [
+              "native_text"
+            ],
+            "selected_strategy": "native_semantic",
+            "output_content": "Portrait Page\n\nPortrait narrative paragraph.",
+            "asset_placements": [],
+            "warnings": [],
+            "review_required": false
+          }
+        ],
+        "candidates": [
+          {
+            "candidate_id": "p1-native",
+            "strategy": "native_semantic",
+            "page_number": 1,
+            "regions": [
+              {
+                "region_id": "p1-native-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  612.0,
+                  792.0
+                ],
+                "confidence": 0.945,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "native_semantic",
+                "output_content": "Portrait Page\n\nPortrait narrative paragraph.",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9447,
+            "reading_order_score": 0.92,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9447,
+              "reading_order_plausibility": 0.92,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.25,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.02,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.35
+            },
+            "total_score": 2.5947,
+            "rejection_reasons": []
+          },
+          {
+            "candidate_id": "p1-hybrid",
+            "strategy": "hybrid_targeted_fallback",
+            "page_number": 1,
+            "regions": [
+              {
+                "region_id": "p1-hybrid-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  612.0,
+                  792.0
+                ],
+                "confidence": 0.945,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "Portrait Page\n\nPortrait narrative paragraph.",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9447,
+            "reading_order_score": 0.88,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9447,
+              "reading_order_plausibility": 0.88,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.22,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.01,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.28
+            },
+            "total_score": 2.4647,
+            "rejection_reasons": [
+              "Rejected because total_score=2.4647 < selected=2.5947."
+            ]
+          }
+        ],
+        "selected_candidate": "p1-native",
+        "fallback_records": [],
+        "semantic_coverage": 0.9447,
+        "visual_coverage": 0.0,
+        "accessible_coverage": 0.9447,
+        "unhandled_coverage": 0.0553,
+        "technical_status": "passed",
+        "fidelity_status": "high",
+        "review_reasons": []
+      },
+      {
+        "page_number": 2,
+        "width": 792.0,
+        "height": 612.0,
+        "native_text_available": true,
+        "native_character_count": 38,
+        "embedded_image_count": 1,
+        "vector_drawing_count": 0,
+        "classifications": [
+          {
+            "label": "photograph_or_illustration",
+            "confidence": "low",
+            "evidence": [
+              "image_count=1",
+              "char_count=38"
+            ],
+            "rule": "images_with_low_text"
+          }
+        ],
+        "regions": [
+          {
+            "region_id": "p2-native-text",
+            "region_type": "paragraph",
+            "bbox": [
+              0.0,
+              0.0,
+              792.0,
+              612.0
+            ],
+            "confidence": 0.954,
+            "source_objects": [
+              "native_text"
+            ],
+            "selected_strategy": "native_semantic",
+            "output_content": "Landscape Page\n\nLandscape table-ish text",
+            "asset_placements": [],
+            "warnings": [],
+            "review_required": false
+          }
+        ],
+        "candidates": [
+          {
+            "candidate_id": "p2-native",
+            "strategy": "native_semantic",
+            "page_number": 2,
+            "regions": [
+              {
+                "region_id": "p2-native-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  792.0,
+                  612.0
+                ],
+                "confidence": 0.954,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "native_semantic",
+                "output_content": "Landscape Page\n\nLandscape table-ish text",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9542,
+            "reading_order_score": 0.92,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9542,
+              "reading_order_plausibility": 0.92,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.25,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.02,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.35
+            },
+            "total_score": 2.6042,
+            "rejection_reasons": []
+          },
+          {
+            "candidate_id": "p2-hybrid",
+            "strategy": "hybrid_targeted_fallback",
+            "page_number": 2,
+            "regions": [
+              {
+                "region_id": "p2-hybrid-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  792.0,
+                  612.0
+                ],
+                "confidence": 0.954,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "Landscape Page\n\nLandscape table-ish text",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              },
+              {
+                "region_id": "p2-embedded-assets-page-002-image-001-png",
+                "region_type": "embedded_image",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "confidence": 1.0,
+                "source_objects": [
+                  "embedded_image_rect"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "![Figure from page 2](assets/page-002-image-001.png)",
+                "asset_placements": [
+                  "assets/page-002-image-001.png"
+                ],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9542,
+            "reading_order_score": 0.88,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9542,
+              "reading_order_plausibility": 0.88,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.22,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.01,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.28
+            },
+            "total_score": 2.4742,
+            "rejection_reasons": [
+              "Rejected because total_score=2.4742 < selected=2.6042."
+            ]
+          }
+        ],
+        "selected_candidate": "p2-native",
+        "fallback_records": [],
+        "semantic_coverage": 0.9542,
+        "visual_coverage": 0.2,
+        "accessible_coverage": 0.9542,
+        "unhandled_coverage": 0.0458,
+        "technical_status": "passed",
+        "fidelity_status": "high",
+        "review_reasons": []
+      },
+      {
+        "page_number": 3,
+        "width": 792.0,
+        "height": 612.0,
+        "native_text_available": true,
+        "native_character_count": 12,
+        "embedded_image_count": 1,
+        "vector_drawing_count": 0,
+        "classifications": [
+          {
+            "label": "photograph_or_illustration",
+            "confidence": "low",
+            "evidence": [
+              "image_count=1",
+              "char_count=12"
+            ],
+            "rule": "images_with_low_text"
+          }
+        ],
+        "regions": [
+          {
+            "region_id": "p3-native-text",
+            "region_type": "paragraph",
+            "bbox": [
+              0.0,
+              0.0,
+              792.0,
+              612.0
+            ],
+            "confidence": 0.919,
+            "source_objects": [
+              "native_text"
+            ],
+            "selected_strategy": "native_semantic",
+            "output_content": "Rotated Page",
+            "asset_placements": [],
+            "warnings": [],
+            "review_required": false
+          }
+        ],
+        "candidates": [
+          {
+            "candidate_id": "p3-native",
+            "strategy": "native_semantic",
+            "page_number": 3,
+            "regions": [
+              {
+                "region_id": "p3-native-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  792.0,
+                  612.0
+                ],
+                "confidence": 0.919,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "native_semantic",
+                "output_content": "Rotated Page",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9194,
+            "reading_order_score": 0.92,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9194,
+              "reading_order_plausibility": 0.92,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.25,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.02,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.35
+            },
+            "total_score": 2.5694,
+            "rejection_reasons": []
+          },
+          {
+            "candidate_id": "p3-hybrid",
+            "strategy": "hybrid_targeted_fallback",
+            "page_number": 3,
+            "regions": [
+              {
+                "region_id": "p3-hybrid-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  792.0,
+                  612.0
+                ],
+                "confidence": 0.919,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "Rotated Page",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              },
+              {
+                "region_id": "p3-embedded-assets-page-003-image-001-jpeg",
+                "region_type": "embedded_image",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "confidence": 1.0,
+                "source_objects": [
+                  "embedded_image_rect"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "![Figure from page 3](assets/page-003-image-001.jpeg)",
+                "asset_placements": [
+                  "assets/page-003-image-001.jpeg"
+                ],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9194,
+            "reading_order_score": 0.88,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9194,
+              "reading_order_plausibility": 0.88,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.22,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.01,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.28
+            },
+            "total_score": 2.4394,
+            "rejection_reasons": [
+              "Rejected because total_score=2.4394 < selected=2.5694."
+            ]
+          }
+        ],
+        "selected_candidate": "p3-native",
+        "fallback_records": [],
+        "semantic_coverage": 0.9194,
+        "visual_coverage": 0.2,
+        "accessible_coverage": 0.9194,
+        "unhandled_coverage": 0.0806,
+        "technical_status": "passed",
+        "fidelity_status": "high",
+        "review_reasons": []
+      }
+    ],
+    "assets": [
+      "page-002-image-001.png",
+      "page-003-image-001.jpeg"
+    ],
+    "warnings": [],
+    "technical_status": "passed",
+    "fidelity_status": "high"
+  },
+  "candidate_scoring": {
+    "weights_note": "Component scores are additive and intentionally transparent for debugability.",
+    "components": [
+      "native_text_coverage",
+      "reading_order_plausibility",
+      "suspicious_glyph_penalty",
+      "heading_plausibility",
+      "list_plausibility",
+      "chart_leakage_penalty",
+      "table_leakage_penalty",
+      "duplicate_risk_penalty",
+      "cross_page_asset_penalty",
+      "missing_asset_penalty",
+      "unresolved_ref_penalty",
+      "fullpage_penalty",
+      "targeted_fallback_bonus",
+      "unhandled_penalty",
+      "accessibility_bonus"
+    ]
+  },
+  "effective_configuration": {
+    "pdf_mode": "hybrid",
+    "prefer_markitdown": true,
+    "improve_markdown": false,
+    "strict_validation": true,
+    "render_dpi": 220,
+    "preserve_page_markers": true,
+    "allow_inline_html": true,
+    "tesseract_cmd_configured": false
+  }
+}

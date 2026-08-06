@@ -1,0 +1,122 @@
+{
+  "fixture_id": "PDF-020",
+  "source_path": "documents/PDF-020 original regression sample.pdf",
+  "source_preview": "previews/pdf-020-p1.png",
+  "output_markdown": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-020\\direct\\docs\\index.md",
+  "asset_inventory": [
+    "page-001-chart-001.png",
+    "page-001-full-page-001.png",
+    "page-002-full-page-001.png",
+    "page-002-table-001.png",
+    "page-003-full-page-001.png",
+    "page-004-full-page-001.png",
+    "page-004-image-001.jpeg"
+  ],
+  "page_strategy_summary": [
+    {
+      "page_number": 1,
+      "selected_candidate": "p1-hybrid",
+      "review_reasons": []
+    },
+    {
+      "page_number": 2,
+      "selected_candidate": "p2-hybrid",
+      "review_reasons": [
+        "fallback_requires_review",
+        "high_fallback_ratio"
+      ]
+    },
+    {
+      "page_number": 3,
+      "selected_candidate": "p3-native",
+      "review_reasons": []
+    },
+    {
+      "page_number": 4,
+      "selected_candidate": "p4-hybrid",
+      "review_reasons": [
+        "fallback_requires_review",
+        "high_fallback_ratio"
+      ]
+    }
+  ],
+  "fallback_summary": [
+    {
+      "page_number": 1,
+      "fallback_records": [
+        {
+          "source_page": 1,
+          "region_bbox": [
+            140.82,
+            560.7,
+            477.82,
+            758.26
+          ],
+          "fallback_type": "chart_crop",
+          "triggering_condition": "chart_region_detected",
+          "alternatives_attempted": [
+            "native_semantic"
+          ],
+          "confidence": 0.62,
+          "text_overlap_detected": false,
+          "review_required": false
+        }
+      ]
+    },
+    {
+      "page_number": 2,
+      "fallback_records": [
+        {
+          "source_page": 2,
+          "region_bbox": [
+            56.74,
+            56.7,
+            539.21,
+            785.2
+          ],
+          "fallback_type": "table_crop",
+          "triggering_condition": "table_structure_low_confidence",
+          "alternatives_attempted": [
+            "markdown_table",
+            "html_table"
+          ],
+          "confidence": 0.58,
+          "text_overlap_detected": false,
+          "review_required": true
+        }
+      ]
+    },
+    {
+      "page_number": 3,
+      "fallback_records": []
+    },
+    {
+      "page_number": 4,
+      "fallback_records": [
+        {
+          "source_page": 4,
+          "region_bbox": [
+            0.0,
+            0.0,
+            595.0,
+            842.0
+          ],
+          "fallback_type": "full_page",
+          "triggering_condition": "native_text_unreliable",
+          "alternatives_attempted": [
+            "native_semantic",
+            "targeted_region_fallback"
+          ],
+          "confidence": 0.41,
+          "text_overlap_detected": false,
+          "review_required": true
+        }
+      ]
+    }
+  ],
+  "automated_warnings": [
+    "Page 4: OCR recommended but unavailable.",
+    "Page 4: OCR recommended but unavailable."
+  ],
+  "scorecard_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\fidelity-reviews\\review-20260731-042323\\scorecards\\pdf-020.scorecard.json"
+}

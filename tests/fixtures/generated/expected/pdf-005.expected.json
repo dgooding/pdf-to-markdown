@@ -1,0 +1,61 @@
+{
+  "fixture_id": "PDF-005",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "pdf",
+  "expected_semantic_representation": "markdown_with_targeted_fallback_when_unsafe",
+  "intended_page_count": 1,
+  "expected_titles": [
+    "Complex Table Fixture"
+  ],
+  "expected_heading_hierarchy": [
+    "#"
+  ],
+  "expected_paragraphs": [
+    "Grouped headers and merge-like layout simulation."
+  ],
+  "expected_list_items": [],
+  "expected_links": [],
+  "expected_tables": [
+    {
+      "kind": "complex",
+      "requires_html_or_fallback": true
+    }
+  ],
+  "expected_table_cells": [
+    "Group A",
+    "Group B",
+    "Row 1",
+    "Status",
+    "Notes"
+  ],
+  "expected_images": [],
+  "expected_captions": [
+    "Footnote: merged-cell complexity expected."
+  ],
+  "expected_page_headers": [],
+  "expected_page_footers": [],
+  "expected_page_numbers": [],
+  "expected_columns": [
+    1
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_text_colors": [
+    "black"
+  ],
+  "expected_bold_spans": [],
+  "expected_italic_spans": [],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [],
+  "expected_fallback_representation": "html_or_targeted_table",
+  "expected_review_requirement": "yes",
+  "known_intentional_ambiguity": [
+    "Merged-cell semantics may not map to markdown table."
+  ]
+}

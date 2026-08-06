@@ -1,0 +1,22 @@
+{
+  "status": "pending_human_review",
+  "documents": 17,
+  "average_human_review_time_minutes": null,
+  "median_human_review_time_minutes": null,
+  "average_human_cleanup_time_minutes": null,
+  "median_human_cleanup_time_minutes": null,
+  "human_cleanup_distribution": {
+    "none": null,
+    "minor": null,
+    "moderate": null,
+    "major": null,
+    "complete_manual_rework": null,
+    "not_measured": 1.0
+  },
+  "automated_review_recommendation_distribution": {
+    "pass": 0.2941,
+    "pass_with_cleanup": 0.2941,
+    "review_required": 0.4118,
+    "failed": 0.0
+  }
+}

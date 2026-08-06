@@ -1,0 +1,54 @@
+{
+  "fixture_id": "PDF-020",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "pdf",
+  "expected_semantic_representation": "markdown_with_targeted_fallback_when_unsafe",
+  "intended_page_count": 4,
+  "expected_titles": [
+    "Regression sample expectations"
+  ],
+  "expected_heading_hierarchy": [
+    "#",
+    "##"
+  ],
+  "expected_paragraphs": [
+    "Page 1 semantic text with targeted chart expected."
+  ],
+  "expected_list_items": [],
+  "expected_links": [],
+  "expected_tables": [
+    {
+      "kind": "targeted_table_fallback_expected"
+    }
+  ],
+  "expected_images": [],
+  "expected_captions": [],
+  "expected_page_headers": [],
+  "expected_page_footers": [],
+  "expected_page_numbers": [],
+  "expected_columns": [
+    1
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_text_colors": [
+    "black"
+  ],
+  "expected_bold_spans": [],
+  "expected_italic_spans": [],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [
+    "page_4_if_ocr_available"
+  ],
+  "expected_repeated_elements": [],
+  "expected_fallback_representation": "as_validated_prototype_v1",
+  "expected_review_requirement": "yes",
+  "known_intentional_ambiguity": [
+    "Do not hard-code logic for this regression fixture."
+  ]
+}

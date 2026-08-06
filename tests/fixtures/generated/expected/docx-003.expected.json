@@ -1,0 +1,69 @@
+{
+  "fixture_id": "DOCX-003",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "docx",
+  "expected_semantic_representation": "markdown",
+  "intended_page_count": 2,
+  "expected_titles": [
+    "Advanced Tables"
+  ],
+  "expected_heading_hierarchy": [
+    "#"
+  ],
+  "expected_paragraphs": [
+    "Paragraph above table should remain paragraph text.",
+    "Paragraph below table should remain paragraph text."
+  ],
+  "expected_list_items": [],
+  "expected_links": [],
+  "expected_tables": [
+    {
+      "kind": "complex",
+      "columns": 5,
+      "header": [
+        "Item",
+        "Date",
+        "Amount",
+        "Percent",
+        "Notes"
+      ]
+    }
+  ],
+  "expected_table_cells": [
+    "Alpha",
+    "Beta",
+    "Gamma",
+    "BoldCell",
+    "ItalicCell"
+  ],
+  "expected_images": [],
+  "expected_captions": [
+    "Advanced Tables"
+  ],
+  "expected_page_headers": [],
+  "expected_page_footers": [],
+  "expected_columns": [
+    1
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_bold_spans": [
+    "BoldCell"
+  ],
+  "expected_italic_spans": [
+    "ItalicCell"
+  ],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [],
+  "expected_fallback_representation": "targeted_table_or_html_if_merge_complex",
+  "expected_review_requirement": "possible",
+  "known_intentional_ambiguity": [
+    "Merged cells may require HTML table fallback."
+  ]
+}

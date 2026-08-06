@@ -1,0 +1,34 @@
+{
+  "fixture_id": "PDF-016",
+  "source_path": "documents/PDF-016 links and annotations.pdf",
+  "source_preview": "previews/pdf-016-p1.png",
+  "output_markdown": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-016\\direct\\docs\\index.md",
+  "asset_inventory": [
+    "page-001-full-page-001.png",
+    "page-002-full-page-001.png"
+  ],
+  "page_strategy_summary": [
+    {
+      "page_number": 1,
+      "selected_candidate": "p1-native",
+      "review_reasons": []
+    },
+    {
+      "page_number": 2,
+      "selected_candidate": "p2-native",
+      "review_reasons": []
+    }
+  ],
+  "fallback_summary": [
+    {
+      "page_number": 1,
+      "fallback_records": []
+    },
+    {
+      "page_number": 2,
+      "fallback_records": []
+    }
+  ],
+  "automated_warnings": [],
+  "scorecard_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\fidelity-reviews\\review-20260731-042323\\scorecards\\pdf-016.scorecard.json"
+}

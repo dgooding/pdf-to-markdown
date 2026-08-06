@@ -1,0 +1,18 @@
+{
+  "technical_pass_rate": 1.0,
+  "endpoint_parity_rate": 1.0,
+  "content_fidelity_distribution": {
+    "high": 13,
+    "moderate": 10,
+    "low": 0,
+    "review_required": 7,
+    "unknown": 0
+  },
+  "review_required_fixture_count": 7,
+  "visual_only_fallback_count": 5,
+  "ocr_unavailable_or_ocr_review_count": 5,
+  "semantic_table_count": 2,
+  "visual_table_fallback_count": 1,
+  "full_page_fallback_count": 5,
+  "targeted_fallback_count": 3
+}

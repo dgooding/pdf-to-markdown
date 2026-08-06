@@ -1,0 +1,18 @@
+body { font-family: Inter, Segoe UI, Arial, sans-serif; }
+.md-content img {
+  display: block;
+  max-width: 100%;
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18);
+  margin: 1.25rem auto;
+}
+.md-content h1, .md-content h2, .md-content h3 { letter-spacing: -0.02em; }
+.md-content table { border-radius: 12px; overflow: hidden; }
+.md-content details {
+  border: 1px solid #d7deea;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+  margin: 1rem 0;
+}
+.md-content details summary { cursor: pointer; font-weight: 600; }

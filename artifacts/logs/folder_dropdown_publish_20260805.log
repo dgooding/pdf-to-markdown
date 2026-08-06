@@ -1,0 +1,26 @@
+Folder dropdown publish UX milestone
+Date: 2026-08-05
+
+Changes:
+- Added default site folders and folder helper functions in app.py
+- Added GET /api/site-folders
+- Added POST /api/site-folders
+- Updated /api/publish/{job_id} to support folder dropdown + document name inputs
+- Replaced free-text site path input in /editor with folder dropdown and document-name field
+- Added MkDocs folder manager page and home-page link
+- Added tests for folder normalization, listing, and creation
+
+Verification:
+1. C:/Python39/python.exe -m unittest tests.test_site_publish tests.test_endpoint_integration tests.test_mkdocs_stage_migration -v
+   Result: 14 passed, 0 failed
+2. C:/Python39/python.exe -m unittest discover -s tests -v
+   Result: 54 passed, 0 failed
+3. C:/Python39/python.exe -m mkdocs build -f mkdocs_preview/mkdocs.yml
+   Result: pass
+4. Live route verification:
+   - /editor => 200
+   - /docs/folder-manager/ => 200
+   - /api/site-folders => returned folder list
+5. Live folder create smoke:
+   - POST /api/site-folders with Policies
+   - Result: HTML success response and policies present in folder list

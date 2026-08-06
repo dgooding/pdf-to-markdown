@@ -1,0 +1,24 @@
+Flat site navigation milestone
+Date: 2026-08-05
+
+Changes:
+- Read the Docs navigation depth set to 1
+- Titles-only navigation enabled
+- Previous/next button location disabled
+- Page-section submenu and expand control hidden
+- Desktop footer buttons hidden
+- Mobile version navigation hidden
+
+Result:
+- Left sidebar: Search, Home, Converter, Documents
+- Home has no section dropdown
+- No Next or Previous controls at page bottom
+
+Verification:
+- Focused site tests: 6 passed
+- Full suite: 54 passed
+- Strict Markdown parity: True
+- Strict asset parity: True
+- Strict manifest-core parity: True
+- Strict quality-core parity: True
+- Browser visual check: passed

@@ -1,0 +1,36 @@
+ITSD site integration milestone
+Date: 2026-08-05
+
+Files changed:
+- app.py
+- requirements.txt
+- mkdocs_preview/mkdocs.yml
+- mkdocs_preview/docs/index.md
+- mkdocs_preview/docs/documentation.md
+- mkdocs_preview/docs/contact.md
+- mkdocs_preview/docs/published/index.md
+- mkdocs_preview/docs/stylesheets/extra.css
+- tests/test_site_publish.py
+- ARCHITECTURE.md
+- DECISIONS.md
+- NEXT_MILESTONE.md
+- PROJECT_STATE.md
+- TESTING.md
+- artifacts/diagnostics/course_correction_inventory.md
+
+Verification:
+1. C:/Python39/python.exe -m unittest tests.test_site_publish tests.test_endpoint_integration tests.test_mkdocs_stage_migration -v
+   Result: 11 passed, 0 failed
+2. C:/Python39/python.exe -m unittest discover -s tests -v
+   Result: 51 passed, 0 failed
+3. C:/Python39/python.exe -m mkdocs build -f mkdocs_preview/mkdocs.yml
+   Result: pass
+4. C:/Python39/python.exe artifacts/endpoint_release_check_live/strict_compare_run.py
+   Result: COMPARE_MD=True, COMPARE_ASSETS=True, COMPARE_MANIFEST_CORE=True, COMPARE_QUALITY_CORE=True
+5. C:/Python39/python.exe artifacts/logs/site_publish_smoke_20260805.py
+   Result: PUBLISHED_URL=/docs/published/user-manuals/service-desk-publish-smoke/ PAGE_HAS_TITLE=True HOME_OK=True CONTACT_FORM_OK=True
+
+Runtime notes:
+- The MkDocs site is built into mkdocs_preview/site and served at /docs.
+- The editor now accepts a site path and can publish directly to /docs/published/<site-path>/.
+- Contact form submissions are stored under artifacts/contact_requests/.

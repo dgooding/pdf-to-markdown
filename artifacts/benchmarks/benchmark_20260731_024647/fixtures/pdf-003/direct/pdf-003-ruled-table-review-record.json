@@ -1,0 +1,56 @@
+{
+  "source_identifier": "PDF-003 ruled table.pdf",
+  "reviewer_status": "not_reviewed",
+  "reviewer": null,
+  "review_notes": null,
+  "technical_status": "passed",
+  "fidelity_status": "review_required",
+  "page_strategies": [
+    {
+      "page_number": 1,
+      "selected_candidate": "p1-native",
+      "technical_status": "passed",
+      "fidelity_status": "review_required"
+    }
+  ],
+  "coverage": {
+    "semantic": 0.9851,
+    "visual": 0.0,
+    "accessible": 0.9851,
+    "unhandled": 0.0149
+  },
+  "ocr_usage": {
+    "pages_with_ocr": [],
+    "ocr_record_count": 0,
+    "provider_available": false
+  },
+  "table_strategies": [
+    {
+      "page": 1,
+      "kind": "table_markdown",
+      "confidence": 0.82,
+      "strategy_selected": "markdown_table",
+      "strategy_attempt_order": [
+        "tagged_or_structured",
+        "ruled_or_borderless",
+        "markdown_table"
+      ],
+      "bbox": [
+        50.0,
+        120.0,
+        500.0,
+        300.0
+      ]
+    }
+  ],
+  "visual_fallbacks": {
+    "full_page_fallback_pages": [],
+    "fallback_records": []
+  },
+  "warnings": [],
+  "review_reasons": [
+    "table_semantics_not_selected"
+  ],
+  "cleanup_estimate": "medium",
+  "generated_at": "2026-07-31T08:47:09.352523Z"
+}

@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-07-31T08:46:56Z",
+  "source": "DOCX-006 complex page layout.docx",
+  "technical_status": "passed",
+  "fidelity_status": "moderate",
+  "effective_configuration": {
+    "pdf_mode": "hybrid",
+    "prefer_markitdown": true,
+    "improve_markdown": false,
+    "strict_validation": true,
+    "render_dpi": 220,
+    "preserve_page_markers": true,
+    "allow_inline_html": true,
+    "tesseract_cmd_configured": false
+  },
+  "provider_availability": {
+    "tesseract_available": false,
+    "markitdown_used": true
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "classifications": [
+        {
+          "label": "native_text",
+          "confidence": "medium",
+          "evidence": [
+            "non_pdf_source"
+          ],
+          "rule": "format_dispatch"
+        }
+      ],
+      "selected_candidate": "p1-native",
+      "candidate_scores": [
+        {
+          "candidate_id": "p1-native",
+          "strategy": "docx_native",
+          "total_score": 1.0,
+          "score_components": {
+            "native_text_coverage": 1.0
+          },
+          "rejection_reasons": []
+        }
+      ],
+      "fallback_records": [],
+      "semantic_coverage": 1.0,
+      "visual_coverage": 0.0,
+      "accessible_coverage": 1.0,
+      "unhandled_coverage": 0.0,
+      "technical_status": "passed",
+      "fidelity_status": "moderate",
+      "review_reasons": []
+    }
+  ],
+  "warnings": [],
+  "artifact_hints": {
+    "markdown": "index.md",
+    "manifest": "docx-006-complex-page-layout-manifest.json",
+    "assets_dir": "assets"
+  }
+}

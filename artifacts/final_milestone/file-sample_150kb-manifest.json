@@ -1,0 +1,925 @@
+{
+  "source": "file-sample_150kB.pdf",
+  "output_markdown": "file-sample_150kB.md",
+  "page_count": 4,
+  "pages_with_native_text": [
+    1,
+    3
+  ],
+  "pages_with_ocr": [],
+  "images_extracted": [
+    "page-004-image-001.jpeg"
+  ],
+  "image_placements": [
+    {
+      "source_page": 1,
+      "source_object_id": "chart-region:1",
+      "bbox": [
+        140.82,
+        560.7,
+        477.82,
+        758.26
+      ],
+      "content_hash": "58b16a617b7bc85620cad5b23593f7c1149c0a46f28ceae0bbdd2fcd0828990f",
+      "asset_path": "assets/page-001-chart-001.png",
+      "placement_reason": "chart_region_crop",
+      "confidence": 0.62,
+      "image_source": "rendered_crop",
+      "deduplicated": false
+    },
+    {
+      "source_page": 4,
+      "source_object_id": "xref:13",
+      "bbox": [
+        225.0,
+        56.6,
+        370.3,
+        167.7
+      ],
+      "content_hash": "c1bc7a419d855cf089b6c3cb60f6427cbdd84c1b873c195428a6a2d587274e10",
+      "asset_path": "assets/page-004-image-001.jpeg",
+      "placement_reason": "embedded_image_rect",
+      "confidence": 1.0,
+      "image_source": "embedded",
+      "deduplicated": false
+    }
+  ],
+  "regions_rendered": [
+    "page-004-full"
+  ],
+  "tables_detected": [
+    {
+      "page": 2,
+      "kind": "table_image",
+      "confidence": 0.52,
+      "strategy_selected": "table_crop",
+      "strategy_attempt_order": [
+        "tagged_or_structured",
+        "ruled_or_borderless",
+        "markdown_table",
+        "html_table",
+        "table_crop"
+      ],
+      "bbox": [
+        56.74,
+        56.7,
+        539.21,
+        785.2
+      ]
+    }
+  ],
+  "ocr_provider": {
+    "configured_path": null,
+    "on_path": false,
+    "executable": null,
+    "available": false,
+    "version": null,
+    "error": "tesseract_not_found"
+  },
+  "ocr_records": [],
+  "warnings": [
+    "Page 4: OCR recommended but unavailable."
+  ],
+  "validation": {
+    "passed": true,
+    "missing_assets": [],
+    "unresolved_references": [],
+    "text_coverage_percent": 112.01,
+    "heading_jumps_reasonable": true,
+    "has_suspicious_bullet_glyphs": false,
+    "has_absolute_paths": false
+  },
+  "technical_status": "passed",
+  "fidelity_status": "review_required",
+  "document_result": {
+    "source_path": "file-sample_150kB.pdf",
+    "page_count": 4,
+    "pages": [
+      {
+        "page_number": 1,
+        "width": 595.0,
+        "height": 842.0,
+        "native_text_available": true,
+        "native_character_count": 1272,
+        "embedded_image_count": 0,
+        "vector_drawing_count": 53,
+        "classifications": [
+          {
+            "label": "native_text",
+            "confidence": "high",
+            "evidence": [
+              "native_char_count=1272"
+            ],
+            "rule": "char_count_gt_120"
+          },
+          {
+            "label": "mixed_content",
+            "confidence": "medium",
+            "evidence": [
+              "char_count=1272",
+              "images=0",
+              "vectors=53"
+            ],
+            "rule": "text_plus_visuals"
+          },
+          {
+            "label": "chart_heavy",
+            "confidence": "medium",
+            "evidence": [
+              "chart_regions=1"
+            ],
+            "rule": "large_vector_regions"
+          },
+          {
+            "label": "vector_heavy",
+            "confidence": "medium",
+            "evidence": [
+              "vector_count=53"
+            ],
+            "rule": "vector_count_ge_8"
+          },
+          {
+            "label": "multi_column",
+            "confidence": "medium",
+            "evidence": [
+              "left_right_text_clusters"
+            ],
+            "rule": "x_cluster_split"
+          }
+        ],
+        "regions": [
+          {
+            "region_id": "p1-hybrid-text",
+            "region_type": "paragraph",
+            "bbox": [
+              0.0,
+              0.0,
+              595.0,
+              842.0
+            ],
+            "confidence": 0.984,
+            "source_objects": [
+              "native_text"
+            ],
+            "selected_strategy": "hybrid_targeted_fallback",
+            "output_content": "#### **elit. Nunc ac faucibus odio. **\n\nVestibulum neque massa, scelerisque sit amet ligula eu, congue molestie mi. Praesent ut\n\nvarius sem. Nullam at porttitor arcu, nec lacinia nisi. Ut ac dolor vitae odio interdum\n\ncondimentum.\n\n**convallis. Maecenas sed egestas nulla, ac condimentum orci. **\n\nvulputate ac suscipit et, iaculis non est. Curabitur semper arcu ac ligula semper, nec luctus\n\nac accumsan nunc vehicula vitae. Nulla eget justo in felis tristique fringilla. Morbi sit amet\n\ntortor quis risus auctor condimentum. Morbi in ullamcorper elit. Nulla iaculis tellus sit amet\n\nmauris tempus fringilla.\n\nMaecenas mauris lectus, lobortis et purus mattis, blandit dictum tellus.\n\n**Maecenas non lorem quis tellus placerat varius. **\n\nNulla facilisi.\n\nAenean congue fringilla justo ut aliquam.\n\nsagittis.\n\nMorbi viverra semper lorem nec molestie.\n\nMaecenas tincidunt est efficitur ligula euismod, sit amet ornare est vulputate.\n\n### **Lorem ipsum **\n\n**Lorem ipsum dolor sit amet, consectetur adipiscing **\n\n**Vivamus dapibus sodales ex, vitae malesuada ipsum cursus**\n\nMauris diam felis,\n\nnisl blandit. Integer lacinia ante ac libero lobortis imperdiet. Nullam mollis convallis ipsum,\n\nMauris id ex erat. Nunc vulputate neque vitae justo facilisis, non condimentum ante\n\n[Mauris id ex erat. N](https://products.office.com/en-us/word)",
+            "asset_placements": [],
+            "warnings": [],
+            "review_required": false
+          },
+          {
+            "region_id": "p1-chart-1",
+            "region_type": "chart_candidate",
+            "bbox": [
+              140.82,
+              560.7,
+              477.82,
+              758.26
+            ],
+            "confidence": 0.62,
+            "source_objects": [
+              "vector_drawing_cluster"
+            ],
+            "selected_strategy": "hybrid_targeted_fallback",
+            "output_content": "![Figure from page 1](assets/page-001-chart-001.png)",
+            "asset_placements": [
+              "assets/page-001-chart-001.png"
+            ],
+            "warnings": [],
+            "review_required": false
+          }
+        ],
+        "candidates": [
+          {
+            "candidate_id": "p1-native",
+            "strategy": "native_semantic",
+            "page_number": 1,
+            "regions": [
+              {
+                "region_id": "p1-native-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  595.0,
+                  842.0
+                ],
+                "confidence": 0.984,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "native_semantic",
+                "output_content": "#### **elit. Nunc ac faucibus odio. **\n\nVestibulum neque massa, scelerisque sit amet ligula eu, congue molestie mi. Praesent ut\n\nvarius sem. Nullam at porttitor arcu, nec lacinia nisi. Ut ac dolor vitae odio interdum\n\ncondimentum.\n\n**convallis. Maecenas sed egestas nulla, ac condimentum orci. **\n\nvulputate ac suscipit et, iaculis non est. Curabitur semper arcu ac ligula semper, nec luctus\n\nac accumsan nunc vehicula vitae. Nulla eget justo in felis tristique fringilla. Morbi sit amet\n\ntortor quis risus auctor condimentum. Morbi in ullamcorper elit. Nulla iaculis tellus sit amet\n\nmauris tempus fringilla.\n\nMaecenas mauris lectus, lobortis et purus mattis, blandit dictum tellus.\n\n**Maecenas non lorem quis tellus placerat varius. **\n\nNulla facilisi.\n\nAenean congue fringilla justo ut aliquam.\n\nsagittis.\n\nMorbi viverra semper lorem nec molestie.\n\nMaecenas tincidunt est efficitur ligula euismod, sit amet ornare est vulputate.\n\n### **Lorem ipsum **\n\n**Lorem ipsum dolor sit amet, consectetur adipiscing **\n\n**Vivamus dapibus sodales ex, vitae malesuada ipsum cursus**\n\nMauris diam felis,\n\nnisl blandit. Integer lacinia ante ac libero lobortis imperdiet. Nullam mollis convallis ipsum,\n\nMauris id ex erat. Nunc vulputate neque vitae justo facilisis, non condimentum ante\n\n[Mauris id ex erat. N](https://products.office.com/en-us/word)",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9837,
+            "reading_order_score": 0.92,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9837,
+              "reading_order_plausibility": 0.92,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.25,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.02,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.35
+            },
+            "total_score": 2.6337,
+            "rejection_reasons": [
+              "Rejected because total_score=2.6337 < selected=2.6837."
+            ]
+          },
+          {
+            "candidate_id": "p1-hybrid",
+            "strategy": "hybrid_targeted_fallback",
+            "page_number": 1,
+            "regions": [
+              {
+                "region_id": "p1-hybrid-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  595.0,
+                  842.0
+                ],
+                "confidence": 0.984,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "#### **elit. Nunc ac faucibus odio. **\n\nVestibulum neque massa, scelerisque sit amet ligula eu, congue molestie mi. Praesent ut\n\nvarius sem. Nullam at porttitor arcu, nec lacinia nisi. Ut ac dolor vitae odio interdum\n\ncondimentum.\n\n**convallis. Maecenas sed egestas nulla, ac condimentum orci. **\n\nvulputate ac suscipit et, iaculis non est. Curabitur semper arcu ac ligula semper, nec luctus\n\nac accumsan nunc vehicula vitae. Nulla eget justo in felis tristique fringilla. Morbi sit amet\n\ntortor quis risus auctor condimentum. Morbi in ullamcorper elit. Nulla iaculis tellus sit amet\n\nmauris tempus fringilla.\n\nMaecenas mauris lectus, lobortis et purus mattis, blandit dictum tellus.\n\n**Maecenas non lorem quis tellus placerat varius. **\n\nNulla facilisi.\n\nAenean congue fringilla justo ut aliquam.\n\nsagittis.\n\nMorbi viverra semper lorem nec molestie.\n\nMaecenas tincidunt est efficitur ligula euismod, sit amet ornare est vulputate.\n\n### **Lorem ipsum **\n\n**Lorem ipsum dolor sit amet, consectetur adipiscing **\n\n**Vivamus dapibus sodales ex, vitae malesuada ipsum cursus**\n\nMauris diam felis,\n\nnisl blandit. Integer lacinia ante ac libero lobortis imperdiet. Nullam mollis convallis ipsum,\n\nMauris id ex erat. Nunc vulputate neque vitae justo facilisis, non condimentum ante\n\n[Mauris id ex erat. N](https://products.office.com/en-us/word)",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              },
+              {
+                "region_id": "p1-chart-1",
+                "region_type": "chart_candidate",
+                "bbox": [
+                  140.82,
+                  560.7,
+                  477.82,
+                  758.26
+                ],
+                "confidence": 0.62,
+                "source_objects": [
+                  "vector_drawing_cluster"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "![Figure from page 1](assets/page-001-chart-001.png)",
+                "asset_placements": [
+                  "assets/page-001-chart-001.png"
+                ],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9837,
+            "reading_order_score": 0.88,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.1329,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9837,
+              "reading_order_plausibility": 0.88,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.22,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.01,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.18,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.28
+            },
+            "total_score": 2.6837,
+            "rejection_reasons": []
+          }
+        ],
+        "selected_candidate": "p1-hybrid",
+        "fallback_records": [
+          {
+            "source_page": 1,
+            "region_bbox": [
+              140.82,
+              560.7,
+              477.82,
+              758.26
+            ],
+            "fallback_type": "chart_crop",
+            "triggering_condition": "chart_region_detected",
+            "alternatives_attempted": [
+              "native_semantic"
+            ],
+            "confidence": 0.62,
+            "text_overlap_detected": false,
+            "review_required": false
+          }
+        ],
+        "semantic_coverage": 0.9837,
+        "visual_coverage": 0.1329,
+        "accessible_coverage": 0.9837,
+        "unhandled_coverage": 0.0163,
+        "technical_status": "passed",
+        "fidelity_status": "high",
+        "review_reasons": []
+      },
+      {
+        "page_number": 2,
+        "width": 595.0,
+        "height": 842.0,
+        "native_text_available": false,
+        "native_character_count": 1969,
+        "embedded_image_count": 0,
+        "vector_drawing_count": 59,
+        "classifications": [
+          {
+            "label": "native_text",
+            "confidence": "high",
+            "evidence": [
+              "native_char_count=1969"
+            ],
+            "rule": "char_count_gt_120"
+          },
+          {
+            "label": "mixed_content",
+            "confidence": "medium",
+            "evidence": [
+              "char_count=1969",
+              "images=0",
+              "vectors=59"
+            ],
+            "rule": "text_plus_visuals"
+          },
+          {
+            "label": "table_heavy",
+            "confidence": "medium",
+            "evidence": [
+              "table_regions=1"
+            ],
+            "rule": "table_detector"
+          },
+          {
+            "label": "vector_heavy",
+            "confidence": "medium",
+            "evidence": [
+              "vector_count=59"
+            ],
+            "rule": "vector_count_ge_8"
+          },
+          {
+            "label": "multi_column",
+            "confidence": "medium",
+            "evidence": [
+              "left_right_text_clusters"
+            ],
+            "rule": "x_cluster_split"
+          }
+        ],
+        "regions": [
+          {
+            "region_id": "p2-table-1",
+            "region_type": "table",
+            "bbox": [
+              56.74,
+              56.7,
+              539.21,
+              785.2
+            ],
+            "confidence": 0.58,
+            "source_objects": [
+              "table_detector"
+            ],
+            "selected_strategy": "hybrid_targeted_fallback",
+            "output_content": "![Figure from page 2](assets/page-002-table-001.png)\n<!-- table fallback: complex structure rendered as image -->",
+            "asset_placements": [],
+            "warnings": [],
+            "review_required": true
+          }
+        ],
+        "candidates": [
+          {
+            "candidate_id": "p2-native",
+            "strategy": "native_semantic",
+            "page_number": 2,
+            "regions": [],
+            "native_text_coverage": 0.0,
+            "reading_order_score": 0.92,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.0,
+              "reading_order_plausibility": 0.92,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.25,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.35,
+              "duplicate_risk_penalty": -0.02,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": -0.2,
+              "accessibility_bonus": 0.35
+            },
+            "total_score": 1.1,
+            "rejection_reasons": [
+              "Rejected because total_score=1.1 < selected=1.24."
+            ]
+          },
+          {
+            "candidate_id": "p2-hybrid",
+            "strategy": "hybrid_targeted_fallback",
+            "page_number": 2,
+            "regions": [
+              {
+                "region_id": "p2-table-1",
+                "region_type": "table",
+                "bbox": [
+                  56.74,
+                  56.7,
+                  539.21,
+                  785.2
+                ],
+                "confidence": 0.58,
+                "source_objects": [
+                  "table_detector"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "![Figure from page 2](assets/page-002-table-001.png)\n<!-- table fallback: complex structure rendered as image -->",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": true
+              }
+            ],
+            "native_text_coverage": 0.0,
+            "reading_order_score": 0.2,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.7016,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.0,
+              "reading_order_plausibility": 0.2,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.22,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.01,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.53,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.15000000000000002
+            },
+            "total_score": 1.24,
+            "rejection_reasons": []
+          }
+        ],
+        "selected_candidate": "p2-hybrid",
+        "fallback_records": [
+          {
+            "source_page": 2,
+            "region_bbox": [
+              56.74,
+              56.7,
+              539.21,
+              785.2
+            ],
+            "fallback_type": "table_crop",
+            "triggering_condition": "table_structure_low_confidence",
+            "alternatives_attempted": [
+              "markdown_table",
+              "html_table"
+            ],
+            "confidence": 0.58,
+            "text_overlap_detected": false,
+            "review_required": true
+          }
+        ],
+        "semantic_coverage": 0.0,
+        "visual_coverage": 0.7016,
+        "accessible_coverage": 0.0,
+        "unhandled_coverage": 0.2984,
+        "technical_status": "passed",
+        "fidelity_status": "review_required",
+        "review_reasons": [
+          "fallback_requires_review",
+          "high_fallback_ratio"
+        ]
+      },
+      {
+        "page_number": 3,
+        "width": 595.0,
+        "height": 842.0,
+        "native_text_available": true,
+        "native_character_count": 2924,
+        "embedded_image_count": 0,
+        "vector_drawing_count": 1,
+        "classifications": [
+          {
+            "label": "native_text",
+            "confidence": "high",
+            "evidence": [
+              "native_char_count=2924"
+            ],
+            "rule": "char_count_gt_120"
+          },
+          {
+            "label": "mixed_content",
+            "confidence": "medium",
+            "evidence": [
+              "char_count=2924",
+              "images=0",
+              "vectors=1"
+            ],
+            "rule": "text_plus_visuals"
+          },
+          {
+            "label": "multi_column",
+            "confidence": "medium",
+            "evidence": [
+              "left_right_text_clusters"
+            ],
+            "rule": "x_cluster_split"
+          }
+        ],
+        "regions": [
+          {
+            "region_id": "p3-native-text",
+            "region_type": "paragraph",
+            "bbox": [
+              0.0,
+              0.0,
+              595.0,
+              842.0
+            ],
+            "confidence": 0.982,
+            "source_objects": [
+              "native_text"
+            ],
+            "selected_strategy": "native_semantic",
+            "output_content": "#### **elit. **\n\nNunc ac faucibus odio. Vestibulum neque massa, scelerisque sit amet ligula eu, congue\n\nmolestie mi. Praesent ut varius sem. Nullam at porttitor arcu, nec lacinia nisi. Ut ac dolor\n\nvitae odio interdum condimentum. Vivamus dapibus sodales ex, vitae malesuada ipsum\n\ncursus convallis. Maecenas sed egestas nulla, ac condimentum orci. Mauris diam felis,\n\nvulputate ac suscipit et, iaculis non est. Curabitur semper arcu ac ligula semper, nec luctus\n\nnisl blandit. Integer lacinia ante ac libero lobortis imperdiet. Nullam mollis convallis ipsum,\n\nac accumsan nunc vehicula vitae. Nulla eget justo in felis tristique fringilla. Morbi sit amet\n\ntortor quis risus auctor condimentum. Morbi in ullamcorper elit. Nulla iaculis tellus sit amet\n\nmauris tempus fringilla.\n\n**Maecenas mauris lectus, lobortis et purus mattis, blandit **\n\n**dictum tellus. **\n\nMaecenas non lorem quis tellus placerat varius. Nulla facilisi. Aenean congue fringilla justo\n\nut aliquam. Mauris id ex erat. Nunc vulputate neque vitae justo facilisis, non condimentum\n\nligula euismod, sit amet ornare est vulputate.\n\nIn non mauris justo. Duis vehicula mi vel mi pretium, a viverra erat efficitur. Cras aliquam\n\nest ac eros varius, id iaculis dui auctor. Duis pretium neque ligula, et pulvinar mi placerat\n\net. Nulla nec nunc sit amet nunc posuere vestibulum. Ut id neque eget tortor mattis\n\ntristique. Donec ante est, blandit sit amet tristique vel, lacinia pulvinar arcu. Pellentesque\n\nscelerisque fermentum erat, id posuere justo pulvinar ut. Cras id eros sed enim aliquam\n\nlobortis. Sed lobortis nisl ut eros efficitur tincidunt. Cras justo mi, porttitor quis mattis vel,\n\nultricies ut purus. Ut facilisis et lacus eu cursus.\n\n**In eleifend velit vitae libero sollicitudin euismod. **\n\nFusce vitae vestibulum velit. Pellentesque vulputate lectus quis pellentesque commodo.\n\nAliquam erat volutpat. Vestibulum in egestas velit. Pellentesque fermentum nisl vitae\n\nmagna, in fringilla dui commodo a.\n\nEtiam vehicula luctus fermentum. In vel metus congue, pulvinar lectus vel, fermentum dui.\n\nMaecenas ante orci, egestas ut aliquet sit amet, sagittis a magna. Aliquam ante quam,\n\npellentesque ut dignissim quis, laoreet eget est. Aliquam erat volutpat. Class aptent taciti\n\njusto sapien, in cursus libero viverra eget. Vivamus auctor imperdiet urna, at pulvinar leo\n\nposuere laoreet. Suspendisse neque nisl, fringilla at iaculis scelerisque, ornare vel dolor. Ut\n\nimperdiet. Morbi velit neque, semper quis lorem quis, efficitur dignissim ipsum. Ut ac lorem\n\nsed turpis imperdiet eleifend sit amet id sapien.\n\n**Lorem ipsum dolor sit amet, consectetur adipiscing **\n\nante sagittis. Morbi viverra semper lorem nec molestie. Maecenas tincidunt est efficitur\n\nfringilla venenatis. Etiam id mauris vitae orci maximus ultricies. Cras fringilla ipsum\n\nsociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut ullamcorper\n\net pulvinar nunc. Pellentesque fringilla mollis efficitur. Nullam venenatis commodo",
+            "asset_placements": [],
+            "warnings": [],
+            "review_required": false
+          }
+        ],
+        "candidates": [
+          {
+            "candidate_id": "p3-native",
+            "strategy": "native_semantic",
+            "page_number": 3,
+            "regions": [
+              {
+                "region_id": "p3-native-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  595.0,
+                  842.0
+                ],
+                "confidence": 0.982,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "native_semantic",
+                "output_content": "#### **elit. **\n\nNunc ac faucibus odio. Vestibulum neque massa, scelerisque sit amet ligula eu, congue\n\nmolestie mi. Praesent ut varius sem. Nullam at porttitor arcu, nec lacinia nisi. Ut ac dolor\n\nvitae odio interdum condimentum. Vivamus dapibus sodales ex, vitae malesuada ipsum\n\ncursus convallis. Maecenas sed egestas nulla, ac condimentum orci. Mauris diam felis,\n\nvulputate ac suscipit et, iaculis non est. Curabitur semper arcu ac ligula semper, nec luctus\n\nnisl blandit. Integer lacinia ante ac libero lobortis imperdiet. Nullam mollis convallis ipsum,\n\nac accumsan nunc vehicula vitae. Nulla eget justo in felis tristique fringilla. Morbi sit amet\n\ntortor quis risus auctor condimentum. Morbi in ullamcorper elit. Nulla iaculis tellus sit amet\n\nmauris tempus fringilla.\n\n**Maecenas mauris lectus, lobortis et purus mattis, blandit **\n\n**dictum tellus. **\n\nMaecenas non lorem quis tellus placerat varius. Nulla facilisi. Aenean congue fringilla justo\n\nut aliquam. Mauris id ex erat. Nunc vulputate neque vitae justo facilisis, non condimentum\n\nligula euismod, sit amet ornare est vulputate.\n\nIn non mauris justo. Duis vehicula mi vel mi pretium, a viverra erat efficitur. Cras aliquam\n\nest ac eros varius, id iaculis dui auctor. Duis pretium neque ligula, et pulvinar mi placerat\n\net. Nulla nec nunc sit amet nunc posuere vestibulum. Ut id neque eget tortor mattis\n\ntristique. Donec ante est, blandit sit amet tristique vel, lacinia pulvinar arcu. Pellentesque\n\nscelerisque fermentum erat, id posuere justo pulvinar ut. Cras id eros sed enim aliquam\n\nlobortis. Sed lobortis nisl ut eros efficitur tincidunt. Cras justo mi, porttitor quis mattis vel,\n\nultricies ut purus. Ut facilisis et lacus eu cursus.\n\n**In eleifend velit vitae libero sollicitudin euismod. **\n\nFusce vitae vestibulum velit. Pellentesque vulputate lectus quis pellentesque commodo.\n\nAliquam erat volutpat. Vestibulum in egestas velit. Pellentesque fermentum nisl vitae\n\nmagna, in fringilla dui commodo a.\n\nEtiam vehicula luctus fermentum. In vel metus congue, pulvinar lectus vel, fermentum dui.\n\nMaecenas ante orci, egestas ut aliquet sit amet, sagittis a magna. Aliquam ante quam,\n\npellentesque ut dignissim quis, laoreet eget est. Aliquam erat volutpat. Class aptent taciti\n\njusto sapien, in cursus libero viverra eget. Vivamus auctor imperdiet urna, at pulvinar leo\n\nposuere laoreet. Suspendisse neque nisl, fringilla at iaculis scelerisque, ornare vel dolor. Ut\n\nimperdiet. Morbi velit neque, semper quis lorem quis, efficitur dignissim ipsum. Ut ac lorem\n\nsed turpis imperdiet eleifend sit amet id sapien.\n\n**Lorem ipsum dolor sit amet, consectetur adipiscing **\n\nante sagittis. Morbi viverra semper lorem nec molestie. Maecenas tincidunt est efficitur\n\nfringilla venenatis. Etiam id mauris vitae orci maximus ultricies. Cras fringilla ipsum\n\nsociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut ullamcorper\n\net pulvinar nunc. Pellentesque fringilla mollis efficitur. Nullam venenatis commodo",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9815,
+            "reading_order_score": 0.92,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9815,
+              "reading_order_plausibility": 0.92,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.25,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.02,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.35
+            },
+            "total_score": 2.6315,
+            "rejection_reasons": []
+          },
+          {
+            "candidate_id": "p3-hybrid",
+            "strategy": "hybrid_targeted_fallback",
+            "page_number": 3,
+            "regions": [
+              {
+                "region_id": "p3-hybrid-text",
+                "region_type": "paragraph",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  595.0,
+                  842.0
+                ],
+                "confidence": 0.982,
+                "source_objects": [
+                  "native_text"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "#### **elit. **\n\nNunc ac faucibus odio. Vestibulum neque massa, scelerisque sit amet ligula eu, congue\n\nmolestie mi. Praesent ut varius sem. Nullam at porttitor arcu, nec lacinia nisi. Ut ac dolor\n\nvitae odio interdum condimentum. Vivamus dapibus sodales ex, vitae malesuada ipsum\n\ncursus convallis. Maecenas sed egestas nulla, ac condimentum orci. Mauris diam felis,\n\nvulputate ac suscipit et, iaculis non est. Curabitur semper arcu ac ligula semper, nec luctus\n\nnisl blandit. Integer lacinia ante ac libero lobortis imperdiet. Nullam mollis convallis ipsum,\n\nac accumsan nunc vehicula vitae. Nulla eget justo in felis tristique fringilla. Morbi sit amet\n\ntortor quis risus auctor condimentum. Morbi in ullamcorper elit. Nulla iaculis tellus sit amet\n\nmauris tempus fringilla.\n\n**Maecenas mauris lectus, lobortis et purus mattis, blandit **\n\n**dictum tellus. **\n\nMaecenas non lorem quis tellus placerat varius. Nulla facilisi. Aenean congue fringilla justo\n\nut aliquam. Mauris id ex erat. Nunc vulputate neque vitae justo facilisis, non condimentum\n\nligula euismod, sit amet ornare est vulputate.\n\nIn non mauris justo. Duis vehicula mi vel mi pretium, a viverra erat efficitur. Cras aliquam\n\nest ac eros varius, id iaculis dui auctor. Duis pretium neque ligula, et pulvinar mi placerat\n\net. Nulla nec nunc sit amet nunc posuere vestibulum. Ut id neque eget tortor mattis\n\ntristique. Donec ante est, blandit sit amet tristique vel, lacinia pulvinar arcu. Pellentesque\n\nscelerisque fermentum erat, id posuere justo pulvinar ut. Cras id eros sed enim aliquam\n\nlobortis. Sed lobortis nisl ut eros efficitur tincidunt. Cras justo mi, porttitor quis mattis vel,\n\nultricies ut purus. Ut facilisis et lacus eu cursus.\n\n**In eleifend velit vitae libero sollicitudin euismod. **\n\nFusce vitae vestibulum velit. Pellentesque vulputate lectus quis pellentesque commodo.\n\nAliquam erat volutpat. Vestibulum in egestas velit. Pellentesque fermentum nisl vitae\n\nmagna, in fringilla dui commodo a.\n\nEtiam vehicula luctus fermentum. In vel metus congue, pulvinar lectus vel, fermentum dui.\n\nMaecenas ante orci, egestas ut aliquet sit amet, sagittis a magna. Aliquam ante quam,\n\npellentesque ut dignissim quis, laoreet eget est. Aliquam erat volutpat. Class aptent taciti\n\njusto sapien, in cursus libero viverra eget. Vivamus auctor imperdiet urna, at pulvinar leo\n\nposuere laoreet. Suspendisse neque nisl, fringilla at iaculis scelerisque, ornare vel dolor. Ut\n\nimperdiet. Morbi velit neque, semper quis lorem quis, efficitur dignissim ipsum. Ut ac lorem\n\nsed turpis imperdiet eleifend sit amet id sapien.\n\n**Lorem ipsum dolor sit amet, consectetur adipiscing **\n\nante sagittis. Morbi viverra semper lorem nec molestie. Maecenas tincidunt est efficitur\n\nfringilla venenatis. Etiam id mauris vitae orci maximus ultricies. Cras fringilla ipsum\n\nsociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Ut ullamcorper\n\net pulvinar nunc. Pellentesque fringilla mollis efficitur. Nullam venenatis commodo",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": false
+              }
+            ],
+            "native_text_coverage": 0.9815,
+            "reading_order_score": 0.88,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.9815,
+              "reading_order_plausibility": 0.88,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.22,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.01,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.28
+            },
+            "total_score": 2.5015,
+            "rejection_reasons": [
+              "Rejected because total_score=2.5015 < selected=2.6315."
+            ]
+          }
+        ],
+        "selected_candidate": "p3-native",
+        "fallback_records": [],
+        "semantic_coverage": 0.9815,
+        "visual_coverage": 0.0,
+        "accessible_coverage": 0.9815,
+        "unhandled_coverage": 0.0185,
+        "technical_status": "passed",
+        "fidelity_status": "high",
+        "review_reasons": []
+      },
+      {
+        "page_number": 4,
+        "width": 595.0,
+        "height": 842.0,
+        "native_text_available": false,
+        "native_character_count": 0,
+        "embedded_image_count": 1,
+        "vector_drawing_count": 3,
+        "classifications": [
+          {
+            "label": "chart_heavy",
+            "confidence": "medium",
+            "evidence": [
+              "chart_regions=1"
+            ],
+            "rule": "large_vector_regions"
+          },
+          {
+            "label": "photograph_or_illustration",
+            "confidence": "low",
+            "evidence": [
+              "image_count=1",
+              "char_count=0"
+            ],
+            "rule": "images_with_low_text"
+          }
+        ],
+        "regions": [
+          {
+            "region_id": "p4-full-fallback",
+            "region_type": "unknown_visual_region",
+            "bbox": [
+              0.0,
+              0.0,
+              595.0,
+              842.0
+            ],
+            "confidence": 0.41,
+            "source_objects": [
+              "rendered_page"
+            ],
+            "selected_strategy": "hybrid_targeted_fallback",
+            "output_content": "![Figure from page 4](assets/page-004-full-page-001.png)",
+            "asset_placements": [],
+            "warnings": [],
+            "review_required": true
+          }
+        ],
+        "candidates": [
+          {
+            "candidate_id": "p4-native",
+            "strategy": "native_semantic",
+            "page_number": 4,
+            "regions": [],
+            "native_text_coverage": 0.0,
+            "reading_order_score": 0.15,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 0.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.0,
+              "reading_order_plausibility": 0.15,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.25,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.02,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": 0.0,
+              "targeted_fallback_bonus": 0.0,
+              "unhandled_penalty": -0.25,
+              "accessibility_bonus": 0.0
+            },
+            "total_score": 0.28,
+            "rejection_reasons": [
+              "Rejected because total_score=0.28 < selected=0.29."
+            ]
+          },
+          {
+            "candidate_id": "p4-hybrid",
+            "strategy": "hybrid_targeted_fallback",
+            "page_number": 4,
+            "regions": [
+              {
+                "region_id": "p4-full-fallback",
+                "region_type": "unknown_visual_region",
+                "bbox": [
+                  0.0,
+                  0.0,
+                  595.0,
+                  842.0
+                ],
+                "confidence": 0.41,
+                "source_objects": [
+                  "rendered_page"
+                ],
+                "selected_strategy": "hybrid_targeted_fallback",
+                "output_content": "![Figure from page 4](assets/page-004-full-page-001.png)",
+                "asset_placements": [],
+                "warnings": [],
+                "review_required": true
+              }
+            ],
+            "native_text_coverage": 0.0,
+            "reading_order_score": 0.2,
+            "suspicious_glyph_count": 0,
+            "chart_text_leakage_count": 0,
+            "duplicate_content_score": 0.02,
+            "fallback_area_ratio": 1.0,
+            "unresolved_asset_count": 0,
+            "score_components": {
+              "native_text_coverage": 0.0,
+              "reading_order_plausibility": 0.2,
+              "suspicious_glyph_penalty": -0.0,
+              "heading_plausibility": 0.22,
+              "list_plausibility": 0.15,
+              "chart_leakage_penalty": -0.0,
+              "table_leakage_penalty": -0.0,
+              "duplicate_risk_penalty": -0.01,
+              "cross_page_asset_penalty": 0.0,
+              "missing_asset_penalty": 0.0,
+              "unresolved_ref_penalty": 0.0,
+              "fullpage_penalty": -0.5,
+              "targeted_fallback_bonus": 0.18,
+              "unhandled_penalty": 0.0,
+              "accessibility_bonus": 0.05
+            },
+            "total_score": 0.29,
+            "rejection_reasons": []
+          }
+        ],
+        "selected_candidate": "p4-hybrid",
+        "fallback_records": [
+          {
+            "source_page": 4,
+            "region_bbox": [
+              0.0,
+              0.0,
+              595.0,
+              842.0
+            ],
+            "fallback_type": "full_page",
+            "triggering_condition": "native_text_unreliable",
+            "alternatives_attempted": [
+              "native_semantic",
+              "targeted_region_fallback"
+            ],
+            "confidence": 0.41,
+            "text_overlap_detected": false,
+            "review_required": true
+          }
+        ],
+        "semantic_coverage": 0.0,
+        "visual_coverage": 1.0,
+        "accessible_coverage": 0.0,
+        "unhandled_coverage": 0.0,
+        "technical_status": "passed",
+        "fidelity_status": "review_required",
+        "review_reasons": [
+          "fallback_requires_review",
+          "high_fallback_ratio"
+        ]
+      }
+    ],
+    "assets": [
+      "page-004-image-001.jpeg"
+    ],
+    "warnings": [
+      "Page 4: OCR recommended but unavailable."
+    ],
+    "technical_status": "passed",
+    "fidelity_status": "review_required"
+  },
+  "candidate_scoring": {
+    "weights_note": "Component scores are additive and intentionally transparent for debugability.",
+    "components": [
+      "native_text_coverage",
+      "reading_order_plausibility",
+      "suspicious_glyph_penalty",
+      "heading_plausibility",
+      "list_plausibility",
+      "chart_leakage_penalty",
+      "table_leakage_penalty",
+      "duplicate_risk_penalty",
+      "cross_page_asset_penalty",
+      "missing_asset_penalty",
+      "unresolved_ref_penalty",
+      "fullpage_penalty",
+      "targeted_fallback_bonus",
+      "unhandled_penalty",
+      "accessibility_bonus"
+    ]
+  },
+  "effective_configuration": {
+    "pdf_mode": "hybrid",
+    "prefer_markitdown": true,
+    "improve_markdown": false,
+    "strict_validation": true,
+    "render_dpi": 220,
+    "preserve_page_markers": true,
+    "allow_inline_html": true,
+    "tesseract_cmd_configured": false
+  }
+}

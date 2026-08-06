@@ -1,0 +1,26 @@
+{
+  "review_required_fixtures_reviewed": [
+    "PDF-003",
+    "PDF-005",
+    "PDF-008",
+    "PDF-011",
+    "PDF-012",
+    "PDF-018",
+    "PDF-020"
+  ],
+  "high_sampled": [
+    "PDF-001",
+    "PDF-002",
+    "PDF-006",
+    "PDF-009",
+    "PDF-016"
+  ],
+  "moderate_sampled": [
+    "DOCX-001",
+    "DOCX-003",
+    "DOCX-004",
+    "DOCX-007",
+    "DOCX-009"
+  ],
+  "total_synthetic_reviewed": 17
+}

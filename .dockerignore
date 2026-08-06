@@ -1,0 +1,34 @@
+# Windows offline installer — not needed inside Linux containers
+wheelhouse/
+.installed
+
+# Generated caches and local state
+__pycache__/
+*.py[cod]
+.env
+.vscode/
+
+# Built MkDocs static output — regenerated at startup
+mkdocs_preview/site/
+
+# Historical artifact and benchmark runs — not needed to run the app
+artifacts/after_*/
+artifacts/baseline*/
+artifacts/before_after/
+artifacts/endpoint_release_check/
+artifacts/endpoint_release_check_live/run_*/
+artifacts/benchmarks/benchmark_*/
+artifacts/fidelity-reviews/review-*/
+artifacts/final_app_run/
+analysis_output/
+analysis_pdf/
+analysis_pdf_visual/
+test_results/
+
+# Test corpus and fixture generation — large; not needed at runtime
+test_corpus/
+tests/fixtures/generated/previews/
+tests/fixtures/generated/documents/
+
+# Development files
+cleanup_for_github.ps1

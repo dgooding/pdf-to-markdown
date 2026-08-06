@@ -1,0 +1,36 @@
+{
+  "source_identifier": "PDF-009 two column.pdf",
+  "reviewer_status": "not_reviewed",
+  "reviewer": null,
+  "review_notes": null,
+  "technical_status": "passed",
+  "fidelity_status": "high",
+  "page_strategies": [
+    {
+      "page_number": 1,
+      "selected_candidate": "p1-hybrid",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    }
+  ],
+  "coverage": {
+    "semantic": 0.9773,
+    "visual": 0.2,
+    "accessible": 0.9773,
+    "unhandled": 0.0227
+  },
+  "ocr_usage": {
+    "pages_with_ocr": [],
+    "ocr_record_count": 0,
+    "provider_available": false
+  },
+  "table_strategies": [],
+  "visual_fallbacks": {
+    "full_page_fallback_pages": [],
+    "fallback_records": []
+  },
+  "warnings": [],
+  "review_reasons": [],
+  "cleanup_estimate": "low",
+  "generated_at": "2026-07-31T08:47:27.816869Z"
+}

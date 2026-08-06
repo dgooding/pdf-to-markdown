@@ -1,0 +1,19 @@
+site_name: ITSD Service Desk
+site_description: Searchable IT support documentation and document conversion
+theme:
+  name: readthedocs
+  highlightjs: false
+  navigation_depth: 1
+  titles_only: true
+  prev_next_buttons_location: none
+plugins:
+  - search
+markdown_extensions:
+  - tables
+  - fenced_code
+extra_css:
+  - stylesheets/extra.css
+nav:
+  - Home: index.md
+  - Converter: /editor
+  - Documents: published/index.md

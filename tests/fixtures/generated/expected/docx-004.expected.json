@@ -1,0 +1,72 @@
+{
+  "fixture_id": "DOCX-004",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "docx",
+  "expected_semantic_representation": "markdown",
+  "intended_page_count": 3,
+  "expected_titles": [
+    "Images and Captions"
+  ],
+  "expected_heading_hierarchy": [
+    "#"
+  ],
+  "expected_paragraphs": [
+    "Inline chart image:",
+    "Repeated image use on another section:"
+  ],
+  "expected_list_items": [],
+  "expected_links": [],
+  "expected_tables": [],
+  "expected_images": [
+    "chart_bar.png",
+    "chart_bar.png",
+    "logo_mark.png",
+    "similar_a.png",
+    "similar_b.png"
+  ],
+  "expected_image_placements": [
+    {
+      "asset": "chart_bar.png",
+      "count": 2
+    },
+    {
+      "asset": "logo_mark.png",
+      "count": 1
+    },
+    {
+      "asset": "similar_a.png",
+      "count": 1
+    },
+    {
+      "asset": "similar_b.png",
+      "count": 1
+    }
+  ],
+  "expected_captions": [
+    "Figure 1: Synthetic bar chart caption"
+  ],
+  "expected_page_headers": [],
+  "expected_page_footers": [],
+  "expected_columns": [
+    1
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_bold_spans": [],
+  "expected_italic_spans": [],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [
+    "chart_bar.png"
+  ],
+  "expected_fallback_representation": "none",
+  "expected_review_requirement": "no",
+  "known_intentional_ambiguity": [
+    "Floating/inline placement may vary with DOCX renderer."
+  ]
+}

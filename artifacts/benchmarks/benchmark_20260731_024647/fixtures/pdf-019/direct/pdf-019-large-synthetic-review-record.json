@@ -1,0 +1,630 @@
+{
+  "source_identifier": "PDF-019 large synthetic.pdf",
+  "reviewer_status": "not_reviewed",
+  "reviewer": null,
+  "review_notes": null,
+  "technical_status": "passed",
+  "fidelity_status": "high",
+  "page_strategies": [
+    {
+      "page_number": 1,
+      "selected_candidate": "p1-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 2,
+      "selected_candidate": "p2-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 3,
+      "selected_candidate": "p3-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 4,
+      "selected_candidate": "p4-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 5,
+      "selected_candidate": "p5-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 6,
+      "selected_candidate": "p6-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 7,
+      "selected_candidate": "p7-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 8,
+      "selected_candidate": "p8-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 9,
+      "selected_candidate": "p9-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 10,
+      "selected_candidate": "p10-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 11,
+      "selected_candidate": "p11-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 12,
+      "selected_candidate": "p12-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 13,
+      "selected_candidate": "p13-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 14,
+      "selected_candidate": "p14-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 15,
+      "selected_candidate": "p15-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 16,
+      "selected_candidate": "p16-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 17,
+      "selected_candidate": "p17-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 18,
+      "selected_candidate": "p18-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 19,
+      "selected_candidate": "p19-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 20,
+      "selected_candidate": "p20-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 21,
+      "selected_candidate": "p21-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 22,
+      "selected_candidate": "p22-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 23,
+      "selected_candidate": "p23-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 24,
+      "selected_candidate": "p24-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 25,
+      "selected_candidate": "p25-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 26,
+      "selected_candidate": "p26-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 27,
+      "selected_candidate": "p27-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 28,
+      "selected_candidate": "p28-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 29,
+      "selected_candidate": "p29-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 30,
+      "selected_candidate": "p30-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 31,
+      "selected_candidate": "p31-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 32,
+      "selected_candidate": "p32-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 33,
+      "selected_candidate": "p33-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 34,
+      "selected_candidate": "p34-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 35,
+      "selected_candidate": "p35-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 36,
+      "selected_candidate": "p36-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 37,
+      "selected_candidate": "p37-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 38,
+      "selected_candidate": "p38-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 39,
+      "selected_candidate": "p39-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 40,
+      "selected_candidate": "p40-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 41,
+      "selected_candidate": "p41-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 42,
+      "selected_candidate": "p42-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 43,
+      "selected_candidate": "p43-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 44,
+      "selected_candidate": "p44-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 45,
+      "selected_candidate": "p45-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 46,
+      "selected_candidate": "p46-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 47,
+      "selected_candidate": "p47-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 48,
+      "selected_candidate": "p48-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 49,
+      "selected_candidate": "p49-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 50,
+      "selected_candidate": "p50-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 51,
+      "selected_candidate": "p51-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 52,
+      "selected_candidate": "p52-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 53,
+      "selected_candidate": "p53-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 54,
+      "selected_candidate": "p54-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 55,
+      "selected_candidate": "p55-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 56,
+      "selected_candidate": "p56-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 57,
+      "selected_candidate": "p57-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 58,
+      "selected_candidate": "p58-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 59,
+      "selected_candidate": "p59-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 60,
+      "selected_candidate": "p60-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 61,
+      "selected_candidate": "p61-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 62,
+      "selected_candidate": "p62-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 63,
+      "selected_candidate": "p63-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 64,
+      "selected_candidate": "p64-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 65,
+      "selected_candidate": "p65-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 66,
+      "selected_candidate": "p66-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 67,
+      "selected_candidate": "p67-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 68,
+      "selected_candidate": "p68-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 69,
+      "selected_candidate": "p69-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 70,
+      "selected_candidate": "p70-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 71,
+      "selected_candidate": "p71-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 72,
+      "selected_candidate": "p72-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 73,
+      "selected_candidate": "p73-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 74,
+      "selected_candidate": "p74-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 75,
+      "selected_candidate": "p75-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 76,
+      "selected_candidate": "p76-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 77,
+      "selected_candidate": "p77-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 78,
+      "selected_candidate": "p78-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 79,
+      "selected_candidate": "p79-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 80,
+      "selected_candidate": "p80-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 81,
+      "selected_candidate": "p81-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 82,
+      "selected_candidate": "p82-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 83,
+      "selected_candidate": "p83-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 84,
+      "selected_candidate": "p84-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 85,
+      "selected_candidate": "p85-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 86,
+      "selected_candidate": "p86-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 87,
+      "selected_candidate": "p87-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 88,
+      "selected_candidate": "p88-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 89,
+      "selected_candidate": "p89-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 90,
+      "selected_candidate": "p90-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 91,
+      "selected_candidate": "p91-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 92,
+      "selected_candidate": "p92-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 93,
+      "selected_candidate": "p93-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 94,
+      "selected_candidate": "p94-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 95,
+      "selected_candidate": "p95-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 96,
+      "selected_candidate": "p96-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 97,
+      "selected_candidate": "p97-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 98,
+      "selected_candidate": "p98-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 99,
+      "selected_candidate": "p99-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    },
+    {
+      "page_number": 100,
+      "selected_candidate": "p100-native",
+      "technical_status": "passed",
+      "fidelity_status": "high"
+    }
+  ],
+  "coverage": {
+    "semantic": 0.9854,
+    "visual": 0.026,
+    "accessible": 0.9854,
+    "unhandled": 0.0146
+  },
+  "ocr_usage": {
+    "pages_with_ocr": [],
+    "ocr_record_count": 0,
+    "provider_available": false
+  },
+  "table_strategies": [],
+  "visual_fallbacks": {
+    "full_page_fallback_pages": [],
+    "fallback_records": []
+  },
+  "warnings": [],
+  "review_reasons": [],
+  "cleanup_estimate": "low",
+  "generated_at": "2026-07-31T08:49:00.620019Z"
+}

@@ -1,0 +1,150 @@
+{
+  "generated_at": "2026-07-31T08:47:26.139654Z",
+  "source": "PDF-008 decorative vectors.pdf",
+  "technical_status": "passed",
+  "fidelity_status": "review_required",
+  "effective_configuration": {
+    "pdf_mode": "hybrid",
+    "prefer_markitdown": true,
+    "improve_markdown": false,
+    "strict_validation": true,
+    "render_dpi": 220,
+    "preserve_page_markers": true,
+    "allow_inline_html": true,
+    "tesseract_cmd_configured": false
+  },
+  "provider_availability": {
+    "tesseract_available": false,
+    "tesseract_provider": {
+      "configured_path": null,
+      "on_path": false,
+      "executable": null,
+      "available": false,
+      "version": null,
+      "error": "tesseract_not_found"
+    },
+    "markitdown_used": false
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "classifications": [
+        {
+          "label": "mixed_content",
+          "confidence": "medium",
+          "evidence": [
+            "char_count=87",
+            "images=0",
+            "vectors=9"
+          ],
+          "rule": "text_plus_visuals"
+        },
+        {
+          "label": "chart_heavy",
+          "confidence": "medium",
+          "evidence": [
+            "chart_regions=1"
+          ],
+          "rule": "large_vector_regions"
+        },
+        {
+          "label": "vector_heavy",
+          "confidence": "medium",
+          "evidence": [
+            "vector_count=9"
+          ],
+          "rule": "vector_count_ge_8"
+        }
+      ],
+      "selected_candidate": "p1-hybrid",
+      "candidate_scores": [
+        {
+          "candidate_id": "p1-native",
+          "strategy": "native_semantic",
+          "total_score": 0.28,
+          "score_components": {
+            "native_text_coverage": 0.0,
+            "reading_order_plausibility": 0.15,
+            "suspicious_glyph_penalty": -0.0,
+            "heading_plausibility": 0.25,
+            "list_plausibility": 0.15,
+            "chart_leakage_penalty": -0.0,
+            "table_leakage_penalty": -0.0,
+            "duplicate_risk_penalty": -0.02,
+            "cross_page_asset_penalty": 0.0,
+            "missing_asset_penalty": 0.0,
+            "unresolved_ref_penalty": 0.0,
+            "fullpage_penalty": 0.0,
+            "targeted_fallback_bonus": 0.0,
+            "unhandled_penalty": -0.25,
+            "accessibility_bonus": 0.0
+          },
+          "rejection_reasons": [
+            "Rejected because total_score=0.28 < selected=0.29."
+          ]
+        },
+        {
+          "candidate_id": "p1-hybrid",
+          "strategy": "hybrid_targeted_fallback",
+          "total_score": 0.29,
+          "score_components": {
+            "native_text_coverage": 0.0,
+            "reading_order_plausibility": 0.2,
+            "suspicious_glyph_penalty": -0.0,
+            "heading_plausibility": 0.22,
+            "list_plausibility": 0.15,
+            "chart_leakage_penalty": -0.0,
+            "table_leakage_penalty": -0.0,
+            "duplicate_risk_penalty": -0.01,
+            "cross_page_asset_penalty": 0.0,
+            "missing_asset_penalty": 0.0,
+            "unresolved_ref_penalty": 0.0,
+            "fullpage_penalty": -0.5,
+            "targeted_fallback_bonus": 0.18,
+            "unhandled_penalty": 0.0,
+            "accessibility_bonus": 0.05
+          },
+          "rejection_reasons": []
+        }
+      ],
+      "fallback_records": [
+        {
+          "source_page": 1,
+          "region_bbox": [
+            0.0,
+            0.0,
+            612.0,
+            792.0
+          ],
+          "fallback_type": "full_page",
+          "triggering_condition": "native_text_unreliable",
+          "alternatives_attempted": [
+            "native_semantic",
+            "targeted_region_fallback"
+          ],
+          "confidence": 0.41,
+          "text_overlap_detected": false,
+          "review_required": true
+        }
+      ],
+      "semantic_coverage": 0.0,
+      "visual_coverage": 1.0,
+      "accessible_coverage": 0.0,
+      "unhandled_coverage": 0.0,
+      "technical_status": "passed",
+      "fidelity_status": "review_required",
+      "review_reasons": [
+        "fallback_requires_review",
+        "high_fallback_ratio"
+      ]
+    }
+  ],
+  "warnings": [
+    "Page 1: OCR recommended but unavailable."
+  ],
+  "artifact_hints": {
+    "markdown": "PDF-008 decorative vectors.md",
+    "manifest": "pdf-008-decorative-vectors-manifest.json",
+    "assets_dir": "assets"
+  }
+}

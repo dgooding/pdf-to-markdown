@@ -1,0 +1,66 @@
+{
+  "fixture_id": "PDF-019",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "pdf",
+  "expected_semantic_representation": "markdown_with_targeted_fallback_when_unsafe",
+  "intended_page_count": 100,
+  "expected_titles": [
+    "Large PDF Section 1"
+  ],
+  "expected_heading_hierarchy": [
+    "#"
+  ],
+  "expected_paragraphs": [
+    "Synthetic page 1 for large benchmark."
+  ],
+  "expected_list_items": [
+    "item A 1",
+    "item B 1"
+  ],
+  "expected_links": [],
+  "expected_tables": [
+    {
+      "kind": "periodic_text_grid",
+      "every_n_pages": 20
+    }
+  ],
+  "expected_images": [
+    "chart_line.png",
+    "photo_gradient.jpg"
+  ],
+  "expected_captions": [],
+  "expected_page_headers": [
+    "LargePDF Header"
+  ],
+  "expected_page_footers": [
+    "Page 1"
+  ],
+  "expected_page_numbers": [
+    "Page 1"
+  ],
+  "expected_columns": [
+    1
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_text_colors": [
+    "black"
+  ],
+  "expected_bold_spans": [],
+  "expected_italic_spans": [],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [
+    "LargePDF Header"
+  ],
+  "expected_fallback_representation": "mixed_semantic_targeted",
+  "expected_review_requirement": "possible",
+  "known_intentional_ambiguity": [
+    "Performance-focused fixture may vary in runtime by machine."
+  ]
+}

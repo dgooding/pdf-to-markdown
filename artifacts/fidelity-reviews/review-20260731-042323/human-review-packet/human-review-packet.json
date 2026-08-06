@@ -1,0 +1,1041 @@
+{
+  "review_run_id": "review-20260731-042323",
+  "fixtures": [
+    {
+      "fixture_id": "PDF-003",
+      "source_document_path": "documents/PDF-003 ruled table.pdf",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\pdf-003.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-003\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-003\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-003\\direct\\pdf-003-ruled-table-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-003\\direct\\pdf-003-ruled-table-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\pdf-003-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-003\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "review_required",
+      "automated_review_reasons": [
+        [
+          "table_semantics_not_selected"
+        ]
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-native",
+          "fallback_records": []
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "PDF-005",
+      "source_document_path": "documents/PDF-005 complex table.pdf",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\pdf-005.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-005\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-005\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-005\\direct\\pdf-005-complex-table-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-005\\direct\\pdf-005-complex-table-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\pdf-005-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-005\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "review_required",
+      "automated_review_reasons": [
+        [
+          "high_fallback_ratio"
+        ]
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-hybrid",
+          "fallback_records": [
+            {
+              "source_page": 1,
+              "region_bbox": [
+                62.98,
+                218.95,
+                567.05,
+                463.29
+              ],
+              "fallback_type": "chart_crop",
+              "triggering_condition": "chart_region_detected",
+              "alternatives_attempted": [
+                "native_semantic"
+              ],
+              "confidence": 0.62,
+              "text_overlap_detected": false,
+              "review_required": false
+            }
+          ]
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "PDF-008",
+      "source_document_path": "documents/PDF-008 decorative vectors.pdf",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\pdf-008.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-008\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-008\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-008\\direct\\pdf-008-decorative-vectors-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-008\\direct\\pdf-008-decorative-vectors-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\pdf-008-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-008\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "review_required",
+      "automated_review_reasons": [
+        [
+          "fallback_requires_review",
+          "high_fallback_ratio"
+        ]
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-hybrid",
+          "fallback_records": [
+            {
+              "source_page": 1,
+              "region_bbox": [
+                0.0,
+                0.0,
+                612.0,
+                792.0
+              ],
+              "fallback_type": "full_page",
+              "triggering_condition": "native_text_unreliable",
+              "alternatives_attempted": [
+                "native_semantic",
+                "targeted_region_fallback"
+              ],
+              "confidence": 0.41,
+              "text_overlap_detected": false,
+              "review_required": true
+            }
+          ]
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "PDF-011",
+      "source_document_path": "documents/PDF-011 image-only scan.pdf",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\pdf-011.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-011\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-011\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-011\\direct\\pdf-011-image-only-scan-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-011\\direct\\pdf-011-image-only-scan-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\pdf-011-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-011\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "review_required",
+      "automated_review_reasons": [
+        [
+          "fallback_requires_review",
+          "high_fallback_ratio"
+        ]
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-hybrid",
+          "fallback_records": [
+            {
+              "source_page": 1,
+              "region_bbox": [
+                0.0,
+                0.0,
+                612.0,
+                792.0
+              ],
+              "fallback_type": "full_page",
+              "triggering_condition": "native_text_unreliable",
+              "alternatives_attempted": [
+                "native_semantic",
+                "targeted_region_fallback"
+              ],
+              "confidence": 0.41,
+              "text_overlap_detected": false,
+              "review_required": true
+            }
+          ]
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "PDF-012",
+      "source_document_path": "documents/PDF-012 mixed native scanned.pdf",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\pdf-012.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-012\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-012\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-012\\direct\\pdf-012-mixed-native-scanned-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-012\\direct\\pdf-012-mixed-native-scanned-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\pdf-012-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-012\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "review_required",
+      "automated_review_reasons": [
+        [],
+        [
+          "fallback_requires_review",
+          "high_fallback_ratio"
+        ],
+        [],
+        []
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-native",
+          "fallback_records": []
+        },
+        {
+          "page_number": 2,
+          "selected_conversion_strategy": "p2-hybrid",
+          "fallback_records": [
+            {
+              "source_page": 2,
+              "region_bbox": [
+                0.0,
+                0.0,
+                612.0,
+                792.0
+              ],
+              "fallback_type": "full_page",
+              "triggering_condition": "native_text_unreliable",
+              "alternatives_attempted": [
+                "native_semantic",
+                "targeted_region_fallback"
+              ],
+              "confidence": 0.41,
+              "text_overlap_detected": false,
+              "review_required": true
+            }
+          ]
+        },
+        {
+          "page_number": 3,
+          "selected_conversion_strategy": "p3-native",
+          "fallback_records": []
+        },
+        {
+          "page_number": 4,
+          "selected_conversion_strategy": "p4-native",
+          "fallback_records": []
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "PDF-018",
+      "source_document_path": "documents/PDF-018 malformed and edge cases.pdf",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\pdf-018.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-018\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-018\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-018\\direct\\pdf-018-malformed-and-edge-cases-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-018\\direct\\pdf-018-malformed-and-edge-cases-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\pdf-018-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-018\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "review_required",
+      "automated_review_reasons": [
+        [],
+        [
+          "fallback_requires_review",
+          "high_fallback_ratio"
+        ]
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-native",
+          "fallback_records": []
+        },
+        {
+          "page_number": 2,
+          "selected_conversion_strategy": "p2-hybrid",
+          "fallback_records": [
+            {
+              "source_page": 2,
+              "region_bbox": [
+                0.0,
+                0.0,
+                612.0,
+                792.0
+              ],
+              "fallback_type": "full_page",
+              "triggering_condition": "native_text_unreliable",
+              "alternatives_attempted": [
+                "native_semantic",
+                "targeted_region_fallback"
+              ],
+              "confidence": 0.41,
+              "text_overlap_detected": false,
+              "review_required": true
+            }
+          ]
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "PDF-020",
+      "source_document_path": "documents/PDF-020 original regression sample.pdf",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\pdf-020.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-020\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-020\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-020\\direct\\pdf-020-original-regression-sample-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-020\\direct\\pdf-020-original-regression-sample-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\pdf-020-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-020\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "review_required",
+      "automated_review_reasons": [
+        [],
+        [
+          "fallback_requires_review",
+          "high_fallback_ratio"
+        ],
+        [],
+        [
+          "fallback_requires_review",
+          "high_fallback_ratio"
+        ]
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-hybrid",
+          "fallback_records": [
+            {
+              "source_page": 1,
+              "region_bbox": [
+                140.82,
+                560.7,
+                477.82,
+                758.26
+              ],
+              "fallback_type": "chart_crop",
+              "triggering_condition": "chart_region_detected",
+              "alternatives_attempted": [
+                "native_semantic"
+              ],
+              "confidence": 0.62,
+              "text_overlap_detected": false,
+              "review_required": false
+            }
+          ]
+        },
+        {
+          "page_number": 2,
+          "selected_conversion_strategy": "p2-hybrid",
+          "fallback_records": [
+            {
+              "source_page": 2,
+              "region_bbox": [
+                56.74,
+                56.7,
+                539.21,
+                785.2
+              ],
+              "fallback_type": "table_crop",
+              "triggering_condition": "table_structure_low_confidence",
+              "alternatives_attempted": [
+                "markdown_table",
+                "html_table"
+              ],
+              "confidence": 0.58,
+              "text_overlap_detected": false,
+              "review_required": true
+            }
+          ]
+        },
+        {
+          "page_number": 3,
+          "selected_conversion_strategy": "p3-native",
+          "fallback_records": []
+        },
+        {
+          "page_number": 4,
+          "selected_conversion_strategy": "p4-hybrid",
+          "fallback_records": [
+            {
+              "source_page": 4,
+              "region_bbox": [
+                0.0,
+                0.0,
+                595.0,
+                842.0
+              ],
+              "fallback_type": "full_page",
+              "triggering_condition": "native_text_unreliable",
+              "alternatives_attempted": [
+                "native_semantic",
+                "targeted_region_fallback"
+              ],
+              "confidence": 0.41,
+              "text_overlap_detected": false,
+              "review_required": true
+            }
+          ]
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "DOCX-001",
+      "source_document_path": "documents/DOCX-001 simple semantic document.docx",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\docx-001.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-001\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-001\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-001\\direct\\docx-001-simple-semantic-document-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-001\\direct\\docx-001-simple-semantic-document-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\docx-001-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-001\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "moderate",
+      "automated_review_reasons": [
+        []
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-native",
+          "fallback_records": []
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "DOCX-003",
+      "source_document_path": "documents/DOCX-003 advanced tables.docx",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\docx-003.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-003\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-003\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-003\\direct\\docx-003-advanced-tables-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-003\\direct\\docx-003-advanced-tables-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\docx-003-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-003\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "moderate",
+      "automated_review_reasons": [
+        []
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-native",
+          "fallback_records": []
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "DOCX-004",
+      "source_document_path": "documents/DOCX-004 images and captions.docx",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\docx-004.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-004\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-004\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-004\\direct\\docx-004-images-and-captions-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-004\\direct\\docx-004-images-and-captions-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\docx-004-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-004\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "moderate",
+      "automated_review_reasons": [
+        []
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-native",
+          "fallback_records": []
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "DOCX-007",
+      "source_document_path": "documents/DOCX-007 code and technical content.docx",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\docx-007.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-007\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-007\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-007\\direct\\docx-007-code-and-technical-content-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-007\\direct\\docx-007-code-and-technical-content-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\docx-007-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-007\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "moderate",
+      "automated_review_reasons": [
+        []
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-native",
+          "fallback_records": []
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "DOCX-009",
+      "source_document_path": "documents/DOCX-009 unicode and special characters.docx",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\docx-009.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-009\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-009\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-009\\direct\\docx-009-unicode-and-special-characters-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-009\\direct\\docx-009-unicode-and-special-characters-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\docx-009-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\docx-009\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "moderate",
+      "automated_review_reasons": [
+        []
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-native",
+          "fallback_records": []
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "PDF-001",
+      "source_document_path": "documents/PDF-001 native text.pdf",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\pdf-001.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-001\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-001\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-001\\direct\\pdf-001-native-text-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-001\\direct\\pdf-001-native-text-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\pdf-001-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-001\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "high",
+      "automated_review_reasons": [
+        []
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-native",
+          "fallback_records": []
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "PDF-002",
+      "source_document_path": "documents/PDF-002 custom bullets.pdf",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\pdf-002.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-002\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-002\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-002\\direct\\pdf-002-custom-bullets-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-002\\direct\\pdf-002-custom-bullets-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\pdf-002-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-002\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "high",
+      "automated_review_reasons": [
+        []
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-native",
+          "fallback_records": []
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "PDF-006",
+      "source_document_path": "documents/PDF-006 vector chart.pdf",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\pdf-006.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-006\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-006\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-006\\direct\\pdf-006-vector-chart-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-006\\direct\\pdf-006-vector-chart-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\pdf-006-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-006\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "high",
+      "automated_review_reasons": [
+        []
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-native",
+          "fallback_records": []
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "PDF-009",
+      "source_document_path": "documents/PDF-009 two column.pdf",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\pdf-009.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-009\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-009\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-009\\direct\\pdf-009-two-column-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-009\\direct\\pdf-009-two-column-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\pdf-009-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-009\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "high",
+      "automated_review_reasons": [
+        []
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-hybrid",
+          "fallback_records": []
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    },
+    {
+      "fixture_id": "PDF-016",
+      "source_document_path": "documents/PDF-016 links and annotations.pdf",
+      "expected_sidecar_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\expected\\pdf-016.expected.json",
+      "direct_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-016\\direct\\docs",
+      "endpoint_output_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-016\\endpoint\\extracted",
+      "manifest_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-016\\direct\\pdf-016-links-and-annotations-manifest.json",
+      "quality_report_path": "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-016\\direct\\pdf-016-links-and-annotations-quality-report.json",
+      "source_page_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\tests\\fixtures\\generated\\previews\\pdf-016-p1.png"
+      ],
+      "rendered_output_preview_paths": [
+        "C:\\Users\\A083101\\OneDrive - PROGRESSIVE CASUALTY INSURANCE COMPANY\\Desktop\\PDF to Markdown App Needs Py3.9\\artifacts\\benchmarks\\benchmark_20260731_024647\\fixtures\\pdf-016\\direct\\docs\\assets"
+      ],
+      "automated_fidelity_rating": "high",
+      "automated_review_reasons": [
+        [],
+        []
+      ],
+      "page_level_fallback_strategy": [
+        {
+          "page_number": 1,
+          "selected_conversion_strategy": "p1-native",
+          "fallback_records": []
+        },
+        {
+          "page_number": 2,
+          "selected_conversion_strategy": "p2-native",
+          "fallback_records": []
+        }
+      ],
+      "blank_human_fields": {
+        "reviewer": "",
+        "review_date": "",
+        "review_start_time": "",
+        "review_end_time": "",
+        "human_review_minutes": null,
+        "human_fidelity_status": null,
+        "acceptance_category": null,
+        "cleanup_category": null,
+        "human_cleanup_minutes": null,
+        "missing_content_findings": "",
+        "duplicate_content_findings": "",
+        "reading_order_findings": "",
+        "heading_findings": "",
+        "list_findings": "",
+        "table_findings": "",
+        "image_findings": "",
+        "chart_findings": "",
+        "link_findings": "",
+        "accessibility_findings": "",
+        "reviewer_notes": ""
+      }
+    }
+  ]
+}

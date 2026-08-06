@@ -1,0 +1,22 @@
+Minimal searchable ITSD site milestone
+Date: 2026-08-05
+
+Implementation:
+- Read the Docs theme with persistent left navigation
+- Navigation: Home, Converter, Documents
+- Built-in MkDocs search enabled
+- Published document content preserved and indexed
+- Obsolete showcase and auxiliary site content removed
+
+Verification:
+- MkDocs build: PASS
+- Full test suite: 54 passed, 0 failed, 0 skipped
+- Live /docs/: 200
+- Live /editor: 200
+- Live /docs/published/: 200
+- Live /docs/search.html?q=converter: 200
+- Search index scope: home and published documents only
+- Strict parity Markdown: True
+- Strict parity assets: True
+- Strict parity manifest core: True
+- Strict parity quality core: True

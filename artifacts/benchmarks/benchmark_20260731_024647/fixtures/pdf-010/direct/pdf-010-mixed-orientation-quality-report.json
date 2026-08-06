@@ -1,0 +1,254 @@
+{
+  "generated_at": "2026-07-31T08:47:31.933892Z",
+  "source": "PDF-010 mixed orientation.pdf",
+  "technical_status": "passed",
+  "fidelity_status": "high",
+  "effective_configuration": {
+    "pdf_mode": "hybrid",
+    "prefer_markitdown": true,
+    "improve_markdown": false,
+    "strict_validation": true,
+    "render_dpi": 220,
+    "preserve_page_markers": true,
+    "allow_inline_html": true,
+    "tesseract_cmd_configured": false
+  },
+  "provider_availability": {
+    "tesseract_available": false,
+    "tesseract_provider": {
+      "configured_path": null,
+      "on_path": false,
+      "executable": null,
+      "available": false,
+      "version": null,
+      "error": "tesseract_not_found"
+    },
+    "markitdown_used": false
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "classifications": [
+        {
+          "label": "unknown",
+          "confidence": "low",
+          "evidence": [
+            "no_strong_rule"
+          ],
+          "rule": "fallback_unknown"
+        }
+      ],
+      "selected_candidate": "p1-native",
+      "candidate_scores": [
+        {
+          "candidate_id": "p1-native",
+          "strategy": "native_semantic",
+          "total_score": 2.5947,
+          "score_components": {
+            "native_text_coverage": 0.9447,
+            "reading_order_plausibility": 0.92,
+            "suspicious_glyph_penalty": -0.0,
+            "heading_plausibility": 0.25,
+            "list_plausibility": 0.15,
+            "chart_leakage_penalty": -0.0,
+            "table_leakage_penalty": -0.0,
+            "duplicate_risk_penalty": -0.02,
+            "cross_page_asset_penalty": 0.0,
+            "missing_asset_penalty": 0.0,
+            "unresolved_ref_penalty": 0.0,
+            "fullpage_penalty": 0.0,
+            "targeted_fallback_bonus": 0.0,
+            "unhandled_penalty": 0.0,
+            "accessibility_bonus": 0.35
+          },
+          "rejection_reasons": []
+        },
+        {
+          "candidate_id": "p1-hybrid",
+          "strategy": "hybrid_targeted_fallback",
+          "total_score": 2.4647,
+          "score_components": {
+            "native_text_coverage": 0.9447,
+            "reading_order_plausibility": 0.88,
+            "suspicious_glyph_penalty": -0.0,
+            "heading_plausibility": 0.22,
+            "list_plausibility": 0.15,
+            "chart_leakage_penalty": -0.0,
+            "table_leakage_penalty": -0.0,
+            "duplicate_risk_penalty": -0.01,
+            "cross_page_asset_penalty": 0.0,
+            "missing_asset_penalty": 0.0,
+            "unresolved_ref_penalty": 0.0,
+            "fullpage_penalty": 0.0,
+            "targeted_fallback_bonus": 0.0,
+            "unhandled_penalty": 0.0,
+            "accessibility_bonus": 0.28
+          },
+          "rejection_reasons": [
+            "Rejected because total_score=2.4647 < selected=2.5947."
+          ]
+        }
+      ],
+      "fallback_records": [],
+      "semantic_coverage": 0.9447,
+      "visual_coverage": 0.0,
+      "accessible_coverage": 0.9447,
+      "unhandled_coverage": 0.0553,
+      "technical_status": "passed",
+      "fidelity_status": "high",
+      "review_reasons": []
+    },
+    {
+      "page_number": 2,
+      "classifications": [
+        {
+          "label": "photograph_or_illustration",
+          "confidence": "low",
+          "evidence": [
+            "image_count=1",
+            "char_count=38"
+          ],
+          "rule": "images_with_low_text"
+        }
+      ],
+      "selected_candidate": "p2-native",
+      "candidate_scores": [
+        {
+          "candidate_id": "p2-native",
+          "strategy": "native_semantic",
+          "total_score": 2.6042,
+          "score_components": {
+            "native_text_coverage": 0.9542,
+            "reading_order_plausibility": 0.92,
+            "suspicious_glyph_penalty": -0.0,
+            "heading_plausibility": 0.25,
+            "list_plausibility": 0.15,
+            "chart_leakage_penalty": -0.0,
+            "table_leakage_penalty": -0.0,
+            "duplicate_risk_penalty": -0.02,
+            "cross_page_asset_penalty": 0.0,
+            "missing_asset_penalty": 0.0,
+            "unresolved_ref_penalty": 0.0,
+            "fullpage_penalty": 0.0,
+            "targeted_fallback_bonus": 0.0,
+            "unhandled_penalty": 0.0,
+            "accessibility_bonus": 0.35
+          },
+          "rejection_reasons": []
+        },
+        {
+          "candidate_id": "p2-hybrid",
+          "strategy": "hybrid_targeted_fallback",
+          "total_score": 2.4742,
+          "score_components": {
+            "native_text_coverage": 0.9542,
+            "reading_order_plausibility": 0.88,
+            "suspicious_glyph_penalty": -0.0,
+            "heading_plausibility": 0.22,
+            "list_plausibility": 0.15,
+            "chart_leakage_penalty": -0.0,
+            "table_leakage_penalty": -0.0,
+            "duplicate_risk_penalty": -0.01,
+            "cross_page_asset_penalty": 0.0,
+            "missing_asset_penalty": 0.0,
+            "unresolved_ref_penalty": 0.0,
+            "fullpage_penalty": 0.0,
+            "targeted_fallback_bonus": 0.0,
+            "unhandled_penalty": 0.0,
+            "accessibility_bonus": 0.28
+          },
+          "rejection_reasons": [
+            "Rejected because total_score=2.4742 < selected=2.6042."
+          ]
+        }
+      ],
+      "fallback_records": [],
+      "semantic_coverage": 0.9542,
+      "visual_coverage": 0.2,
+      "accessible_coverage": 0.9542,
+      "unhandled_coverage": 0.0458,
+      "technical_status": "passed",
+      "fidelity_status": "high",
+      "review_reasons": []
+    },
+    {
+      "page_number": 3,
+      "classifications": [
+        {
+          "label": "photograph_or_illustration",
+          "confidence": "low",
+          "evidence": [
+            "image_count=1",
+            "char_count=12"
+          ],
+          "rule": "images_with_low_text"
+        }
+      ],
+      "selected_candidate": "p3-native",
+      "candidate_scores": [
+        {
+          "candidate_id": "p3-native",
+          "strategy": "native_semantic",
+          "total_score": 2.5694,
+          "score_components": {
+            "native_text_coverage": 0.9194,
+            "reading_order_plausibility": 0.92,
+            "suspicious_glyph_penalty": -0.0,
+            "heading_plausibility": 0.25,
+            "list_plausibility": 0.15,
+            "chart_leakage_penalty": -0.0,
+            "table_leakage_penalty": -0.0,
+            "duplicate_risk_penalty": -0.02,
+            "cross_page_asset_penalty": 0.0,
+            "missing_asset_penalty": 0.0,
+            "unresolved_ref_penalty": 0.0,
+            "fullpage_penalty": 0.0,
+            "targeted_fallback_bonus": 0.0,
+            "unhandled_penalty": 0.0,
+            "accessibility_bonus": 0.35
+          },
+          "rejection_reasons": []
+        },
+        {
+          "candidate_id": "p3-hybrid",
+          "strategy": "hybrid_targeted_fallback",
+          "total_score": 2.4394,
+          "score_components": {
+            "native_text_coverage": 0.9194,
+            "reading_order_plausibility": 0.88,
+            "suspicious_glyph_penalty": -0.0,
+            "heading_plausibility": 0.22,
+            "list_plausibility": 0.15,
+            "chart_leakage_penalty": -0.0,
+            "table_leakage_penalty": -0.0,
+            "duplicate_risk_penalty": -0.01,
+            "cross_page_asset_penalty": 0.0,
+            "missing_asset_penalty": 0.0,
+            "unresolved_ref_penalty": 0.0,
+            "fullpage_penalty": 0.0,
+            "targeted_fallback_bonus": 0.0,
+            "unhandled_penalty": 0.0,
+            "accessibility_bonus": 0.28
+          },
+          "rejection_reasons": [
+            "Rejected because total_score=2.4394 < selected=2.5694."
+          ]
+        }
+      ],
+      "fallback_records": [],
+      "semantic_coverage": 0.9194,
+      "visual_coverage": 0.2,
+      "accessible_coverage": 0.9194,
+      "unhandled_coverage": 0.0806,
+      "technical_status": "passed",
+      "fidelity_status": "high",
+      "review_reasons": []
+    }
+  ],
+  "warnings": [],
+  "artifact_hints": {
+    "markdown": "PDF-010 mixed orientation.md",
+    "manifest": "pdf-010-mixed-orientation-manifest.json",
+    "assets_dir": "assets"
+  }
+}

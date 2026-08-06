@@ -1,0 +1,62 @@
+{
+  "fixture_id": "PDF-007",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "pdf",
+  "expected_semantic_representation": "markdown_with_targeted_fallback_when_unsafe",
+  "intended_page_count": 1,
+  "expected_titles": [
+    "Multiple Visual Regions"
+  ],
+  "expected_heading_hierarchy": [
+    "#"
+  ],
+  "expected_paragraphs": [
+    "Body paragraph before visuals."
+  ],
+  "expected_list_items": [],
+  "expected_links": [],
+  "expected_tables": [
+    {
+      "kind": "text_grid",
+      "rows": 3
+    }
+  ],
+  "expected_images": [
+    "chart_bar.png",
+    "chart_line.png",
+    "photo_gradient.jpg"
+  ],
+  "expected_captions": [
+    "Figure 1: chart region",
+    "Figure 2: chart region",
+    "Figure 3: photo region"
+  ],
+  "expected_charts": [
+    "chart",
+    "chart"
+  ],
+  "expected_page_headers": [],
+  "expected_page_footers": [],
+  "expected_page_numbers": [],
+  "expected_columns": [
+    2
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_text_colors": [
+    "black"
+  ],
+  "expected_bold_spans": [],
+  "expected_italic_spans": [],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [],
+  "expected_fallback_representation": "targeted_multi_region",
+  "expected_review_requirement": "possible",
+  "known_intentional_ambiguity": []
+}

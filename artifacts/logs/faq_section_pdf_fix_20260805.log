@@ -1,0 +1,16 @@
+FAQ section + white paper PDF fix
+Date: 2026-08-05
+
+Changes made:
+- Replaced root docs/faq.md landing page with docs/faq/index.md
+- Updated mkdocs navigation to point FAQ Overview to faq/index.md
+- Updated home-page FAQ button and FAQ quick-access link to faq/index.md
+- Added White Paper PDF entry to nav
+- Added direct PDF download link to faq/white-paper.md
+- Repaired malformed ensure_itsd_site_scaffold() content in app.py
+- Rebuilt site through app.build_itsd_site() to generate downloads/itsd-converter-white-paper.pdf
+
+Verification:
+- FAQ section route: /docs/faq/ => 200
+- White paper PDF route: /docs/downloads/itsd-converter-white-paper.pdf => 200
+- PDF content-type => application/pdf

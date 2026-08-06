@@ -1,0 +1,59 @@
+{
+  "source": "file-sample_150kB.pdf",
+  "page_count": 4,
+  "metadata": {
+    "format": "PDF 1.4",
+    "title": "",
+    "author": "",
+    "subject": "",
+    "keywords": "",
+    "creator": "Writer",
+    "producer": "LibreOffice 4.2",
+    "creationDate": "D:20170816144413+02'00'",
+    "modDate": "",
+    "trapped": "",
+    "encryption": null
+  },
+  "pages": [
+    {
+      "page": 1,
+      "text_chars": 1311,
+      "text_blocks": 18,
+      "image_blocks": 0,
+      "embedded_images": 1,
+      "drawings": 53,
+      "links": 1,
+      "mixed_content": true
+    },
+    {
+      "page": 2,
+      "text_chars": 2009,
+      "text_blocks": 11,
+      "image_blocks": 0,
+      "embedded_images": 1,
+      "drawings": 59,
+      "links": 0,
+      "mixed_content": true
+    },
+    {
+      "page": 3,
+      "text_chars": 2961,
+      "text_blocks": 10,
+      "image_blocks": 0,
+      "embedded_images": 1,
+      "drawings": 1,
+      "links": 0,
+      "mixed_content": true
+    },
+    {
+      "page": 4,
+      "text_chars": 0,
+      "text_blocks": 0,
+      "image_blocks": 1,
+      "embedded_images": 1,
+      "drawings": 3,
+      "links": 0,
+      "mixed_content": false
+    }
+  ]
+}

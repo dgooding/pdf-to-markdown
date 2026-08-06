@@ -1,0 +1,18 @@
+{
+  "template": {
+    "pilot_id": "",
+    "source_filename": "",
+    "file_type": "",
+    "file_size": null,
+    "page_count": null,
+    "feature_categories": [],
+    "confidentiality_classification": "local_only",
+    "approved_for_local_processing": false,
+    "approved_for_artifact_preview": false,
+    "approved_for_commit": false,
+    "approved_for_retention": false,
+    "expected_review_sensitivity": "",
+    "conversion_status": "pending",
+    "review_status": "pending"
+  }
+}

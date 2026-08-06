@@ -1,0 +1,57 @@
+{
+  "fixture_id": "DOCX-007",
+  "synthetic": true,
+  "seed": 20260730,
+  "generated_data_note": "All content is synthetic and reproducible from seed.",
+  "source_format": "docx",
+  "expected_semantic_representation": "markdown",
+  "intended_page_count": 2,
+  "expected_titles": [
+    "Code and Technical Content"
+  ],
+  "expected_heading_hierarchy": [
+    "#"
+  ],
+  "expected_paragraphs": [
+    "PowerShell: Get-ChildItem | Where-Object {$_.Length -gt 1024}",
+    "Python: for i in range(3): print(i)",
+    "JSON: {\"service\":\"synthetic\",\"ok\":true}",
+    "YAML: retries: 3\nmode: strict",
+    "XML: <item id=\"1\">value</item>",
+    "IPv4: 192.0.2.44 IPv6: 2001:db8::10",
+    "Windows Path: C:\\\\Synthetic\\\\App\\\\logs\\\\today.txt",
+    "POSIX Path: /opt/synthetic/app/logs/today.txt",
+    "Symbols: `pipe|asterisk*underscore_<>`"
+  ],
+  "expected_list_items": [],
+  "expected_links": [],
+  "expected_tables": [],
+  "expected_images": [],
+  "expected_captions": [],
+  "expected_page_headers": [],
+  "expected_page_footers": [],
+  "expected_columns": [
+    1
+  ],
+  "expected_rotations": [
+    0
+  ],
+  "expected_bold_spans": [],
+  "expected_italic_spans": [],
+  "expected_underlined_spans": [],
+  "expected_code_blocks": [
+    "PowerShell: Get-ChildItem | Where-Object {$_.Length -gt 1024}",
+    "Python: for i in range(3): print(i)",
+    "JSON: {\"service\":\"synthetic\",\"ok\":true}",
+    "YAML: retries: 3\nmode: strict",
+    "XML: <item id=\"1\">value</item>"
+  ],
+  "expected_callouts": [],
+  "expected_ocr_regions": [],
+  "expected_repeated_elements": [],
+  "expected_fallback_representation": "none",
+  "expected_review_requirement": "no",
+  "known_intentional_ambiguity": [
+    "Inline escaping may differ by markdown generator."
+  ]
+}
