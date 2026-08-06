@@ -461,3 +461,11 @@
 - Added CSS safeguards for page-section submenus, expand controls, footer buttons, and mobile version navigation.
 - Added regression coverage in `tests/test_site_publish.py`.
 - Verification: focused tests 6 passed; full suite 54 passed; strict parity fully true; browser visual check passed.
+
+## 2026-08-05 Public repository and protected deletion
+- Changed `https://github.com/dgooding/pdf-to-markdown` visibility to public.
+- Added path-safe published-document deletion and `POST /api/delete-published` in `app.py`.
+- Added generated Documents-page Delete controls that confirm intent and request `PUBLISH_SECRET`.
+- Corrected hosted document persistence by synchronizing `DATA_ROOT/published` into the MkDocs source before builds.
+- Added focused regression coverage in `tests/test_site_publish.py`.
+- Verification: 9 focused tests passed; MkDocs HTML control check passed; 65 full-suite tests passed; strict parity fully true.

@@ -48,6 +48,9 @@ This file records current repository architecture checkpoints for the document-t
 - Published converter output is staged under:
   - `mkdocs_preview/docs/published/<site-path>/index.md`
   - `mkdocs_preview/docs/published/<site-path>/assets/*`
+- Hosted deployments use `DATA_ROOT/published` as the authoritative persistent document source and synchronize it into `mkdocs_preview/docs/published/` before each MkDocs build.
+- `POST /api/delete-published` removes a normalized, contained document directory and rebuilds the index/site.
+- Publish and delete operations use the same optional `PUBLISH_SECRET` authorization boundary.
 
 ## MkDocs Positioning
 - MkDocs remains developer-only validation/staging support.

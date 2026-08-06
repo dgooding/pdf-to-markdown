@@ -1,11 +1,18 @@
 from __future__ import annotations
 
+import asyncio
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
+
+from fastapi import HTTPException
+
+import app as app_module
 
 from app import (
     _EDITOR_HTML,
+    delete_published_document,
     MKDOCS_CONFIG_FILE,
     MKDOCS_DOCS_DIR,
     normalize_site_path,
@@ -61,6 +68,59 @@ class SitePublishTests(unittest.TestCase):
                 site_path="reset-password",
             )
 
+    def test_delete_published_document_removes_document_and_empty_parent(self) -> None:
+        publish_markdown_to_mkdocs_site(
+            source_markdown=self.source_md,
+            source_assets_dir=self.source_assets,
+            docs_root=self.docs_root,
+            site_path="guides/reset-password",
+        )
+
+        result = delete_published_document(
+            docs_root=self.docs_root,
+            site_path="guides/reset-password",
+        )
+
+        self.assertEqual(result["status"], "deleted")
+        self.assertFalse((self.docs_root / "guides" / "reset-password").exists())
+        self.assertFalse((self.docs_root / "guides").exists())
+
+    def test_delete_published_document_rejects_unsafe_path(self) -> None:
+        with self.assertRaisesRegex(ValueError, "Invalid document path"):
+            delete_published_document(docs_root=self.docs_root, site_path="../reset-password")
+
+    def test_delete_endpoint_requires_publish_secret(self) -> None:
+        publish_markdown_to_mkdocs_site(
+            source_markdown=self.source_md,
+            source_assets_dir=self.source_assets,
+            docs_root=self.docs_root,
+            site_path="reset-password",
+        )
+
+        with (
+            patch.object(app_module, "_PUBLISH_SECRET", "required-secret"),
+            patch.object(app_module, "PUBLISHED_DOCS_DIR", self.docs_root),
+            patch.object(app_module, "build_itsd_site"),
+        ):
+            with self.assertRaises(HTTPException) as denied:
+                asyncio.run(
+                    app_module.delete_from_site(
+                        site_path="reset-password",
+                        publish_secret="wrong",
+                    )
+                )
+            self.assertEqual(denied.exception.status_code, 403)
+            self.assertTrue((self.docs_root / "reset-password" / "index.md").exists())
+
+            deleted = asyncio.run(
+                app_module.delete_from_site(
+                    site_path="reset-password",
+                    publish_secret="required-secret",
+                )
+            )
+            self.assertEqual(deleted.status_code, 200)
+            self.assertIn(b'"status":"deleted"', deleted.body)
+
     def test_editor_uses_simplified_publish_workflow(self) -> None:
         self.assertIn("Document Converter", _EDITOR_HTML)
         self.assertIn("Publish to Documents", _EDITOR_HTML)
@@ -92,6 +152,9 @@ class SitePublishTests(unittest.TestCase):
         index_text = (self.docs_root / "index.md").read_text(encoding="utf-8")
         self.assertIn("Reset Password", index_text)
         self.assertIn("guides/reset-password/", index_text)
+        self.assertIn('class="delete-published-document"', index_text)
+        self.assertIn('data-site-path="guides/reset-password"', index_text)
+        self.assertIn("/api/delete-published", index_text)
 
 
 if __name__ == "__main__":

@@ -343,3 +343,11 @@
 - Removed Home section dropdown entries and all desktop/mobile Next and Previous controls.
 - Used native Read the Docs theme settings with CSS safeguards so rebuilds preserve the simple layout.
 - Verification: 6 focused tests passed; 54 full-suite tests passed; strict endpoint parity remained fully true; visual browser check passed.
+
+## 2026-08-05 Public Repository and Document Deletion
+- Published the repository publicly at `https://github.com/dgooding/pdf-to-markdown`.
+- Added a Delete control beside each entry on the Documents page.
+- Added `POST /api/delete-published`, protected by the existing `PUBLISH_SECRET` when configured.
+- Added normalized-path and root-containment checks before recursive document removal.
+- Synchronized persistent `DATA_ROOT/published` content into the MkDocs build source for hosted deployments.
+- Verification: 9 focused tests passed; MkDocs build and generated delete controls verified; 65 full-suite tests passed; strict endpoint parity remained fully true.

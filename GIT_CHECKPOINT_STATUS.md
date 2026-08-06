@@ -5,8 +5,9 @@
 - repository_root: `.`
 - current_branch: `main`
 - remote: `https://github.com/dgooding/pdf-to-markdown.git`
+- repository_visibility: `public`
 - prototype-v2-rc1 tag exists: `False`
-- recommended_next_action: Configure Render deployment from the GitHub repository.
+- recommended_next_action: Deploy and smoke-test the Render service.
 
 ## Commands requiring human authorization
 - `git commit ...`

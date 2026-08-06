@@ -30,3 +30,18 @@ body {
 .rst-versions {
   display: none !important;
 }
+
+.delete-published-document {
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid #b91c1c;
+  border-radius: 4px;
+  background: #fff;
+  color: #b91c1c;
+  cursor: pointer;
+}
+
+.delete-published-document:hover {
+  background: #b91c1c;
+  color: #fff;
+}

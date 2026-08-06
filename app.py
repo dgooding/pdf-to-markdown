@@ -32,11 +32,12 @@ _BIND_PORT = int(os.getenv("PORT", "8000"))
 _PUBLISH_SECRET = os.getenv("PUBLISH_SECRET", "")
 # Persistent data root; use env DATA_ROOT on hosted deployments so a mounted volume is used
 _DATA_ROOT = Path(os.getenv("DATA_ROOT", str(BASE_DIR)))
+_DATA_ROOT_CONFIGURED = bool(os.getenv("DATA_ROOT", "").strip())
 
 MKDOCS_PROJECT_DIR = BASE_DIR / "mkdocs_preview"
 MKDOCS_DOCS_DIR = MKDOCS_PROJECT_DIR / "docs"
 MKDOCS_CONFIG_FILE = MKDOCS_PROJECT_DIR / "mkdocs.yml"
-PUBLISHED_DOCS_DIR = _DATA_ROOT / "published"
+PUBLISHED_DOCS_DIR = _DATA_ROOT / "published" if _DATA_ROOT_CONFIGURED else MKDOCS_DOCS_DIR / "published"
 SITE_DIR = MKDOCS_PROJECT_DIR / "site"
 
 SUPPORTED_UPLOADS = {".pdf", ".docx", ".md", ".txt"}
@@ -48,6 +49,7 @@ MAX_FILES_PER_REQUEST = 50
 app = FastAPI(title="MkDocs File Converter API", version="1.0.0")
 
 jobs: dict[str, dict[str, Any]] = {}
+site_mutation_lock = asyncio.Lock()
 STALE_JOB_SECONDS = int(os.getenv("STALE_JOB_SECONDS", str(60 * 60)))
 
 
@@ -244,6 +246,35 @@ def publish_markdown_to_mkdocs_site(
   }
 
 
+def delete_published_document(*, docs_root: Path, site_path: str) -> dict[str, str]:
+  requested = site_path.strip().replace("\\", "/").strip("/")
+  if not requested:
+    raise ValueError("Document path is required.")
+
+  normalized = normalize_site_path(requested, "")
+  if normalized != requested:
+    raise ValueError("Invalid document path.")
+
+  resolved_root = docs_root.resolve()
+  target_dir = (docs_root / normalized).resolve()
+  try:
+    target_dir.relative_to(resolved_root)
+  except ValueError as exc:
+    raise ValueError("Invalid document path.") from exc
+
+  target_markdown = target_dir / "index.md"
+  if target_dir == resolved_root or not target_markdown.is_file():
+    raise FileNotFoundError(f'Document "{normalized}" was not found.')
+
+  shutil.rmtree(target_dir)
+  parent = target_dir.parent
+  while parent != resolved_root and parent.is_dir() and not any(parent.iterdir()):
+    parent.rmdir()
+    parent = parent.parent
+
+  return {"site_path": normalized, "status": "deleted"}
+
+
 def _read_first_heading(markdown_file: Path) -> str:
   for line in markdown_file.read_text(encoding="utf-8", errors="ignore").splitlines():
     stripped = line.strip()
@@ -273,7 +304,35 @@ def update_published_index(docs_root: Path) -> None:
   if entries:
     lines.extend(["## Available Documents", ""])
     for rel_dir, title in entries:
-      lines.append(f"- [{title}]({rel_dir}/index.md) — `{rel_dir}`")
+      lines.append(
+        f'- [{title}]({rel_dir}/index.md) — `{rel_dir}` '
+        f'<button type="button" class="delete-published-document" data-site-path="{rel_dir}">Delete</button>'
+      )
+    lines.extend([
+      "",
+      "<script>",
+      "document.addEventListener('click', async function (event) {",
+      "  const button = event.target.closest('.delete-published-document');",
+      "  if (!button) return;",
+      "  const sitePath = button.dataset.sitePath;",
+      "  if (!window.confirm('Delete ' + sitePath + '? This cannot be undone.')) return;",
+      "  const publishSecret = window.prompt('Enter the publish secret to delete this document:');",
+      "  if (publishSecret === null) return;",
+      "  button.disabled = true;",
+      "  const form = new FormData();",
+      "  form.append('site_path', sitePath);",
+      "  form.append('publish_secret', publishSecret);",
+      "  const response = await fetch('/api/delete-published', { method: 'POST', body: form });",
+      "  const result = await response.json().catch(function () { return {}; });",
+      "  if (!response.ok) {",
+      "    window.alert(result.detail || 'Unable to delete the document.');",
+      "    button.disabled = false;",
+      "    return;",
+      "  }",
+      "  window.location.reload();",
+      "});",
+      "</script>",
+    ])
   else:
     lines.extend([
       "## Available Documents",
@@ -282,6 +341,15 @@ def update_published_index(docs_root: Path) -> None:
     ])
 
   (docs_root / "index.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def sync_published_docs_to_mkdocs() -> None:
+  destination = MKDOCS_DOCS_DIR / "published"
+  if PUBLISHED_DOCS_DIR.resolve() == destination.resolve():
+    return
+  if destination.exists():
+    shutil.rmtree(destination)
+  shutil.copytree(PUBLISHED_DOCS_DIR, destination)
 
 
 def ensure_itsd_site_scaffold() -> None:
@@ -388,11 +456,27 @@ This site provides a simple, searchable home for IT support documents.
 .rst-versions {
   display: none !important;
 }
+
+.delete-published-document {
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px solid #b91c1c;
+  border-radius: 4px;
+  background: #fff;
+  color: #b91c1c;
+  cursor: pointer;
+}
+
+.delete-published-document:hover {
+  background: #b91c1c;
+  color: #fff;
+}
 """,
     encoding="utf-8",
   )
 
   update_published_index(PUBLISHED_DOCS_DIR)
+  sync_published_docs_to_mkdocs()
 
 
 def build_itsd_site() -> None:
@@ -1109,15 +1193,16 @@ async def publish_to_site(
   normalized_doc = slugify(document_name) if document_name.strip() else slugify(Path(job["source_file"]).stem)
 
   try:
-    published = await asyncio.to_thread(
-      publish_markdown_to_mkdocs_site,
-      source_markdown=output_file,
-      source_assets_dir=source_assets_dir,
-      docs_root=PUBLISHED_DOCS_DIR,
-      site_path=normalized_doc,
-    )
-    await asyncio.to_thread(update_published_index, PUBLISHED_DOCS_DIR)
-    await asyncio.to_thread(build_itsd_site)
+    async with site_mutation_lock:
+      published = await asyncio.to_thread(
+        publish_markdown_to_mkdocs_site,
+        source_markdown=output_file,
+        source_assets_dir=source_assets_dir,
+        docs_root=PUBLISHED_DOCS_DIR,
+        site_path=normalized_doc,
+      )
+      await asyncio.to_thread(update_published_index, PUBLISHED_DOCS_DIR)
+      await asyncio.to_thread(build_itsd_site)
   except FileExistsError as exc:
     raise HTTPException(status_code=409, detail=str(exc)) from exc
   except Exception as exc:  # noqa: BLE001
@@ -1131,6 +1216,33 @@ async def publish_to_site(
       **published,
     }
   )
+
+
+@app.post("/api/delete-published")
+async def delete_from_site(
+  site_path: str = Form(""),
+  publish_secret: str = Form(""),
+) -> JSONResponse:
+  if _PUBLISH_SECRET and publish_secret != _PUBLISH_SECRET:
+    raise HTTPException(status_code=403, detail="Deletion is restricted. Provide the correct publish secret.")
+
+  try:
+    async with site_mutation_lock:
+      deleted = await asyncio.to_thread(
+        delete_published_document,
+        docs_root=PUBLISHED_DOCS_DIR,
+        site_path=site_path,
+      )
+      await asyncio.to_thread(update_published_index, PUBLISHED_DOCS_DIR)
+      await asyncio.to_thread(build_itsd_site)
+  except ValueError as exc:
+    raise HTTPException(status_code=400, detail=str(exc)) from exc
+  except FileNotFoundError as exc:
+    raise HTTPException(status_code=404, detail=str(exc)) from exc
+  except Exception as exc:  # noqa: BLE001
+    raise HTTPException(status_code=500, detail=f"Failed to delete document: {exc}") from exc
+
+  return JSONResponse({**deleted, "message": "Document deleted from the ITSD site."})
 
 
 _EDITOR_HTML = r"""<!doctype html>

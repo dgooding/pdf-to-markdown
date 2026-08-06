@@ -1,0 +1,13 @@
+Public repository and protected deletion milestone
+Date: 2026-08-05
+Repository: https://github.com/dgooding/pdf-to-markdown
+Visibility: public
+Focused tests: 9 passed, 0 failed
+MkDocs build: passed
+Generated delete control check: passed
+Full suite: 65 passed, 0 failed, 0 skipped
+Strict endpoint parity:
+COMPARE_MD=True
+COMPARE_ASSETS=True
+COMPARE_MANIFEST_CORE=True
+COMPARE_QUALITY_CORE=True

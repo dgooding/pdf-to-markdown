@@ -286,3 +286,12 @@
 - Mobile version navigation container: hidden.
 - Browser visual check: sidebar contains only Search, Home, Converter, and Documents.
 - Strict endpoint parity: all comparison fields true.
+
+## 2026-08-05 Public Repository and Document Deletion Validation
+- GitHub API reported repository visibility: `public`.
+- Focused site tests: 9 passed, 0 failed.
+- Delete coverage verifies successful removal, empty-parent cleanup, unsafe-path rejection, and publish-secret enforcement.
+- MkDocs build through `build_itsd_site()`: pass.
+- Generated `published/index.html` contains the delete controls and API target.
+- Full suite: 65 passed, 0 failed, 0 skipped.
+- Strict endpoint parity: Markdown, assets, manifest core, and quality core all true.
