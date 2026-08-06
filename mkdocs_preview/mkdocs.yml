@@ -13,6 +13,8 @@ markdown_extensions:
   - fenced_code
 extra_css:
   - stylesheets/extra.css
+extra_javascript:
+  - javascripts/delete-published.js
 nav:
   - Home: index.md
   - Converter: /editor

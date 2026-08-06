@@ -148,13 +148,16 @@ class SitePublishTests(unittest.TestCase):
     def test_site_navigation_stays_flat(self) -> None:
         config = MKDOCS_CONFIG_FILE.read_text(encoding="utf-8")
         css = (MKDOCS_DOCS_DIR / "stylesheets" / "extra.css").read_text(encoding="utf-8")
+        delete_script = (MKDOCS_DOCS_DIR / "javascripts" / "delete-published.js").read_text(encoding="utf-8")
 
         self.assertIn("navigation_depth: 1", config)
         self.assertIn("titles_only: true", config)
         self.assertIn("prev_next_buttons_location: none", config)
+        self.assertIn("javascripts/delete-published.js", config)
         self.assertIn(".wy-menu-vertical li.toctree-l1 > ul", css)
         self.assertIn(".rst-footer-buttons", css)
         self.assertIn(".rst-versions", css)
+        self.assertIn("/api/delete-published", delete_script)
 
     def test_update_published_index_lists_published_pages(self) -> None:
         publish_markdown_to_mkdocs_site(
@@ -170,7 +173,7 @@ class SitePublishTests(unittest.TestCase):
         self.assertIn("guides/reset-password/", index_text)
         self.assertIn('class="delete-published-document"', index_text)
         self.assertIn('data-site-path="guides/reset-password"', index_text)
-        self.assertIn("/api/delete-published", index_text)
+        self.assertNotIn("/api/delete-published", index_text)
 
 
 if __name__ == "__main__":

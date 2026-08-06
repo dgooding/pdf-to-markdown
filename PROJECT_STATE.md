@@ -358,3 +358,4 @@
 - Configured secrets use constant-time comparison; site mutation transactions use a Python 3.9-safe thread lock.
 - Live conversion smoke test passed with a completed job and valid Markdown download.
 - Verification: focused hosted/site tests 18 passed; full suite 66 passed.
+- Search polish moved delete behavior into `javascripts/delete-published.js`, keeping implementation code out of hosted search results.

@@ -49,3 +49,4 @@
 44. Treat `DATA_ROOT/published` as the hosted persistent source and synchronize it into the MkDocs source tree before static builds.
 45. Hosted document mutations must fail closed when `PUBLISH_SECRET` is absent; never treat a missing production secret as anonymous authorization.
 46. Serialize publish/delete rebuild transactions with a thread lock inside worker threads for Python 3.9 event-loop compatibility.
+47. Keep interactive Documents-page behavior in a static JavaScript asset so MkDocs search results remain content-focused.

@@ -53,6 +53,7 @@ This file records current repository architecture checkpoints for the document-t
 - Publish and delete operations use the same optional `PUBLISH_SECRET` authorization boundary.
 - On Render, mutations fail closed with HTTP 503 when `PUBLISH_SECRET` is not configured; local development retains the existing optional-secret behavior.
 - Publish/delete index and build transactions are serialized with a worker-thread lock compatible with Python 3.9 module reloads.
+- Documents-page deletion behavior is loaded through `javascripts/delete-published.js`; generated Markdown contains controls only so MkDocs search indexes content rather than implementation code.
 
 ## MkDocs Positioning
 - MkDocs remains developer-only validation/staging support.
