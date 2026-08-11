@@ -1,4 +1,4 @@
-# ITSD Service Desk
+# ITSD Service Desk Docs
 
 This GitHub Pages site provides a simple, searchable home for IT support documents.
 

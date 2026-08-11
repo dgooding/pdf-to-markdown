@@ -114,3 +114,8 @@ This file records current repository architecture checkpoints for the document-t
   - no automatic MkDocs startup
   - no review controls added to `/editor`
   - review artifacts remain outside user conversion packages
+
+## Global Admin Control Removal (2026-08-11)
+- The MkDocs site no longer injects or styles a global Admin button on any page.
+- GitHub-native upload, workflow, and permission-checked deletion links remain available on the Converter and Documents surfaces.
+- The FastAPI fallback scaffold matches the checked-in static assets so rebuilding cannot restore the removed control.

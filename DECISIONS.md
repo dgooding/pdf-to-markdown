@@ -60,3 +60,4 @@
 55. Use the current public repository as `incoming/`; uploaded source files are public and permanently recoverable from Git history, an explicitly accepted tradeoff.
 56. Keep FastAPI `/editor` for local/offline use only; remove the built-in hosted passcode and do not place PATs, OAuth tokens, or secrets in GitHub Pages.
 57. Require GitHub repository write permission for issue-driven deletion and serialize all document mutation/deployment workflows.
+58. Remove the global Admin button from every site page; retain administration as explicit GitHub-native actions on the Converter and Documents pages rather than a persistent site-wide control.

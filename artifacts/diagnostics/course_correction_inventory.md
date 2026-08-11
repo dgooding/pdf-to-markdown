@@ -508,3 +508,11 @@
 - Preserved local FastAPI conversion and endpoint parity while moving production persistence/authentication to Git commits and repository permissions.
 - Focused tests: 25 passed; strict MkDocs build passed.
 - Full suite: 73 passed; strict endpoint parity remained fully true.
+
+## 2026-08-11 Global Admin control removal
+- Removed the site-wide Admin control and its fixed-position CSS from checked-in MkDocs assets.
+- Removed the equivalent Admin-control generation and obsolete access endpoints from the FastAPI fallback scaffold.
+- Preserved GitHub-native upload and permission-checked deletion operations.
+- Verification: 9 focused tests passed; strict MkDocs build passed; 70 full-suite tests passed; strict endpoint parity remained fully true.
+- Live-host verification is the post-push deployment checkpoint.
+

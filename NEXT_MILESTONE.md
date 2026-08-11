@@ -1,5 +1,6 @@
 # Next Milestone
 
+- Verify the global Admin control is absent after GitHub Pages and Render redeploy from the 2026-08-11 source update.
 - Enable GitHub Pages with **GitHub Actions** as the source and verify `https://dgooding.github.io/pdf-to-markdown/`.
 - Run a harmless public `incoming/` upload → conversion → publish → delete smoke cycle and retain Actions evidence.
 - Disable/delete the Render service only after GitHub Pages remains live and the smoke cycle passes.

@@ -397,3 +397,12 @@
 - Focused repository/deployment/site tests: 25 passed; strict MkDocs build passed.
 - Full suite: 73 passed, 0 failed, 0 skipped.
 - Strict endpoint parity: Markdown, assets, manifest core, and quality core all true.
+
+## 2026-08-11 Global Admin Control Removal
+- Removed the global Admin button from all MkDocs pages and from the FastAPI fallback scaffold.
+- Preserved GitHub-native document upload and permission-checked deletion workflows.
+- Focused site tests: 9 passed; strict MkDocs build passed.
+- Full suite: 70 passed, 0 failed, 0 skipped.
+- Strict endpoint parity: Markdown, assets, manifest core, and quality core all true.
+- Hosted deployment verification follows the `main` branch push.
+

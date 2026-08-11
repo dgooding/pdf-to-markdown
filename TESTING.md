@@ -360,3 +360,17 @@
 	- `artifacts/logs/github_migration_mkdocs_build.log`
 	- `artifacts/logs/github_migration_full_tests.log`
 	- `artifacts/logs/github_migration_endpoint_parity.log`
+
+## 2026-08-11 Global Admin Control Removal Validation
+- Focused site suite: 9 passed, 0 failed.
+- Strict MkDocs build: passed.
+- Full suite: 70 passed, 0 failed, 0 skipped.
+- Static regression coverage verifies that Admin-control JavaScript and CSS selectors are absent.
+- Strict endpoint comparison: Markdown, assets, manifest core, and quality core all true.
+- Logs:
+	- `artifacts/logs/admin_removal_focused_20260811_174257.log`
+	- `artifacts/logs/admin_removal_mkdocs_20260811_174257.log`
+	- `artifacts/logs/admin_removal_full_tests_20260811_174308.log`
+	- `artifacts/logs/admin_removal_endpoint_parity_20260811_174440.log`
+- Hosted page verification is pending completion of the `main` branch deployment.
+

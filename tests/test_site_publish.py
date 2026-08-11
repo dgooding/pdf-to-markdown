@@ -121,30 +121,6 @@ class SitePublishTests(unittest.TestCase):
             self.assertEqual(deleted.status_code, 200)
             self.assertIn(b'"status":"deleted"', deleted.body)
 
-    def test_local_capabilities_remain_enabled(self) -> None:
-        response = asyncio.run(app_module.site_capabilities())
-
-        self.assertEqual(response.status_code, 200)
-        self.assertIn(b'"mutations_enabled":true', response.body)
-
-    def test_admin_access_requires_correct_publish_secret(self) -> None:
-        with patch.object(app_module, "_PUBLISH_SECRET", "required-secret"):
-            with self.assertRaises(HTTPException) as denied:
-                asyncio.run(app_module.admin_access(publish_secret="wrong"))
-
-            self.assertEqual(denied.exception.status_code, 403)
-            allowed = asyncio.run(app_module.admin_access(publish_secret="required-secret"))
-
-        self.assertEqual(allowed.status_code, 200)
-        self.assertIn(b'"authorized":true', allowed.body)
-
-    def test_local_admin_access_is_open_without_explicit_secret(self) -> None:
-        with patch.object(app_module, "_PUBLISH_SECRET", ""):
-            allowed = asyncio.run(app_module.admin_access(publish_secret=""))
-
-        self.assertEqual(allowed.status_code, 200)
-        self.assertIn(b'"authorized":true', allowed.body)
-
     def test_editor_uses_simplified_publish_workflow(self) -> None:
         self.assertIn("Document Converter", _EDITOR_HTML)
         self.assertIn("Publish to Documents", _EDITOR_HTML)
@@ -161,20 +137,18 @@ class SitePublishTests(unittest.TestCase):
         self.assertIn("navigation_depth: 1", config)
         self.assertIn("titles_only: true", config)
         self.assertIn("prev_next_buttons_location: none", config)
+        self.assertIn("site_name: ITSD Service Desk Docs", config)
         self.assertIn("javascripts/delete-published.js", config)
         self.assertIn(".wy-menu-vertical li.toctree-l1 > ul", css)
         self.assertIn(".rst-footer-buttons", css)
         self.assertIn(".rst-versions", css)
-        self.assertIn(".admin-access-control", css)
-        self.assertIn("position: fixed", css)
-        self.assertIn("top: 1rem", css)
-        self.assertIn("right: 1rem", css)
-        self.assertIn("#admin-access-button", css)
+        self.assertNotIn(".admin-access-control", css)
+        self.assertNotIn("#admin-access-button", css)
         self.assertIn("https://github.com/dgooding/pdf-to-markdown", delete_script)
-        self.assertIn("/pdf-to-markdown/", delete_script)
         self.assertIn("[delete-published]", delete_script)
         self.assertIn("issues/new", delete_script)
-        self.assertIn("document.body.appendChild(control)", delete_script)
+        self.assertNotIn("admin-access-button", delete_script)
+        self.assertNotIn("createAdminControls", delete_script)
         self.assertNotIn("/api/", delete_script)
         self.assertNotIn("publish_secret", delete_script)
         self.assertNotIn("localStorage", delete_script)
