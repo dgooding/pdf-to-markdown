@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import re
 import subprocess
 import sys
 import time
@@ -32,6 +33,9 @@ class GitHubDeploymentTests(unittest.TestCase):
                 try:
                     with urlrequest.urlopen(f"http://127.0.0.1:{port}/health", timeout=2) as response:
                         self.assertEqual(response.getcode(), 200)
+                        self.assertIn("default-src 'self'", response.headers.get("Content-Security-Policy", ""))
+                        self.assertEqual(response.headers.get("X-Content-Type-Options"), "nosniff")
+                        self.assertEqual(response.headers.get("X-Frame-Options"), "DENY")
                         break
                 except Exception:
                     time.sleep(0.2)
@@ -53,14 +57,16 @@ class GitHubDeploymentTests(unittest.TestCase):
         self.assertTrue((WORKFLOWS / "convert-publish.yml").is_file())
         self.assertTrue((WORKFLOWS / "delete-published.yml").is_file())
         self.assertTrue((WORKFLOWS / "pages.yml").is_file())
+        self.assertTrue((WORKFLOWS / "ci.yml").is_file())
+        self.assertTrue((ROOT / ".github" / "dependabot.yml").is_file())
         self.assertFalse((ROOT / "render.yaml").exists())
         self.assertTrue((ROOT / "incoming" / ".gitkeep").is_file())
 
     def test_pages_workflow_uses_official_actions_and_minimal_permissions(self) -> None:
         text = (WORKFLOWS / "pages.yml").read_text(encoding="utf-8")
-        self.assertIn("actions/configure-pages@v5", text)
-        self.assertIn("actions/upload-pages-artifact@v3", text)
-        self.assertIn("actions/deploy-pages@v4", text)
+        self.assertIn("actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b", text)
+        self.assertIn("actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa", text)
+        self.assertIn("actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e", text)
         self.assertIn("enablement: true", text)
         self.assertIn("contents: read", text)
         self.assertIn("pages: write", text)
@@ -75,6 +81,10 @@ class GitHubDeploymentTests(unittest.TestCase):
         self.assertIn("tesseract-ocr", text)
         self.assertIn("contents: write", text)
         self.assertIn("group: document-publishing", text)
+        self.assertIn("github.actor != 'github-actions[bot]'", text)
+        self.assertNotIn("actions/deploy-pages", text)
+        self.assertNotIn("pages: write", text)
+        self.assertNotIn("id-token: write", text)
         self.assertNotIn("PUBLISH_SECRET", text)
 
     def test_delete_workflow_checks_repository_permission(self) -> None:
@@ -84,7 +94,36 @@ class GitHubDeploymentTests(unittest.TestCase):
         self.assertIn("github_document_ops.py delete", text)
         self.assertIn("[delete-published]", text)
         self.assertIn("group: document-publishing", text)
+        self.assertIn("git diff --cached --quiet", text)
+        self.assertNotIn("actions/deploy-pages", text)
+        self.assertNotIn("pages: write", text)
+        self.assertNotIn("id-token: write", text)
         self.assertNotIn("PUBLISH_SECRET", text)
+
+    def test_pages_workflow_is_the_only_pages_deployer(self) -> None:
+        deployers = []
+        for workflow in WORKFLOWS.glob("*.yml"):
+            if "actions/deploy-pages" in workflow.read_text(encoding="utf-8"):
+                deployers.append(workflow.name)
+        self.assertEqual(deployers, ["pages.yml"])
+
+    def test_all_actions_are_pinned_to_commit_shas(self) -> None:
+        uses_pattern = re.compile(r"^\s*uses:\s+[^@\s]+@([^\s#]+)", flags=re.MULTILINE)
+        for workflow in WORKFLOWS.glob("*.yml"):
+            references = uses_pattern.findall(workflow.read_text(encoding="utf-8"))
+            self.assertTrue(references, msg=f"Expected Action references in {workflow.name}")
+            for reference in references:
+                self.assertRegex(reference, r"^[0-9a-f]{40}$", msg=f"Mutable Action reference in {workflow.name}")
+
+    def test_ci_and_dependabot_cover_python_and_actions(self) -> None:
+        ci = (WORKFLOWS / "ci.yml").read_text(encoding="utf-8")
+        dependabot = (ROOT / ".github" / "dependabot.yml").read_text(encoding="utf-8")
+        self.assertIn("python-version: \"3.9\"", ci)
+        self.assertIn("unittest discover -s tests -v", ci)
+        self.assertIn("mkdocs build --strict", ci)
+        self.assertIn("--no-index --find-links=wheelhouse", ci)
+        self.assertIn("package-ecosystem: pip", dependabot)
+        self.assertIn("package-ecosystem: github-actions", dependabot)
 
     def test_mkdocs_is_configured_for_project_pages(self) -> None:
         config = (ROOT / "mkdocs_preview" / "mkdocs.yml").read_text(encoding="utf-8")

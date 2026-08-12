@@ -119,3 +119,13 @@ This file records current repository architecture checkpoints for the document-t
 - The MkDocs site no longer injects or styles a global Admin button on any page.
 - GitHub-native upload, workflow, and permission-checked deletion links remain available on the Converter and Documents surfaces.
 - The FastAPI fallback scaffold matches the checked-in static assets so rebuilding cannot restore the removed control.
+
+## Hardening Boundaries (2026-08-11)
+- Untrusted Markdown preview HTML is filtered through a stdlib allowlist sanitizer and constrained by response security headers.
+- Uploads stream to temporary files with per-file and aggregate limits; only one source document is accepted per request.
+- Jobs remain available across Markdown/ZIP downloads and are removed only after terminal-state inactivity.
+- Published-site mutations are rollback-backed transactions serialized by `site_mutation_lock`.
+- User ZIP packages contain delivery artifacts but exclude internal review records.
+- GitHub mutation workflows commit source changes; `pages.yml` is the only production deployment authority.
+- All third-party Actions are pinned to immutable commits; `ci.yml` verifies Python 3.9 compile/tests, strict docs build, and offline wheelhouse resolution.
+- The legacy Render deployment is outside repository control and is not an accepted production surface.

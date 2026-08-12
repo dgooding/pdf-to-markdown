@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import asyncio
+import io
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
 
 from fastapi import HTTPException
+from starlette.datastructures import UploadFile
 
 import app as app_module
 
@@ -17,6 +20,7 @@ from app import (
     MKDOCS_DOCS_DIR,
     normalize_site_path,
     publish_markdown_to_mkdocs_site,
+    render_markdown_preview,
     update_published_index,
 )
 
@@ -121,6 +125,42 @@ class SitePublishTests(unittest.TestCase):
             self.assertEqual(deleted.status_code, 200)
             self.assertIn(b'"status":"deleted"', deleted.body)
 
+    def test_publish_transaction_rolls_back_when_build_fails(self) -> None:
+        with (
+            patch.object(app_module, "PUBLISHED_DOCS_DIR", self.docs_root),
+            patch.object(app_module, "build_itsd_site", side_effect=RuntimeError("build failed")),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "build failed"):
+                app_module.run_site_mutation_transaction(
+                    lambda: publish_markdown_to_mkdocs_site(
+                        source_markdown=self.source_md,
+                        source_assets_dir=self.source_assets,
+                        docs_root=self.docs_root,
+                        site_path="rollback-publish",
+                    )
+                )
+        self.assertFalse((self.docs_root / "rollback-publish").exists())
+
+    def test_delete_transaction_rolls_back_when_build_fails(self) -> None:
+        publish_markdown_to_mkdocs_site(
+            source_markdown=self.source_md,
+            source_assets_dir=self.source_assets,
+            docs_root=self.docs_root,
+            site_path="rollback-delete",
+        )
+        with (
+            patch.object(app_module, "PUBLISHED_DOCS_DIR", self.docs_root),
+            patch.object(app_module, "build_itsd_site", side_effect=RuntimeError("build failed")),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "build failed"):
+                app_module.run_site_mutation_transaction(
+                    lambda: delete_published_document(
+                        docs_root=self.docs_root,
+                        site_path="rollback-delete",
+                    )
+                )
+        self.assertTrue((self.docs_root / "rollback-delete" / "index.md").exists())
+
     def test_editor_uses_simplified_publish_workflow(self) -> None:
         self.assertIn("Document Converter", _EDITOR_HTML)
         self.assertIn("Publish to Documents", _EDITOR_HTML)
@@ -170,6 +210,80 @@ class SitePublishTests(unittest.TestCase):
         self.assertIn('data-site-path="guides/reset-password"', index_text)
         self.assertNotIn("hidden disabled", index_text)
         self.assertNotIn("/api/delete-published", index_text)
+
+    def test_render_markdown_preview_removes_active_content(self) -> None:
+        rendered = render_markdown_preview(
+            "# Safe\n\n<script>alert(1)</script><img src=x onerror=\"alert(2)\">"
+            "[unsafe](javascript:alert(3))"
+        )
+        self.assertIn("<h1>Safe</h1>", rendered)
+        self.assertNotIn("<script", rendered)
+        self.assertNotIn("onerror", rendered)
+        self.assertNotIn("javascript:", rendered)
+
+    def test_published_index_escapes_heading_html(self) -> None:
+        target = self.docs_root / "unsafe" / "index.md"
+        target.parent.mkdir(parents=True)
+        target.write_text("# <img src=x onerror=alert(1)>\n", encoding="utf-8")
+        update_published_index(self.docs_root)
+        index_text = (self.docs_root / "index.md").read_text(encoding="utf-8")
+        self.assertNotIn("<img src=x", index_text)
+        self.assertIn("&lt;img", index_text)
+
+    def test_convert_rejects_multiple_source_documents(self) -> None:
+        uploads = [
+            UploadFile(io.BytesIO(b"one"), filename="one.txt"),
+            UploadFile(io.BytesIO(b"# two"), filename="two.md"),
+        ]
+        with self.assertRaises(HTTPException) as denied:
+            asyncio.run(app_module.convert(files=uploads, workflow="convert", pdf_mode="hybrid"))
+        self.assertEqual(denied.exception.status_code, 400)
+        self.assertIn("one source document", denied.exception.detail)
+
+    def test_oversized_upload_removes_temporary_directory(self) -> None:
+        upload_dir = self.tmp / "oversized-upload"
+        upload_dir.mkdir()
+        with (
+            patch.object(app_module, "MAX_UPLOAD_BYTES", 4),
+            patch.object(app_module.tempfile, "mkdtemp", return_value=str(upload_dir)),
+        ):
+            upload = UploadFile(io.BytesIO(b"too-large"), filename="large.txt")
+            with self.assertRaises(HTTPException) as denied:
+                asyncio.run(app_module.convert(files=[upload], workflow="convert", pdf_mode="hybrid"))
+        self.assertEqual(denied.exception.status_code, 400)
+        self.assertFalse(upload_dir.exists())
+
+    def test_stale_cleanup_preserves_processing_job_and_removes_terminal_job(self) -> None:
+        active_dir = Path(tempfile.mkdtemp(prefix="active-job-"))
+        terminal_dir = Path(tempfile.mkdtemp(prefix="terminal-job-"))
+        try:
+            with app_module.jobs_lock:
+                app_module.jobs["active-test"] = {
+                    "status": "processing",
+                    "created_at": 1.0,
+                    "last_activity": 1.0,
+                    "temp_dir": active_dir,
+                }
+                app_module.jobs["terminal-test"] = {
+                    "status": "completed",
+                    "created_at": 1.0,
+                    "last_activity": 1.0,
+                    "temp_dir": terminal_dir,
+                }
+            with (
+                patch.object(app_module, "STALE_JOB_SECONDS", 10),
+                patch.object(app_module, "now_ts", return_value=100.0),
+            ):
+                app_module.cleanup_stale_jobs()
+            self.assertIn("active-test", app_module.jobs)
+            self.assertNotIn("terminal-test", app_module.jobs)
+            self.assertTrue(active_dir.exists())
+            self.assertFalse(terminal_dir.exists())
+        finally:
+            app_module.cleanup_job("active-test")
+            app_module.cleanup_job("terminal-test")
+            shutil.rmtree(active_dir, ignore_errors=True)
+            shutil.rmtree(terminal_dir, ignore_errors=True)
 
 
 if __name__ == "__main__":

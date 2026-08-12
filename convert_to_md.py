@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import io
 import json
 import re
@@ -607,11 +608,11 @@ def _rows_to_html_table(rows: list[list[str]]) -> str:
         vals.extend([""] * (width - len(vals)))
         norm_rows.append(vals)
 
-    out = ["<table>", "  <thead>", "    <tr>" + "".join(f"<th>{c}</th>" for c in norm_rows[0]) + "</tr>", "  </thead>"]
+    out = ["<table>", "  <thead>", "    <tr>" + "".join(f"<th>{html.escape(c)}</th>" for c in norm_rows[0]) + "</tr>", "  </thead>"]
     if len(norm_rows) > 1:
         out.append("  <tbody>")
         for row in norm_rows[1:]:
-            out.append("    <tr>" + "".join(f"<td>{c}</td>" for c in row) + "</tr>")
+            out.append("    <tr>" + "".join(f"<td>{html.escape(c)}</td>" for c in row) + "</tr>")
         out.append("  </tbody>")
     out.append("</table>")
     return "\n".join(out)
@@ -1322,6 +1323,11 @@ def convert_pdf_to_markdown(file_path: Path, context: ConversionContext) -> str:
 
             selected_text, src, score = _pick_best_page_text(native_text, ocr_text)
 
+            if src == "ocr":
+                for record in ocr_records:
+                    if record.get("page") == page_number and record.get("scope") == "full_page":
+                        record["selected"] = True
+
             page_area = max(1.0, inspection["width"] * inspection["height"])
             table_boxes = [tuple(r) for r in inspection.get("suspected_table_regions", [])]
             targeted_area = sum(_bbox_area(b) for b in chart_boxes + table_boxes)
@@ -1333,6 +1339,11 @@ def convert_pdf_to_markdown(file_path: Path, context: ConversionContext) -> str:
                 content = item["content"].strip()
                 if content:
                     native_blocks_md.append(content)
+
+            # OCR is a semantic candidate, not merely diagnostic provenance. When it
+            # wins quality selection, emit its text instead of native extraction.
+            if src == "ocr" and selected_text:
+                native_blocks_md = [selected_text]
 
             # Candidate A: native semantic output
             native_candidate_regions: list[RegionResult] = []

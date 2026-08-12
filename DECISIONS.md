@@ -61,3 +61,12 @@
 56. Keep FastAPI `/editor` for local/offline use only; remove the built-in hosted passcode and do not place PATs, OAuth tokens, or secrets in GitHub Pages.
 57. Require GitHub repository write permission for issue-driven deletion and serialize all document mutation/deployment workflows.
 58. Remove the global Admin button from every site page; retain administration as explicit GitHub-native actions on the Converter and Documents pages rather than a persistent site-wide control.
+59. Treat selected OCR as the page's semantic output rather than diagnostics-only data, and mark the selected OCR provenance record explicitly.
+60. Sanitize untrusted preview HTML with a dependency-free allowlist and response CSP so offline Python 3.9 installation remains reproducible.
+61. Stream uploads to disk with per-file and aggregate limits; reject multiple source documents instead of silently choosing one.
+62. Keep completed jobs reusable across preview, Markdown, ZIP, and publish actions; terminal-state inactivity owns cleanup rather than the first download.
+63. Make local publish/delete mutations rollback-backed transactions and exclude internal review records from user packages.
+64. Use `pages.yml` as the sole Pages deployment authority; mutation workflows only commit source changes and must not retrigger themselves on bot cleanup commits.
+65. Do not weaken package hash verification to accommodate a TLS proxy; avoid an external dependency when its complete verified offline closure cannot be retained.
+66. Pin every third-party GitHub Action to a reviewed immutable commit and use Dependabot to propose controlled updates.
+67. Keep continuous integration read-only and separate from conversion/publishing/deployment workflows.

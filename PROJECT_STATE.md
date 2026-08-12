@@ -406,3 +406,15 @@
 - Strict endpoint parity: Markdown, assets, manifest core, and quality core all true.
 - Hosted deployment verification follows the `main` branch push.
 
+## 2026-08-11 Converter Hardening and Reliability
+- Corrected OCR selection so selected OCR text is emitted and provenance records identify it as selected.
+- Added allowlist-based preview HTML sanitization, CSP, Permissions Policy, generated-table escaping, and published-index escaping without new runtime dependencies.
+- Replaced full-memory uploads with bounded chunked disk writes, aggregate request limits, unambiguous source selection, companion-image validation, collision checks, and failure cleanup.
+- Added asset path containment, reusable downloads, terminal-only stale cleanup, activity tracking, job locking, and bounded conversion concurrency.
+- Excluded internal `*-review-record.json` files from user ZIPs.
+- Added rollback-backed publish/delete transactions for source/index/site consistency.
+- Made `pages.yml` the sole Pages deployer; mutation workflows now use reduced permissions, bot-loop prevention, and safe no-op commits.
+- Added Dependabot coverage for pip and GitHub Actions, immutable commit pins for every third-party Action, and a Python 3.9 CI workflow.
+- Verification: 83 tests passed; strict MkDocs build and offline dependency resolution passed; Markdown/assets/manifest/quality endpoint parity all true.
+- External operational follow-up: the legacy public Render service remains reachable and must be disabled or access-restricted in the Render console after GitHub Pages verification.
+

@@ -516,3 +516,16 @@
 - Verification: 9 focused tests passed; strict MkDocs build passed; 70 full-suite tests passed; strict endpoint parity remained fully true.
 - Live-host verification is the post-push deployment checkpoint.
 
+## 2026-08-11 Converter hardening and reliability correction
+- Fixed OCR-selected text emission and selected provenance reporting.
+- Added preview allowlist sanitization and browser security headers.
+- Escaped converter-generated HTML tables and published index content.
+- Added bounded streaming uploads, aggregate limits, deterministic source selection, companion validation, and temp cleanup.
+- Added job-registry locking, terminal-only stale cleanup, reusable downloads, and conversion concurrency bounds.
+- Added canonical asset containment and excluded review records from user packages.
+- Added rollback-backed publish/delete transactions.
+- Consolidated Pages deployment into `pages.yml` and reduced mutation workflow permissions/retrigger risk.
+- Added Dependabot configuration, immutable Action pins, and read-only Python 3.9 CI.
+- Verification: 83 full-suite tests passed; strict MkDocs build and offline resolution passed; endpoint/direct parity remained fully true.
+- Outstanding external item: remove or restrict the legacy Render deployment through its hosting console.
+

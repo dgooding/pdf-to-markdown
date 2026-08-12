@@ -14,7 +14,7 @@ from pathlib import Path
 
 import fitz
 
-from urllib import request
+from urllib import error, request
 
 from app import run_authoritative_conversion_service
 
@@ -193,6 +193,7 @@ class EndpointIntegrationTests(unittest.TestCase):
         self.assertTrue(any(n.startswith("docs/assets/") and not n.endswith("/") for n in names))
         self.assertTrue(any(n.endswith("-manifest.json") for n in names))
         self.assertTrue(any(n.endswith("-quality-report.json") for n in names))
+        self.assertFalse(any(n.endswith("-review-record.json") for n in names))
 
         banned = {"verify_endpoint.py", "PROJECT_STATE.md", "baseline_verticalslice_20260730_224127"}
         joined = "\n".join(names)
@@ -279,6 +280,21 @@ class EndpointIntegrationTests(unittest.TestCase):
 
         self.assertIn("Endpoint Integration PDF", md)
         self.assertIn("## Page 1", md)
+
+        # A download must not destroy the job; users may still preview, publish,
+        # or retrieve the complete package afterward.
+        with request.urlopen(f"http://127.0.0.1:{self.server_port}/api/status/{job_id}", timeout=30) as sresp:
+            self.assertEqual(sresp.getcode(), 200)
+        with request.urlopen(f"http://127.0.0.1:{self.server_port}/api/download/{job_id}", timeout=120) as zresp:
+            self.assertEqual(zresp.getcode(), 200)
+            self.assertTrue(zresp.read().startswith(b"PK"))
+
+    def test_asset_path_traversal_is_rejected(self) -> None:
+        job_id, _ = self._convert_via_endpoint(self.fixture_pdf, download_zip=False)
+        url = f"http://127.0.0.1:{self.server_port}/api/assets/{job_id}/..%2F..%2Findex.md"
+        with self.assertRaises(error.HTTPError) as denied:
+            request.urlopen(url, timeout=30)
+        self.assertIn(denied.exception.code, {400, 404})
 
     def test_authoritative_service_non_pdf_emits_manifest_and_quality(self) -> None:
         md_source = self.temp_root / "source.md"

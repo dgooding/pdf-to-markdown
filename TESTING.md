@@ -374,3 +374,31 @@
 	- `artifacts/logs/admin_removal_endpoint_parity_20260811_174440.log`
 - Hosted page verification is pending completion of the `main` branch deployment.
 
+## 2026-08-11 Converter Hardening Validation
+- Milestone 1 focused OCR/sanitization/escaping suite: 33 passed.
+- Milestone 2 live endpoint/site suite: 18 passed.
+- Milestone 3 transaction/package/live endpoint suite: 20 passed.
+- Milestone 4 workflow/document/site suite: 27 passed.
+- Initial hardening full suite: 78 passed, 0 failed, 0 skipped.
+- Final suite after immutable pins, CI, and edge-case guardrails: 83 passed, 0 failed, 0 skipped.
+- Python compile checks: passed for `app.py`, `convert_to_md.py`, and `github_document_ops.py`.
+- Strict MkDocs build: passed.
+- Strict live endpoint comparison:
+	- `COMPARE_MD=True`
+	- `COMPARE_ASSETS=True`
+	- `COMPARE_MANIFEST_CORE=True`
+	- `COMPARE_QUALITY_CORE=True`
+- Logs:
+	- `artifacts/logs/hardening_m1_focused_20260811.log`
+	- `artifacts/logs/hardening_m2_focused_20260811.log`
+	- `artifacts/logs/hardening_m3_focused_20260811.log`
+	- `artifacts/logs/hardening_m4_focused_20260811.log`
+	- `artifacts/logs/hardening_m4_mkdocs_20260811.log`
+	- `artifacts/logs/hardening_full_tests_20260811.log`
+	- `artifacts/logs/hardening_endpoint_parity_20260811.log`
+	- `artifacts/logs/hardening_completion_focused_20260811.log`
+	- `artifacts/logs/hardening_final_full_tests_20260811.log`
+	- `artifacts/logs/hardening_final_mkdocs_20260811.log`
+	- `artifacts/logs/hardening_final_offline_20260811.log`
+	- `artifacts/logs/hardening_final_endpoint_parity_20260811.log`
+

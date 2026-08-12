@@ -6,11 +6,12 @@ import tempfile
 import unittest
 from pathlib import Path
 import shutil
+from unittest.mock import patch
 
 import fitz
 from docx import Document
 
-from convert_to_md import ConversionContext, convert_file_to_markdown, write_markdown
+from convert_to_md import ConversionContext, _rows_to_html_table, convert_file_to_markdown, write_markdown
 
 
 class ConversionPipelineTests(unittest.TestCase):
@@ -137,6 +138,26 @@ class ConversionPipelineTests(unittest.TestCase):
         self.assertTrue(manifests)
         manifest = json.loads(manifests[0].read_text(encoding="utf-8"))
         self.assertIn("regions_rendered", manifest)
+
+    def test_selected_ocr_text_is_emitted_and_recorded(self) -> None:
+        source = self.fixtures / "image_only.pdf"
+        with (
+            patch("convert_to_md.detect_tesseract_provider", return_value={"available": True}),
+            patch("convert_to_md.ocr_image_to_text", return_value="Recovered scanned procedure text"),
+        ):
+            md_path, out_dir = self._convert(source, mode="ocr")
+
+        text = md_path.read_text(encoding="utf-8")
+        self.assertIn("Recovered scanned procedure text", text)
+        manifest = json.loads(next(out_dir.glob("*-manifest.json")).read_text(encoding="utf-8"))
+        selected = [r for r in manifest["ocr_records"] if r.get("scope") == "full_page" and r.get("selected")]
+        self.assertTrue(selected)
+
+    def test_html_table_escapes_source_cells(self) -> None:
+        rendered = _rows_to_html_table([["<script>alert(1)</script>", "Safe"], ["<b>x</b>", "y"]])
+        self.assertNotIn("<script>", rendered)
+        self.assertNotIn("<b>x</b>", rendered)
+        self.assertIn("&lt;script&gt;", rendered)
 
     def test_pdf_visual_mode(self) -> None:
         md_path, _ = self._convert(self.fixtures / "native.pdf", mode="visual")

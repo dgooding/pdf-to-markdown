@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import asyncio
 import hmac
+import html
 import os
 import json
 import re
@@ -13,15 +14,16 @@ import threading
 import time
 import uuid
 import zipfile
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any, Optional
+from urllib.parse import urlsplit
 
 import markdown
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-from starlette.background import BackgroundTask
 
 from convert_to_md import ConversionContext, convert_file_to_markdown, ensure_assets_folder, slugify
 from github_document_ops import (
@@ -49,15 +51,21 @@ PUBLISHED_DOCS_DIR = _DATA_ROOT / "published" if _DATA_ROOT_CONFIGURED else MKDO
 SITE_DIR = MKDOCS_PROJECT_DIR / "site"
 
 SUPPORTED_UPLOADS = {".pdf", ".docx", ".md", ".txt"}
+SUPPORTED_COMPANIONS = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".bmp", ".tif", ".tiff", ".svg"}
 DEFAULT_PDF_MODE = "hybrid"
 SUPPORTED_PDF_MODES = {"hybrid", "ocr", "visual"}
 MAX_UPLOAD_BYTES = int(os.getenv("MAX_UPLOAD_MB", "50")) * 1024 * 1024
+MAX_REQUEST_UPLOAD_BYTES = int(os.getenv("MAX_REQUEST_UPLOAD_MB", "100")) * 1024 * 1024
 MAX_FILES_PER_REQUEST = 50
+UPLOAD_CHUNK_BYTES = 1024 * 1024
+MAX_CONCURRENT_CONVERSIONS = max(1, int(os.getenv("MAX_CONCURRENT_CONVERSIONS", "2")))
 
 app = FastAPI(title="MkDocs File Converter API", version="1.0.0")
 
 jobs: dict[str, dict[str, Any]] = {}
+jobs_lock = threading.RLock()
 site_mutation_lock = threading.Lock()
+conversion_semaphore = asyncio.Semaphore(MAX_CONCURRENT_CONVERSIONS)
 STALE_JOB_SECONDS = int(os.getenv("STALE_JOB_SECONDS", str(60 * 60)))
 
 
@@ -67,6 +75,11 @@ async def add_security_headers(request: Any, call_next: Any) -> Any:
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Content-Security-Policy"] = (
+      "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; "
+      "script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"
+    )
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
     return response
 
 
@@ -85,13 +98,19 @@ def now_ts() -> float:
     return time.time()
 
 
+def remove_readonly(function: Any, path: str, _: Any) -> None:
+  Path(path).chmod(0o700)
+  function(path)
+
+
 def require_mutation_secret(provided_secret: str, action: str) -> None:
   if _PUBLISH_SECRET and not hmac.compare_digest(provided_secret, _PUBLISH_SECRET):
     raise HTTPException(status_code=403, detail=f"{action} is restricted. Provide the correct admin code.")
 
 
 def cleanup_job(job_id: str) -> None:
-    job = jobs.get(job_id)
+    with jobs_lock:
+        job = jobs.pop(job_id, None)
     if not job:
         return
 
@@ -99,19 +118,26 @@ def cleanup_job(job_id: str) -> None:
     if temp_dir:
         shutil.rmtree(temp_dir, ignore_errors=True)
 
-    jobs.pop(job_id, None)
-
 
 def cleanup_stale_jobs() -> None:
     cutoff = now_ts() - STALE_JOB_SECONDS
     stale_ids: list[str] = []
-    for job_id, job in jobs.items():
-        created_at = float(job.get("created_at", now_ts()))
-        if created_at < cutoff:
-            stale_ids.append(job_id)
+    with jobs_lock:
+        for job_id, job in list(jobs.items()):
+            last_activity = float(job.get("last_activity", job.get("created_at", now_ts())))
+            if job.get("status") in {"completed", "failed"} and last_activity < cutoff:
+                stale_ids.append(job_id)
 
     for job_id in stale_ids:
         cleanup_job(job_id)
+
+
+def get_job(job_id: str, *, touch: bool = True) -> Optional[dict[str, Any]]:
+    with jobs_lock:
+        job = jobs.get(job_id)
+        if job is not None and touch:
+            job["last_activity"] = now_ts()
+        return job
 
 
 def build_zip(output_dir: Path, zip_path: Path) -> None:
@@ -130,6 +156,8 @@ def build_zip(output_dir: Path, zip_path: Path) -> None:
         for item in output_dir.rglob("*"):
             if item.is_file() and item != zip_path:
                 rel = str(item.relative_to(output_dir)).replace("\\", "/")
+                if item.name.endswith("-review-record.json"):
+                    continue
                 if any(part in banned_names for part in Path(rel).parts):
                     continue
                 if rel.startswith(("artifacts/", "tests/", "__pycache__/")):
@@ -141,6 +169,29 @@ def _safe_upload_name(name: str) -> str:
     base = Path(name or "upload").name
     cleaned = re.sub(r"[^a-zA-Z0-9._ -]+", "_", base).strip()
     return cleaned or "upload"
+
+
+async def _write_upload_limited(upload: UploadFile, destination: Path, request_bytes: int) -> int:
+  written = 0
+  with destination.open("xb") as stream:
+    while True:
+      chunk = await upload.read(UPLOAD_CHUNK_BYTES)
+      if not chunk:
+        break
+      written += len(chunk)
+      request_bytes += len(chunk)
+      if written > MAX_UPLOAD_BYTES:
+        raise HTTPException(
+          status_code=400,
+          detail=f"File too large. Maximum allowed size is {MAX_UPLOAD_BYTES // (1024 * 1024)} MB.",
+        )
+      if request_bytes > MAX_REQUEST_UPLOAD_BYTES:
+        raise HTTPException(
+          status_code=400,
+          detail=f"Combined upload too large. Maximum allowed size is {MAX_REQUEST_UPLOAD_BYTES // (1024 * 1024)} MB.",
+        )
+      stream.write(chunk)
+  return request_bytes
 
 
 def build_mkdocs_project(output_dir: Path, markdown_content: str) -> Path:
@@ -230,10 +281,6 @@ def ensure_itsd_site_scaffold() -> None:
     update_published_index(PUBLISHED_DOCS_DIR)
     sync_published_docs_to_mkdocs()
     return
-
-  def remove_readonly(function: Any, path: str, _: Any) -> None:
-    Path(path).chmod(0o700)
-    function(path)
 
   obsolete_paths = [
     MKDOCS_DOCS_DIR / "builder-profile.md",
@@ -399,6 +446,39 @@ def build_itsd_site() -> None:
     raise RuntimeError(message)
 
 
+def run_site_mutation_transaction(operation: Any) -> dict[str, str]:
+  """Apply a published-source mutation and roll it back if indexing/building fails."""
+  with tempfile.TemporaryDirectory(prefix="site-mutation-backup-") as backup_name:
+    backup_root = Path(backup_name)
+    published_backup = backup_root / "published"
+    site_backup = backup_root / "site"
+    published_existed = PUBLISHED_DOCS_DIR.exists()
+    site_existed = SITE_DIR.exists()
+    if published_existed:
+      shutil.copytree(PUBLISHED_DOCS_DIR, published_backup)
+    if site_existed:
+      shutil.copytree(SITE_DIR, site_backup)
+
+    try:
+      result = operation()
+      update_published_index(PUBLISHED_DOCS_DIR)
+      build_itsd_site()
+      return result
+    except Exception:
+      if PUBLISHED_DOCS_DIR.exists():
+        shutil.rmtree(PUBLISHED_DOCS_DIR, onerror=remove_readonly)
+      if published_existed:
+        shutil.copytree(published_backup, PUBLISHED_DOCS_DIR)
+      else:
+        PUBLISHED_DOCS_DIR.mkdir(parents=True, exist_ok=True)
+
+      if SITE_DIR.exists():
+        shutil.rmtree(SITE_DIR, onerror=remove_readonly)
+      if site_existed:
+        shutil.copytree(site_backup, SITE_DIR)
+      raise
+
+
 def _is_external_link(target: str) -> bool:
   lowered = target.lower()
   return lowered.startswith(("http://", "https://", "mailto:", "data:", "#"))
@@ -457,8 +537,68 @@ def copy_markdown_companion_files(markdown_text: str, docs_dir: Path, companion_
     shutil.copy2(source, destination)
 
 
+class _PreviewHTMLSanitizer(HTMLParser):
+  allowed_tags = {
+    "a", "blockquote", "br", "code", "details", "div", "em", "h1", "h2", "h3",
+    "h4", "h5", "h6", "hr", "img", "li", "ol", "p", "pre", "span", "strong",
+    "summary", "table", "tbody", "td", "th", "thead", "tr", "u", "ul",
+  }
+  void_tags = {"br", "hr", "img"}
+  allowed_attributes = {
+    "a": {"href", "title"},
+    "img": {"src", "alt", "title"},
+    "th": {"align"},
+    "td": {"align"},
+    "div": {"class"},
+    "span": {"class"},
+  }
+
+  def __init__(self) -> None:
+    super().__init__(convert_charrefs=False)
+    self.output: list[str] = []
+
+  @staticmethod
+  def _safe_url(value: str) -> bool:
+    compact = re.sub(r"[\x00-\x20]+", "", html.unescape(value))
+    scheme = urlsplit(compact).scheme.lower()
+    return not scheme or scheme in {"http", "https", "mailto"}
+
+  def handle_starttag(self, tag: str, attrs: list[tuple[str, Optional[str]]]) -> None:
+    tag = tag.lower()
+    if tag not in self.allowed_tags:
+      return
+    safe_attrs: list[str] = []
+    permitted = self.allowed_attributes.get(tag, set())
+    for name, value in attrs:
+      lowered = name.lower()
+      if lowered not in permitted or value is None:
+        continue
+      if lowered in {"href", "src"} and not self._safe_url(value):
+        continue
+      safe_attrs.append(f'{lowered}="{html.escape(value, quote=True)}"')
+    suffix = (" " + " ".join(safe_attrs)) if safe_attrs else ""
+    self.output.append(f"<{tag}{suffix}>")
+
+  def handle_startendtag(self, tag: str, attrs: list[tuple[str, Optional[str]]]) -> None:
+    self.handle_starttag(tag, attrs)
+
+  def handle_endtag(self, tag: str) -> None:
+    tag = tag.lower()
+    if tag in self.allowed_tags and tag not in self.void_tags:
+      self.output.append(f"</{tag}>")
+
+  def handle_data(self, data: str) -> None:
+    self.output.append(html.escape(data, quote=False))
+
+  def handle_entityref(self, name: str) -> None:
+    self.output.append(f"&{name};")
+
+  def handle_charref(self, name: str) -> None:
+    self.output.append(f"&#{name};")
+
+
 def render_markdown_preview(markdown_text: str) -> str:
-  return markdown.markdown(
+  rendered = markdown.markdown(
     markdown_text,
     extensions=[
       "extra",
@@ -470,6 +610,10 @@ def render_markdown_preview(markdown_text: str) -> str:
       "fenced_code",
     ],
   )
+  sanitizer = _PreviewHTMLSanitizer()
+  sanitizer.feed(rendered)
+  sanitizer.close()
+  return "".join(sanitizer.output)
 
 
 def _markdown_asset_refs(md_text: str) -> list[str]:
@@ -724,7 +868,9 @@ def run_authoritative_conversion_service(
 
 async def process_conversion(job_id: str) -> None:
     cleanup_stale_jobs()
-    job = jobs[job_id]
+    job = get_job(job_id, touch=False)
+    if job is None:
+        return
 
     try:
         job["status"] = "processing"
@@ -737,16 +883,17 @@ async def process_conversion(job_id: str) -> None:
         job["progress"] = 55
         job["message"] = "Converting file…"
 
-        service_result = await asyncio.to_thread(
-            run_authoritative_conversion_service,
-            source_file=source_file,
-            output_dir=output_dir,
-            pdf_mode=job["pdf_mode"],
-            tesseract_cmd=job.get("tesseract_cmd"),
-            prefer_markitdown=job.get("prefer_markitdown", True),
-            improve_markdown=job.get("improve_markdown", False),
-            companion_files=job.get("companion_files", []),
-        )
+        async with conversion_semaphore:
+            service_result = await asyncio.to_thread(
+                run_authoritative_conversion_service,
+                source_file=source_file,
+                output_dir=output_dir,
+                pdf_mode=job["pdf_mode"],
+                tesseract_cmd=job.get("tesseract_cmd"),
+                prefer_markitdown=job.get("prefer_markitdown", True),
+                improve_markdown=job.get("improve_markdown", False),
+                companion_files=job.get("companion_files", []),
+            )
 
         output_file = Path(service_result["output_file"])
 
@@ -775,6 +922,7 @@ async def process_conversion(job_id: str) -> None:
         job["status"] = "completed"
         job["progress"] = 100
         job["message"] = "Conversion complete."
+        job["last_activity"] = now_ts()
     except Exception as exc:  # noqa: BLE001
         message = str(exc)
         job["status"] = "failed"
@@ -782,6 +930,7 @@ async def process_conversion(job_id: str) -> None:
         job["message"] = "Conversion failed."
         job["error"] = message
         job["suggestion"] = suggest_fix(message)
+        job["last_activity"] = now_ts()
 
 
 @app.post("/api/convert")
@@ -796,16 +945,13 @@ async def convert(
   if len(files) > MAX_FILES_PER_REQUEST:
     raise HTTPException(status_code=400, detail=f"Too many files. Maximum is {MAX_FILES_PER_REQUEST}.")
 
-  primary_upload: UploadFile | None = None
-  companion_uploads: list[UploadFile] = []
-
-  markdown_uploads = [upload for upload in files if Path(upload.filename or "").suffix.lower() == ".md"]
-  if markdown_uploads:
-    primary_upload = markdown_uploads[0]
-    companion_uploads = [upload for upload in files if upload is not primary_upload]
-  else:
-    primary_upload = files[0]
-    companion_uploads = files[1:]
+  document_uploads = [upload for upload in files if Path(upload.filename or "").suffix.lower() in SUPPORTED_UPLOADS]
+  if not document_uploads:
+    raise HTTPException(status_code=400, detail="No supported document uploaded.")
+  if len(document_uploads) > 1:
+    raise HTTPException(status_code=400, detail="Upload one source document at a time; additional files may only be companion images.")
+  primary_upload = document_uploads[0]
+  companion_uploads = [upload for upload in files if upload is not primary_upload]
 
   suffix = Path(primary_upload.filename or "").suffix.lower()
   if suffix not in SUPPORTED_UPLOADS:
@@ -821,36 +967,36 @@ async def convert(
     raise HTTPException(status_code=400, detail="Markdown polishing is only available for .md files.")
 
   temp_dir = Path(tempfile.mkdtemp(prefix="mkdocs-convert-"))
-  safe_name = _safe_upload_name(primary_upload.filename or f"upload{suffix}")
-  source_file = temp_dir / safe_name
-  companion_files: list[Path] = []
+  try:
+    safe_name = _safe_upload_name(primary_upload.filename or f"upload{suffix}")
+    source_file = temp_dir / safe_name
+    companion_files: list[Path] = []
+    request_bytes = await _write_upload_limited(primary_upload, source_file, 0)
+    used_names = {safe_name.lower()}
 
-  raw = await primary_upload.read()
-  if len(raw) > MAX_UPLOAD_BYTES:
-    raise HTTPException(
-      status_code=400,
-      detail=f"File too large. Maximum allowed size is {MAX_UPLOAD_BYTES // (1024 * 1024)} MB.",
-    )
-  source_file.write_bytes(raw)
-
-  for upload in companion_uploads:
-    upload_name = _safe_upload_name(upload.filename or "")
-    if not upload_name:
-      continue
-    companion_path = temp_dir / upload_name
-    blob = await upload.read()
-    if len(blob) > MAX_UPLOAD_BYTES:
-      raise HTTPException(
-        status_code=400,
-        detail=f"Companion file too large. Maximum allowed size is {MAX_UPLOAD_BYTES // (1024 * 1024)} MB.",
-      )
-    companion_path.write_bytes(blob)
-    companion_files.append(companion_path)
+    for upload in companion_uploads:
+      companion_suffix = Path(upload.filename or "").suffix.lower()
+      if companion_suffix not in SUPPORTED_COMPANIONS:
+        raise HTTPException(status_code=400, detail="Companion files must be supported image formats.")
+      upload_name = _safe_upload_name(upload.filename or "companion")
+      if upload_name.lower() in used_names:
+        raise HTTPException(status_code=400, detail=f'Duplicate upload filename: "{upload_name}".')
+      used_names.add(upload_name.lower())
+      companion_path = temp_dir / upload_name
+      request_bytes = await _write_upload_limited(upload, companion_path, request_bytes)
+      companion_files.append(companion_path)
+  except Exception:
+    shutil.rmtree(temp_dir, ignore_errors=True)
+    raise
+  finally:
+    for upload in files:
+      await upload.close()
 
   job_id = uuid.uuid4().hex
-  jobs[job_id] = {
+  job_payload = {
     "job_id": job_id,
     "created_at": now_ts(),
+    "last_activity": now_ts(),
     "status": "queued",
     "progress": 10,
     "message": "File uploaded. Waiting for conversion…",
@@ -868,6 +1014,8 @@ async def convert(
     "error": None,
     "suggestion": None,
   }
+  with jobs_lock:
+    jobs[job_id] = job_payload
 
   asyncio.create_task(process_conversion(job_id))
 
@@ -884,7 +1032,7 @@ async def convert(
 @app.get("/api/status/{job_id}", response_model=StatusPayload)
 async def status(job_id: str) -> StatusPayload:
     cleanup_stale_jobs()
-    job = jobs.get(job_id)
+    job = get_job(job_id)
     if not job:
         raise HTTPException(status_code=404, detail="Job not found or already cleaned up.")
 
@@ -903,7 +1051,7 @@ async def status(job_id: str) -> StatusPayload:
 @app.get("/preview/{job_id}", response_class=HTMLResponse)
 async def preview(job_id: str) -> HTMLResponse:
     cleanup_stale_jobs()
-    job = jobs.get(job_id)
+    job = get_job(job_id)
     if not job:
         return HTMLResponse("<h2>Preview not found</h2><p>Job was cleaned up or does not exist.</p>", status_code=404)
 
@@ -949,7 +1097,7 @@ async def preview(job_id: str) -> HTMLResponse:
 @app.get("/api/download/{job_id}")
 async def download(job_id: str) -> Response:
     cleanup_stale_jobs()
-    job = jobs.get(job_id)
+    job = get_job(job_id)
     if not job:
         raise HTTPException(status_code=404, detail="Job not found or already cleaned up.")
 
@@ -963,19 +1111,17 @@ async def download(job_id: str) -> Response:
     payload = zip_path.read_bytes()
     filename = zip_path.name
 
-    background = BackgroundTask(cleanup_job, job_id)
     return Response(
         content=payload,
         media_type="application/zip",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
-        background=background,
     )
 
 
 @app.get("/api/download-md/{job_id}")
 async def download_markdown(job_id: str) -> Response:
     cleanup_stale_jobs()
-    job = jobs.get(job_id)
+    job = get_job(job_id)
     if not job:
         raise HTTPException(status_code=404, detail="Job not found or already cleaned up.")
 
@@ -990,24 +1136,27 @@ async def download_markdown(job_id: str) -> Response:
     source_file: Path = job["source_file"]
     filename = f"{source_file.stem}_converted.md"
 
-    background = BackgroundTask(cleanup_job, job_id)
     return Response(
         content=payload,
         media_type="text/markdown; charset=utf-8",
         headers={"Content-Disposition": f'attachment; filename="{filename}"'},
-        background=background,
     )
 
 
 @app.get("/api/assets/{job_id}/{asset_name:path}")
 async def preview_asset(job_id: str, asset_name: str) -> Response:
     cleanup_stale_jobs()
-    job = jobs.get(job_id)
+    job = get_job(job_id)
     if not job:
         raise HTTPException(status_code=404, detail="Job not found or already cleaned up.")
 
     output_dir: Path = job["output_dir"]
-    asset_path = output_dir / "docs" / "assets" / asset_name
+    assets_dir = (output_dir / "docs" / "assets").resolve()
+    asset_path = (assets_dir / asset_name).resolve()
+    try:
+      asset_path.relative_to(assets_dir)
+    except ValueError as exc:
+      raise HTTPException(status_code=400, detail="Invalid asset path.") from exc
     if not asset_path.exists() or not asset_path.is_file():
         raise HTTPException(status_code=404, detail="Asset not found.")
 
@@ -1027,7 +1176,7 @@ async def preview_asset(job_id: str, asset_name: str) -> Response:
 @app.get("/api/docs-file/{job_id}/{file_path:path}")
 async def docs_file(job_id: str, file_path: str) -> Response:
     cleanup_stale_jobs()
-    job = jobs.get(job_id)
+    job = get_job(job_id)
     if not job:
         raise HTTPException(status_code=404, detail="Job not found or already cleaned up.")
 
@@ -1061,7 +1210,7 @@ async def docs_file(job_id: str, file_path: str) -> Response:
 async def preview_content(job_id: str) -> JSONResponse:
     """Return the rendered HTML and raw Markdown for the split-pane editor."""
     cleanup_stale_jobs()
-    job = jobs.get(job_id)
+    job = get_job(job_id)
     if not job:
         raise HTTPException(status_code=404, detail="Job not found or already cleaned up.")
     if job["status"] != "completed":
@@ -1084,7 +1233,7 @@ async def publish_to_site(
 ) -> JSONResponse:
   require_mutation_secret(publish_secret, "Publishing")
   cleanup_stale_jobs()
-  job = jobs.get(job_id)
+  job = get_job(job_id)
   if not job:
     raise HTTPException(status_code=404, detail="Job not found or already cleaned up.")
   if job["status"] != "completed":
@@ -1099,15 +1248,14 @@ async def publish_to_site(
 
   def publish_and_build() -> dict[str, str]:
     with site_mutation_lock:
-      result = publish_markdown_to_mkdocs_site(
-        source_markdown=output_file,
-        source_assets_dir=source_assets_dir,
-        docs_root=PUBLISHED_DOCS_DIR,
-        site_path=normalized_doc,
+      return run_site_mutation_transaction(
+        lambda: publish_markdown_to_mkdocs_site(
+          source_markdown=output_file,
+          source_assets_dir=source_assets_dir,
+          docs_root=PUBLISHED_DOCS_DIR,
+          site_path=normalized_doc,
+        )
       )
-      update_published_index(PUBLISHED_DOCS_DIR)
-      build_itsd_site()
-      return result
 
   try:
     published = await asyncio.to_thread(publish_and_build)
@@ -1135,13 +1283,12 @@ async def delete_from_site(
 
   def delete_and_build() -> dict[str, str]:
     with site_mutation_lock:
-      result = delete_published_document(
-        docs_root=PUBLISHED_DOCS_DIR,
-        site_path=site_path,
+      return run_site_mutation_transaction(
+        lambda: delete_published_document(
+          docs_root=PUBLISHED_DOCS_DIR,
+          site_path=site_path,
+        )
       )
-      update_published_index(PUBLISHED_DOCS_DIR)
-      build_itsd_site()
-      return result
 
   try:
     deleted = await asyncio.to_thread(delete_and_build)

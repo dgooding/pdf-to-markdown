@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import shutil
 import tempfile
@@ -132,10 +133,12 @@ def update_published_index(docs_root: Path) -> None:
 
     if entries:
         for rel_dir, title in entries:
+            safe_title = html.escape(title, quote=False)
+            safe_rel_dir = html.escape(rel_dir, quote=True)
             lines.append(
-                f'- [{title}]({rel_dir}/index.md) — `{rel_dir}` '
+                f'- [{safe_title}]({safe_rel_dir}/index.md) — `{safe_rel_dir}` '
                 f'<button type="button" class="delete-published-document" '
-                f'data-site-path="{rel_dir}">Delete</button>'
+                f'data-site-path="{safe_rel_dir}">Delete</button>'
             )
     else:
         lines.append("No documents have been published yet.")
