@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -22,7 +23,7 @@ class BatchConvertTests(unittest.TestCase):
 
     def _run(self, *args: str) -> subprocess.CompletedProcess:
         cmd = [
-            "C:/Python39/python.exe",
+            sys.executable,
             str(Path(__file__).resolve().parents[1] / "batch_convert.py"),
             str(self.inp),
             "--output-root",

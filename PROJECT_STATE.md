@@ -418,3 +418,9 @@
 - Verification: 83 tests passed; strict MkDocs build and offline dependency resolution passed; Markdown/assets/manifest/quality endpoint parity all true.
 - External operational follow-up: the legacy public Render service remains reachable and must be disabled or access-restricted in the Render console after GitHub Pages verification.
 
+## 2026-08-11 Non-OneDrive Workspace and CI Portability
+- Established the primary development clone at `C:\src\pdf-to-markdown` to avoid OneDrive read-only and synchronization locks.
+- Preserved the former OneDrive workspace as a backup because it contains unrelated uncommitted local documents.
+- Replaced hard-coded `C:/Python39/python.exe` subprocess paths in tests with `sys.executable` for GitHub runner portability.
+- Verification from the C-drive clone: 83 tests passed, strict MkDocs build passed, offline resolution passed, and all endpoint parity comparisons remained true.
+

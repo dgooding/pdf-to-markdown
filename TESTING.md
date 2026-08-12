@@ -402,3 +402,16 @@
 	- `artifacts/logs/hardening_final_offline_20260811.log`
 	- `artifacts/logs/hardening_final_endpoint_parity_20260811.log`
 
+## 2026-08-11 C-Drive and CI Portability Validation
+- Workspace: `C:\src\pdf-to-markdown`.
+- Generated-site deletion and strict rebuild completed without file-lock errors.
+- Full suite after replacing machine-specific subprocess interpreters: 83 passed.
+- Strict MkDocs build: passed.
+- Offline wheelhouse resolution: passed.
+- Endpoint parity: Markdown, assets, manifest core, and quality core all true.
+- Logs:
+	- `artifacts/logs/ci_portability_full_tests_20260811.log`
+	- `artifacts/logs/ci_portability_mkdocs_20260811.log`
+	- `artifacts/logs/ci_portability_offline_20260811.log`
+	- `artifacts/logs/ci_portability_endpoint_parity_20260811.log`
+

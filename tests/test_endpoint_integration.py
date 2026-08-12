@@ -6,6 +6,7 @@ import json
 import re
 import socket
 import subprocess
+import sys
 import tempfile
 import time
 import unittest
@@ -104,7 +105,7 @@ class EndpointIntegrationTests(unittest.TestCase):
         cls.server_port = cls._free_port()
         cls.server_proc = subprocess.Popen(
             [
-                "C:/Python39/python.exe",
+                sys.executable,
                 "-m",
                 "uvicorn",
                 "app:app",

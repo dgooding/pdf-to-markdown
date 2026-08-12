@@ -529,3 +529,9 @@
 - Verification: 83 full-suite tests passed; strict MkDocs build and offline resolution passed; endpoint/direct parity remained fully true.
 - Outstanding external item: remove or restrict the legacy Render deployment through its hosting console.
 
+## 2026-08-11 Workspace relocation and CI portability
+- Created and validated a clean clone at `C:\src\pdf-to-markdown`.
+- Confirmed generated MkDocs output can be removed and rebuilt outside OneDrive without lock failures.
+- Replaced test subprocess references to `C:/Python39/python.exe` with `sys.executable`.
+- Verification: 83 tests, strict MkDocs, offline dependency resolution, and strict endpoint parity all passed from the new clone.
+

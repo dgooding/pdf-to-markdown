@@ -129,3 +129,7 @@ This file records current repository architecture checkpoints for the document-t
 - GitHub mutation workflows commit source changes; `pages.yml` is the only production deployment authority.
 - All third-party Actions are pinned to immutable commits; `ci.yml` verifies Python 3.9 compile/tests, strict docs build, and offline wheelhouse resolution.
 - The legacy Render deployment is outside repository control and is not an accepted production surface.
+
+## Development Workspace
+- Preferred Windows development location: `C:\src\pdf-to-markdown` (outside OneDrive).
+- Test subprocesses use `sys.executable` so the selected Python 3.9 interpreter is authoritative across local and CI environments.

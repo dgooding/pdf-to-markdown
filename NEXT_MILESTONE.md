@@ -1,5 +1,6 @@
 # Next Milestone
 
+- Use `C:\src\pdf-to-markdown` as the primary local workspace; retain the OneDrive folder only until its unrelated local files are reviewed or archived.
 - Push the hardening changes and verify the global Admin control is absent after the single `pages.yml` deployment.
 - Enable GitHub Pages with **GitHub Actions** as the source and verify `https://dgooding.github.io/pdf-to-markdown/`.
 - Run a harmless public `incoming/` upload → conversion → publish → delete smoke cycle and retain Actions evidence.

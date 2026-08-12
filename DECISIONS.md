@@ -70,3 +70,5 @@
 65. Do not weaken package hash verification to accommodate a TLS proxy; avoid an external dependency when its complete verified offline closure cannot be retained.
 66. Pin every third-party GitHub Action to a reviewed immutable commit and use Dependabot to propose controlled updates.
 67. Keep continuous integration read-only and separate from conversion/publishing/deployment workflows.
+68. Use a non-OneDrive development clone for generated-site and rollback operations because synchronized folders can hold read-only locks.
+69. Test subprocesses must use `sys.executable`; machine-specific interpreter paths are documentation-only and never executable test dependencies.

@@ -4,6 +4,7 @@ import hashlib
 import json
 import socket
 import subprocess
+import sys
 import unittest
 from pathlib import Path
 
@@ -42,7 +43,7 @@ class ManualFidelityReviewGuardrailTests(unittest.TestCase):
     def test_human_review_packet_generated_with_17_fixtures_and_blank_fields(self) -> None:
         root = Path(__file__).resolve().parents[1]
         proc = subprocess.run(
-            ["C:/Python39/python.exe", "run_manual_fidelity_review.py"],
+            [sys.executable, "run_manual_fidelity_review.py"],
             cwd=str(root),
             capture_output=True,
             text=True,
@@ -75,7 +76,7 @@ class ManualFidelityReviewGuardrailTests(unittest.TestCase):
     def test_real_pilot_waiting_when_intake_empty(self) -> None:
         root = Path(__file__).resolve().parents[1]
         proc = subprocess.run(
-            ["C:/Python39/python.exe", "run_manual_fidelity_review.py"],
+            [sys.executable, "run_manual_fidelity_review.py"],
             cwd=str(root),
             capture_output=True,
             text=True,
